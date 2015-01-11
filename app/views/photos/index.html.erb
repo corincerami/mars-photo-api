@@ -1,23 +1,32 @@
 <%= form_tag photos_path, method: :get do %>
-  <%= label_tag :sol %>
-  <%= text_field_tag :sol %>
+  <div>
+    <%= label_tag :sol %>
+    <%= text_field_tag :sol %>
+  </div>
 
-  <%= label_tag :camera %>
-  <%= select_tag(:camera, options_for_select([["FHAZ", "FHAZ"], ["RHAZ", "RHAZ"],
-                                             ["CHEMCAM", "CHEMCAM"], ["NAV", "NAV"],
-                                             ["MARDI", "MARDI"], ["MAHLI", "MAHLI"], ["MAST", "MAST"]])) %>
+  <div>
+    <%= label_tag :camera %>
+    <%= select_tag(:camera, options_for_select([["FHAZ", "FHAZ"], ["RHAZ", "RHAZ"],
+                                               ["CHEMCAM", "CHEMCAM"], ["NAV", "NAV"],
+                                               ["MARDI", "MARDI"], ["MAHLI", "MAHLI"], ["MAST", "MAST"]])) %>
+  </div>
 
   <%= submit_tag "Search" %>
 <% end %>
 
-<% @photos.each do |photo| %>
+<% if !@photos.empty? %>
   <div>
-    <%= photo.sol %>
+    <%= "Taken on sol #{@photos.first.sol}" %>
   </div>
   <div>
-    <%= photo.camera %>
+    <%= "Taken with the #{@photos.first.camera} camera" %>
   </div>
-  <div>
-    <%= image_tag photo.img_src %>
-  </div>
+
+  <% @photos.each do |photo| %>
+    <div>
+      <%= link_to (image_tag photo.img_src), photo_path(photo) %>
+    </div>
+  <% end %>
+<% else %>
+  No photos found with these parameters
 <% end %>
