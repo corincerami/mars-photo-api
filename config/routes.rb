@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :photos, only: [:show]
+  resources :photos, only: [:show, :index]
 end

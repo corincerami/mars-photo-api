@@ -1,0 +1,23 @@
+<%= form_tag photos_path, method: :get do %>
+  <%= label_tag :sol %>
+  <%= text_field_tag :sol %>
+
+  <%= label_tag :camera %>
+  <%= select_tag(:camera, options_for_select([["FHAZ", "FHAZ"], ["RHAZ", "RHAZ"],
+                                             ["CHEMCAM", "CHEMCAM"], ["NAV", "NAV"],
+                                             ["MARDI", "MARDI"], ["MAHLI", "MAHLI"], ["MAST", "MAST"]])) %>
+
+  <%= submit_tag "Search" %>
+<% end %>
+
+<% @photos.each do |photo| %>
+  <div>
+    <%= photo.sol %>
+  </div>
+  <div>
+    <%= photo.camera %>
+  </div>
+  <div>
+    <%= image_tag photo.img_src %>
+  </div>
+<% end %>
