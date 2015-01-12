@@ -1,3 +1,9 @@
+<p>This API is designed to collect image data gathered by NASA's Curiosity rover on Mars and make it more easily available to other developers, educators, and citizen scientists.</p>
+
+<p>Photos can be found by both the sol on which they were taken by Curiosity, and by the camera with which they were taken. There are seven cameras aboard Curiosity. The Front Hazard Avoidance camera (FHAZ), Read Hazard Avoidance camera (FHAZ), Chemistry and Camera complex (CHEMCAM), Navigation cameras (NAVCAM), Mast Camera (MASTCAM), Mars Hand Lens Imager (MAHLI), and the Mars Descent Imager (MARDI).</p>
+
+<p>There are <%= Photo.count %> photos in this collection from <%= Photo.all.first.sol %> sols of Curiosity exploring the Red Planet. You can enter a number from 1 to <%= Photo.all.first.sol %> to view the photos from that sol from any of Curosity's cameras.</p>
+
 <%= form_tag photos_path, method: :get do %>
   <div>
     <%= label_tag :sol %>
