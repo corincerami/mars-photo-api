@@ -6,4 +6,4 @@ Photos can be found by both the sol on which they were taken by Curiosity, and b
 
 The API can be queried in the following format, http://mars-curiosity-api.herokuapp.com/photos.json/?sol=<MARTIAN_DATE>&camera=<CAMERA_NAME>, where MARTIAN_DATE should be replaced by a number between 1 and the current number of sols (Martian solar cycles) Curiosity has been on Mars, and CAMERA_NAME can be replaced with the name of one of the seven onboard camera systems.
 
-The database is not currently up-to-date, but I am looking to implement a way to scrape only the most current data from NASA's servers on a regular basis.
+The database will be updated regularly with the latest photos from the red planet.
