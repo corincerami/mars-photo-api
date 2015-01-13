@@ -1,0 +1,1 @@
+worker: rake db:seed
