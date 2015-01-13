@@ -201,6 +201,7 @@ DEPENDENCIES
   foundation-rails
   jquery-rails
   launchy
+  nokogiri
   pg
   pry
   rails (= 4.2.0)
