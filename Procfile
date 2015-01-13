@@ -1,1 +1,1 @@
-worker: rake db:seed
+web: rake db:seed
