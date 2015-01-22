@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+.header {
+  height: 300px;
+  background-image: url("biggest-picture.jpg");
+  background-repeat:repeat;
+  background-position: center;
+  background-size: cover;
+}
