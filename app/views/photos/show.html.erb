@@ -1,9 +1,11 @@
-<div>
-  <%= "This photo was taken on sol #{@photo.sol} of Curiosity's Mars expedition." %>
+<div class="text">
+  <p>
+    <%= "This photo was taken on sol #{@photo.sol} of Curiosity's Mars expedition." %>
+  </p>
+  <p>
+    <%= "It was taken with the #{@photo.camera}." %>
+  </p>
 </div>
 <div>
-  <%= "It was taken with the #{@photo.camera}." %>
-</div>
-<div>
-  <%= image_tag @photo.img_src %>
+    <%= image_tag @photo.img_src %>
 </div>
