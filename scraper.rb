@@ -11,6 +11,7 @@ base_url = "http://mars.jpl.nasa.gov/msl/multimedia/raw/"
 @results.map! { |suffix| base_url + suffix }
 
 @images = Array.new
+
 def scrape_images
   @results.each do |url|
     image_hash = Hash.new
@@ -22,7 +23,6 @@ def scrape_images
         image_hash[:sol] = url.scan(/(?<==)\d+/).first
         image_hash[:camera] = url.scan(/(?<=camera=)\w+/).first
         @images << image_hash
-        print "."
       end
     end
   end
