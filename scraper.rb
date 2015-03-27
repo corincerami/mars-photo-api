@@ -23,6 +23,7 @@ def scrape_images
         image_hash[:sol] = url.scan(/(?<==)\d+/).first
         image_hash[:camera] = url.scan(/(?<=camera=)\w+/).first
         @images << image_hash
+        print "."
       end
     end
   end

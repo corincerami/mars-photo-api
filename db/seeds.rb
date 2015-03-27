@@ -2,14 +2,7 @@ require './scraper'
 
 images = scrape_images
 
-sql = "INSERT INTO photos (img_src, sol, camera) VALUES "
-
-values = []
-images.each do |image|
-  values << "('#{image[:img_src]}', '#{image[:sol]}', '#{image[:camera]}')"
+image.each do |image|
+  i = Image.find_or_create_by(sol: image["sol"], camera: image["camera"], img_src: image["img_src"])
+  puts "Image #{i.id}"
 end
-
-sql << values.join(", ")
-
-Photo.destroy_all
-ActiveRecord::Base.connection.execute(sql)
