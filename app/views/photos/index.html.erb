@@ -22,15 +22,11 @@
   <%= submit_tag "Search" %>
 <% end %>
 
-<% if !@photos.empty? %>
-  <div>
-    <%= "Taken on sol #{@photos.first.sol}" %>
-  </div>
-  <div>
-    <%= "Taken with the #{@photos.first.camera} camera" %>
-  </div>
-
+<% if !@photos.blank? %>
   <% @photos.each do |photo| %>
+    <div>
+      <%= "Taken on sol #{photo.sol} with the #{photo.camera} camera" %>
+    </div>
     <div>
       <%= link_to (image_tag photo.img_src), photo_path(photo) %>
     </div>
