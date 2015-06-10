@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/chrisccerami/mars-curiosity-api.svg?branch=master)](https://travis-ci.org/chrisccerami/mars-curiosity-api)
+[![Build Status](https://travis-ci.org/chrisccerami/mars-curiosity-api.svg?branch=master)](https://travis-ci.org/chrisccerami/mars-curiosity-api)[![Code Climate](https://codeclimate.com/github/chrisccerami/mars-curiosity-api/badges/gpa.svg)](https://codeclimate.com/github/chrisccerami/mars-curiosity-api)
 
 # Mars Curiosity Photo API
 
