@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/chrisccerami/mars-curiosity-api.svg?branch=master)](https://travis-ci.org/chrisccerami/mars-curiosity-api)
+
 # Mars Curiosity Photo API
 
 This API is designed to collect image data gathered by NASA's Curiosity rover on Mars and make it more easily available to other developers, educators, and citizen scientists.
