@@ -3,7 +3,7 @@ class Photo < ActiveRecord::Base
 
   validates :img_src, uniqueness: true
 
-  LANDING_DATE = Date.new(2012,8,6)
+  LANDING_DATE = Date.new(2012, 8, 6)
   SOL_IN_SECONDS = 88775.244
 
   def self.search(sol, camera)
@@ -15,7 +15,7 @@ class Photo < ActiveRecord::Base
   end
 
   def formatted_earth_date
-    self.earth_date.strftime("%b %e, %Y")
+    earth_date.strftime("%b %e, %Y")
   end
 
   def calculate_earth_date
@@ -24,6 +24,6 @@ class Photo < ActiveRecord::Base
   end
 
   def set_earth_date
-    self.update(earth_date: self.calculate_earth_date)
+    update(earth_date: calculate_earth_date)
   end
 end
