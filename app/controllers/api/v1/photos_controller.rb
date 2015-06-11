@@ -5,7 +5,13 @@ class Api::V1::PhotosController < ApplicationController
   end
 
   def index
-    @photos = Photo.search(params[:sol], params[:camera])
+    @photos = Photo.search(photo_params)
     render json: @photos
+  end
+
+  private
+
+  def photo_params
+    params.permit(:sol, :camera, :earth_date)
   end
 end

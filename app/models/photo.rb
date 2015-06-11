@@ -6,12 +6,27 @@ class Photo < ActiveRecord::Base
   LANDING_DATE = Date.new(2012, 8, 6)
   SOL_IN_SECONDS = 88775.244
 
-  def self.search(sol, camera)
-    if sol && camera
-      where(sol: sol, camera: camera)
-    elsif sol
-      where(sol: sol)
+  def self.search(params)
+    photos = self.search_by_date(params)
+    if params[:camera]
+      photos = photos.search_by_camera(params)
     end
+    photos
+  end
+
+  def self.search_by_date(params)
+    if params[:sol]
+      photos = where(sol: params[:sol])
+    elsif params[:earth_date]
+      photos = where(earth_date: Date.strptime(params[:earth_date]))
+    else
+      photos = all
+    end
+    photos
+  end
+
+  def self.search_by_camera(params)
+    where(camera: params[:camera].upcase)
   end
 
   def formatted_earth_date
