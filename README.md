@@ -32,6 +32,7 @@ http://mars-curiosity-api.herokuapp.com/api/v1/photos?earth_date=2015-6-3
 
 ### Filtering Queries by Camera:
 http://mars-curiosity-api.herokuapp.com/api/v1/photos?sol=1000&camera=fhaz
+
 http://mars-curiosity-api.herokuapp.com/api/v1/photos?earth_date=2015-6-3&camera=fhaz
 
 
