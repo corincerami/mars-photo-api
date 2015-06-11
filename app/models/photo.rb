@@ -9,7 +9,9 @@ class Photo < ActiveRecord::Base
   def self.search(params)
     photos = search_by_date(params)
     if params[:camera]
-      photos = photos.search_by_camera(params)
+      if photos.any?
+        photos = photos.search_by_camera(params)
+      end
     end
     photos
   end
@@ -19,8 +21,6 @@ class Photo < ActiveRecord::Base
       photos = where(sol: params[:sol])
     elsif params[:earth_date]
       photos = where(earth_date: Date.strptime(params[:earth_date]))
-    else
-      photos = all
     end
     photos
   end
