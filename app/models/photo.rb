@@ -3,7 +3,7 @@ class Photo < ActiveRecord::Base
 
   validates :img_src, uniqueness: true
 
-  LANDING_DATE = DateTime.new(2012,8,6,5,17,57)
+  LANDING_DATE = Date.new(2012,8,6)
   SOL_IN_SECONDS = 88775.244
 
   def self.search(sol, camera)
@@ -19,7 +19,8 @@ class Photo < ActiveRecord::Base
   end
 
   def calculate_earth_date
-    LANDING_DATE + (sol.to_i * SOL_IN_SECONDS).seconds
+    # numbers of martian rotations since landing converted to earth rotations
+    LANDING_DATE + (sol.to_i * SOL_IN_SECONDS).seconds / 86400
   end
 
   def set_earth_date
