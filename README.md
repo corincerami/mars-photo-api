@@ -42,8 +42,8 @@ The database will be updated regularly with the latest photos from the red plane
 
 If you would like to contribute to Mars Curiosity API, feel free to create a pull request. If you'd like to contact me, you can reach me at chrisccerami@gmail.com or on Twitter @chrisccerami.
 
-Fork it ( https://github.com/chrisccerami/mars-curiosity-api/fork )
-Create your feature branch (git checkout -b my-new-feature)
-Commit your changes (git commit -am 'Add some feature')
-Push to the branch (git push origin my-new-feature)
-Create a new Pull Request
+1. Fork it ( https://github.com/chrisccerami/mars-curiosity-api/fork )
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create a new Pull Request
