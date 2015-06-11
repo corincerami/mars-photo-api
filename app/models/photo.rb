@@ -7,7 +7,7 @@ class Photo < ActiveRecord::Base
   SOL_IN_SECONDS = 88775.244
 
   def self.search(params)
-    photos = self.search_by_date(params)
+    photos = search_by_date(params)
     if params[:camera]
       photos = photos.search_by_camera(params)
     end
