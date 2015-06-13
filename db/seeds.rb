@@ -17,10 +17,10 @@ curiosity.cameras.create(name: "MARDI")
 curiosity.cameras.create(name: "NAVCAM")
 
 Photo.all.each do |photo|
+  photo.rover = curiosity
   if !photo.old_camera.blank?
     camera = photo.rover.cameras.find_by(name: photo.old_camera)
     photo.camera = camera
   end
-  photo.rover = curiosity
   photo.save
 end
