@@ -1,2 +1,6 @@
-Rover.create(name: "Curiosity", landing_date: Date.new(2012, 8, 6))
-Rover.create(name: "Opportunity", landing_date: Date.new(2004, 1, 25))
+curiosity = Rover.create(name: "Curiosity", landing_date: Date.new(2012, 8, 6))
+opportunity = Rover.create(name: "Opportunity", landing_date: Date.new(2004, 1, 25))
+
+Photo.all.each do |photo|
+  photo.update(rover: curiosity)
+end
