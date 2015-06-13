@@ -12,7 +12,7 @@ class CuriosityScraper
 
   def collect_links
     # collects link suffixes to all pages for each martian solar cycle from each camera
-    main_page.css("div.image_list a").map { |link|  link['href']}
+    main_page.css("div.image_list a").map { |link|  link['href'] }
   end
 
   def create_photos
