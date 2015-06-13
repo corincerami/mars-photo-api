@@ -6,7 +6,7 @@
 
 <p>http://mars-curiosity-api.herokuapp.com/photos.&lt;FORMAT&gt;/?sol=&lt;MARTIAN_SOL&gt;&amp;camera=&lt;CAMERA_NAME&gt;</p><div>
 
-<%= form_tag photos_path, method: :get do %>
+<%= form_tag rover_photos_path, method: :get do %>
   <div>
     <%= label_tag :sol %>
     <%= text_field_tag :sol %>

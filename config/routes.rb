@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
-  root "photos#index"
+  root "rovers#index"
 
-  resources :photos, only: [:show, :index]
+  resources :rovers, only: [:show, :index] do
+    resources :photos, only: :index
+  end
+
+  resources :photos, only: :show
 
   namespace :api do
     namespace :v1 do
-      resources :photos, only: [:show, :index]
+      resources :rovers, only: [:index] do
+        resources :photos, only: [:show, :index]
+      end
     end
   end
 end

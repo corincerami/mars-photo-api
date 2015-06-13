@@ -1,0 +1,5 @@
+<% @rovers.each do |rover| %>
+  <p>
+    <%= link_to rover.name, rover_photos_path(rover) %>
+  </p>
+<% end %>
