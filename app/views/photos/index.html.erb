@@ -42,7 +42,7 @@
 
   <div>
     <%= label_tag :camera %>
-    <%= select_tag(:camera, options_for_select(@rover.cameras.map { |camera| [camera.name, camera.id] })) %>
+    <%= select_tag(:camera, options_for_select(@rover.cameras.map { |camera| [camera.name, camera.name] })) %>
   </div>
 
   <%= submit_tag "Search" %>

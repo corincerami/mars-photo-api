@@ -8,11 +8,11 @@ class Photo < ActiveRecord::Base
 
   SOL_IN_SECONDS = 88775.244
 
-  def self.search(params)
+  def self.search(params, rover)
     photos = search_by_date(params)
     if params[:camera]
       if photos.any?
-        photos = photos.search_by_camera(params)
+        photos = photos.search_by_camera(params, rover)
       end
     end
     photos
@@ -27,8 +27,10 @@ class Photo < ActiveRecord::Base
     photos
   end
 
-  def self.search_by_camera(params)
-    where(camera: params[:camera].upcase)
+  def self.search_by_camera(params, rover)
+    rover = Rover.find_by(name: rover.titleize)
+    camera = rover.cameras.find_by(name: params[:camera])
+    where(camera: camera)
   end
 
   def formatted_earth_date
