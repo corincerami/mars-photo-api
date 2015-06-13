@@ -1,4 +1,6 @@
 class Photo < ActiveRecord::Base
+  belongs_to :rover
+
   after_create :set_earth_date
 
   validates :img_src, uniqueness: true
