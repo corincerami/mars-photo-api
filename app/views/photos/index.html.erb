@@ -42,9 +42,7 @@
 
   <div>
     <%= label_tag :camera %>
-    <%= select_tag(:camera, options_for_select([["FHAZ", "FHAZ"], ["RHAZ", "RHAZ"],
-                                               ["CHEMCAM", "CHEMCAM"], ["NAV", "NAV"],
-                                               ["MARDI", "MARDI"], ["MAHLI", "MAHLI"], ["MAST", "MAST"]])) %>
+    <%= select_tag(:camera, options_for_select(@rover.cameras.map { |camera| [camera.name, camera.id] })) %>
   </div>
 
   <%= submit_tag "Search" %>

@@ -11,17 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613145324) do
+ActiveRecord::Schema.define(version: 20150613162909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "cameras", force: :cascade do |t|
+    t.string  "name"
+    t.integer "rover_id"
+  end
+
   create_table "photos", force: :cascade do |t|
     t.string  "img_src",    null: false
     t.integer "sol",        null: false
-    t.string  "camera",     null: false
+    t.string  "camera"
     t.date    "earth_date"
     t.integer "rover_id"
+    t.integer "camera_id"
   end
 
   add_index "photos", ["img_src"], name: "index_photos_on_img_src", using: :btree

@@ -1,5 +1,6 @@
 class Photo < ActiveRecord::Base
   belongs_to :rover
+  belongs_to :camera
 
   after_create :set_earth_date
 
