@@ -1,5 +1,5 @@
 curiosity = Rover.create(name: "Curiosity", landing_date: Date.new(2012, 8, 6))
-opportunity = Rover.create(name: "Opportunity", landing_date: Date.new(2004, 1, 25))
+Rover.create(name: "Opportunity", landing_date: Date.new(2004, 1, 25))
 
 opportunity.cameras.create(name: "FHAZ")
 opportunity.cameras.create(name: "RHAZ")
