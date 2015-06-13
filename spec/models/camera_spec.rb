@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Camera, :type => :model do
+RSpec.describe Camera, type: :model do
   describe "attributes" do
     it { should respond_to :name }
   end

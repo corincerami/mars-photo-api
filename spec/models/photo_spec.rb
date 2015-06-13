@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Photo, :type => :model do
+RSpec.describe Photo, type: :model do
   describe "attributes" do
     it { should respond_to :img_src }
     it { should respond_to :camera }

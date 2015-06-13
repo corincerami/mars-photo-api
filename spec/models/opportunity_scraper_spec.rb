@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe OpportunityScraper, :type => :model do
+RSpec.describe OpportunityScraper, type: :model do
 end
