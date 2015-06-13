@@ -1,2 +1,2 @@
-worker: rake scrape_curiosity
-worker: rake scrape_opportunity
+curiosity_scraper: rake scrape_curiosity
+opportunity_scraper: rake scrape_opportunity
