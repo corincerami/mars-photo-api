@@ -1,6 +1,9 @@
 class OpportunityScraper
   BASE_URI = "http://mars.nasa.gov/mer/gallery/all/"
-  ROVER = Rover.find_by(name: "Opportunity")
+
+  def initialize
+    @rover = Rover.find_by(name: "Opportunity")
+  end
 
   SOL_SELECT_CSS_PATHS = [
     "#Engineering_Cameras_Front_Hazcam",
@@ -60,11 +63,12 @@ class OpportunityScraper
     path = link.attributes["href"].value
     parts = path.split("/")
     sol = parts[2].to_i
-    camera = CAMERAS[parts[1].to_sym]
+    camera_name = CAMERAS[parts[1].to_sym]
+    camera = @rover.cameras.find_by(name: camera_name)
     photo_page = Nokogiri::HTML(open(BASE_URI + path))
     early_path = path.scan(/\d\/\w\/\d+\//).first
     src = BASE_URI + early_path + photo_page.css("table")[10].css("img").first.attributes["src"].value
-    p = Photo.find_or_create_by(sol: sol, camera: camera, img_src: src, rover: ROVER)
+    p = Photo.find_or_create_by(sol: sol, camera: camera, img_src: src, rover: @rover)
     Rails.logger.info "Photo with id #{p.id} created from #{p.rover.name}"
     Rails.logger.info "img_src: #{p.img_src}, sol: #{p.sol}, camera: #{p.camera}"
   end
