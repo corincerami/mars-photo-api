@@ -45,3 +45,13 @@ body {
   padding: 10px;
   border-radius: 10px;
 }
+
+.rover-photo {
+  width: 30%;
+}
+
+.rover-name {
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 20px;
+  color: #FFFFE2;
+}

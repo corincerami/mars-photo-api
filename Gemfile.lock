@@ -194,3 +194,6 @@ DEPENDENCIES
   rspec-rails
   shoulda-matchers
   uglifier
+
+BUNDLED WITH
+   1.10.3

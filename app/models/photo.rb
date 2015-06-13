@@ -1,16 +1,18 @@
 class Photo < ActiveRecord::Base
+  belongs_to :rover
+  belongs_to :camera
+
   after_create :set_earth_date
 
   validates :img_src, uniqueness: true
 
-  LANDING_DATE = Date.new(2012, 8, 6)
   SOL_IN_SECONDS = 88775.244
 
-  def self.search(params)
+  def self.search(params, rover)
     photos = search_by_date(params)
     if params[:camera]
       if photos.any?
-        photos = photos.search_by_camera(params)
+        photos = photos.search_by_camera(params, rover)
       end
     end
     photos
@@ -25,8 +27,10 @@ class Photo < ActiveRecord::Base
     photos
   end
 
-  def self.search_by_camera(params)
-    where(camera: params[:camera].upcase)
+  def self.search_by_camera(params, rover)
+    rover = Rover.find_by(name: rover.titleize)
+    camera = rover.cameras.find_by(name: params[:camera].upcase)
+    where(camera: camera)
   end
 
   def formatted_earth_date
@@ -35,7 +39,7 @@ class Photo < ActiveRecord::Base
 
   def calculate_earth_date
     # numbers of martian rotations since landing converted to earth rotations
-    LANDING_DATE + (sol.to_i * SOL_IN_SECONDS).seconds / 86400
+    rover.landing_date + (sol.to_i * SOL_IN_SECONDS).seconds / 86400
   end
 
   def set_earth_date

@@ -5,7 +5,8 @@ class Api::V1::PhotosController < ApplicationController
   end
 
   def index
-    @photos = Photo.search(photo_params)
+    @rover = Rover.find_by(name: params[:rover_id].titleize)
+    @photos = @rover.photos.search(photo_params, params[:rover_id])
     render json: @photos
   end
 
