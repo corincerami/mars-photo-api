@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
   end
 
   def index
-    @rover = Rover.find(params[:rover_id])
+    @rover = Rover.find_by(name: params[:rover_id].titleize)
     @photos = @rover.photos.search(photo_params)
   end
 
