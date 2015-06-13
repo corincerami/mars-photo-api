@@ -1,5 +1,6 @@
 class CuriosityScraper
   BASE_URL = "http://mars.jpl.nasa.gov/msl/multimedia/raw/"
+  ROVER = Rover.find_by(name: "Curiosity")
 
   def scrape
     create_photos
@@ -23,8 +24,9 @@ class CuriosityScraper
         if !image.to_s.include?("_T")
           sol = url.scan(/(?<==)\d+/).first
           camera = url.scan(/(?<=camera=)\w+/).first
-          p = Photo.find_or_create_by(sol: sol, camera: camera, img_src: image)
-          Rails.logger.info "Photo with id #{p.id} created, img_src: #{p.img_src}, sol: #{p.sol}, camera: #{p.camera}"
+          p = Photo.find_or_create_by(sol: sol, camera: camera, img_src: image, rover: ROVER)
+          Rails.logger.info "Photo with id #{p.id} created from #{p.rover.name}"
+          Rails.logger.info "img_src: #{p.img_src}, sol: #{p.sol}, camera: #{p.camera}"
         end
       end
     end
