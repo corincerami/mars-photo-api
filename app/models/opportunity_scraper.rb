@@ -19,12 +19,12 @@ class OpportunityScraper
     e: "ENTRY"
   }
 
-  def crawl
+  def scrape
     collect_sol_paths
   end
 
   def main_page
-    doc = Nokogiri::HTML(open(BASE_URI + "opportunity.html"))
+    Nokogiri::HTML(open(BASE_URI + "opportunity.html"))
   end
 
   def sol_paths
