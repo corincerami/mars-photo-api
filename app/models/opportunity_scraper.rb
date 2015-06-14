@@ -49,13 +49,17 @@ class OpportunityScraper
   end
 
   def collect_image_paths(sol_path)
-    photos_page = Nokogiri::HTML(open(BASE_URI + sol_path))
-    table = photos_page.css("table")[10]
-    photo_links = table.css("tr[bgcolor='#F4F4E9']").map { |p| p.css("a") }
-    photo_links.each do |links|
-      links.each do |link|
-        create_photos(link)
+    begin
+      photos_page = Nokogiri::HTML(open(BASE_URI + sol_path))
+      table = photos_page.css("table")[10]
+      photo_links = table.css("tr[bgcolor='#F4F4E9']").map { |p| p.css("a") }
+      photo_links.each do |links|
+        links.each do |link|
+          create_photos(link)
+        end
       end
+    rescue => e
+      Rails.logger.info e
     end
   end
 
@@ -68,7 +72,7 @@ class OpportunityScraper
     photo_page = Nokogiri::HTML(open(BASE_URI + path))
     early_path = path.scan(/\d\/\w\/\d+\//).first
     src = BASE_URI + early_path +
-      photo_page.css("table")[10].css("img").first.attributes["src"].value
+      photo_page.css("img[width='500']").first.attributes["src"].value
     p = Photo.find_or_create_by(sol: sol, camera: camera,
                                 img_src: src, rover: @rover)
     Rails.logger.info "Photo with id #{p.id} created from #{p.rover.name}"
