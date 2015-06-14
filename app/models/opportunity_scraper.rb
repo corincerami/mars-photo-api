@@ -43,7 +43,7 @@ class OpportunityScraper
   end
 
   def collect_sol_paths
-    sol_paths.first(10).each do |path|
+    sol_paths.each do |path|
       collect_image_paths(path)
     end
   end
