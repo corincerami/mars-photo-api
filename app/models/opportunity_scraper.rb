@@ -44,22 +44,23 @@ class OpportunityScraper
 
   def collect_sol_paths
     sol_paths.each do |path|
-      collect_image_paths(path)
+      begin
+        collect_image_paths(path)
+      rescue => e
+        Rails.logger.info e
+        next
+      end
     end
   end
 
   def collect_image_paths(sol_path)
-    begin
-      photos_page = Nokogiri::HTML(open(BASE_URI + sol_path))
-      table = photos_page.css("table")[10]
-      photo_links = table.css("tr[bgcolor='#F4F4E9']").map { |p| p.css("a") }
-      photo_links.each do |links|
-        links.each do |link|
-          create_photos(link)
-        end
+    photos_page = Nokogiri::HTML(open(BASE_URI + sol_path))
+    table = photos_page.css("table")[10]
+    photo_links = table.css("tr[bgcolor='#F4F4E9']").map { |p| p.css("a") }
+    photo_links.each do |links|
+      links.each do |link|
+        create_photos(link)
       end
-    rescue => e
-      Rails.logger.info e
     end
   end
 
