@@ -48,6 +48,7 @@ class OpportunityScraper
         collect_image_paths(path)
       rescue => e
         Rails.logger.info e
+        Rails.logger.info path
         next
       end
     end
@@ -55,8 +56,7 @@ class OpportunityScraper
 
   def collect_image_paths(sol_path)
     photos_page = Nokogiri::HTML(open(BASE_URI + sol_path))
-    table = photos_page.css("table")[10]
-    photo_links = table.css("tr[bgcolor='#F4F4E9']").map { |p| p.css("a") }
+    photo_links = photos_page.css("tr[bgcolor='#F4F4E9']").map { |p| p.css("a") }
     photo_links.each do |links|
       links.each do |link|
         create_photos(link)
