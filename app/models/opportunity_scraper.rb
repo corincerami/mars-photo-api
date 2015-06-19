@@ -6,12 +6,12 @@ class OpportunityScraper
   end
 
   SOL_SELECT_CSS_PATHS = [
-    "#Engineering_Cameras_Front_Hazcam",
-    "#Engineering_Cameras_Rear_Hazcam",
     "#Engineering_Cameras_Navigation_Camera",
     "#Engineering_Cameras_Panoramic_Camera",
     "#Engineering_Cameras_Microscopic_Imager",
-    "select[id^=Engineering_Cameras_Entry]"
+    "select[id^=Engineering_Cameras_Entry]",
+    "#Engineering_Cameras_Front_Hazcam",
+    "#Engineering_Cameras_Rear_Hazcam"
   ]
 
   CAMERAS = {
