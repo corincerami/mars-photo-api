@@ -44,8 +44,11 @@ class OpportunityScraper
 
   def collect_sol_paths
     sol_paths.each do |path|
-      sol = path.scan(/\d+/)[0].to_i
-      photos = Photo.where(rover: @rover, sol: sol)
+      regex = /(?<camera>\w)(?<sol>\d+)/.match(path)
+      sol = regex[:sol]
+      camera_name = CAMERAS[regex[:camera].to_sym]
+      camera = @rover.cameras.find_by(name: camera_name)
+      photos = Photo.where(rover: @rover, sol: sol, camera: camera)
       if !photos.any?
         begin
           collect_image_paths(path)
