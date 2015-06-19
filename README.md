@@ -42,21 +42,21 @@ The API can be queried in the following format:
 
 Queries by sol can range from 0, which is the date of landing, up to the current maximum in the database. The current max sol can be found at http://mars-curiosity-api.herokuapp.com at present.
 
-http://mars-curiosity-api.herokuapp.com/api/v1/curiosity/photos?sol=1000
+http://mars-curiosity-api.herokuapp.com/api/v1/rovers/curiosity/photos?sol=1000
 
 #### Querying by Earth date:
 
 Dates should be formatted as 'yyyy-mm-dd'. The earliest date available is the date of landing for each rover.
 
-http://mars-curiosity-api.herokuapp.com/api/v1/curiosity/photos?earth_date=2015-6-3
+http://mars-curiosity-api.herokuapp.com/api/v1/rovers/curiosity/photos?earth_date=2015-6-3
 
 #### Filtering Queries by Camera:
 
 The camera parameter is not case sensitive, but must be one of the camera abbreviations listed in the table above for the respective rover.
 
-http://mars-curiosity-api.herokuapp.com/api/v1/curiosity/photos?sol=1000&camera=fhaz
+http://mars-curiosity-api.herokuapp.com/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz
 
-http://mars-curiosity-api.herokuapp.com/api/v1/opportunity/photos?earth_date=2015-6-3&camera=pancam
+http://mars-curiosity-api.herokuapp.com/api/v1/rovers/opportunity/photos?earth_date=2015-6-3&camera=pancam
 
 
 The database will be updated regularly with the latest photos from the red planet.
