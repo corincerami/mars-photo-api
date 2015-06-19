@@ -44,12 +44,16 @@ class OpportunityScraper
 
   def collect_sol_paths
     sol_paths.each do |path|
-      begin
-        collect_image_paths(path)
-      rescue => e
-        Rails.logger.info e
-        Rails.logger.info path
-        next
+      sol = path.scan(/\d+/)[0].to_i
+      photos = Photo.where(rover: @rover, sol: sol)
+      if !photos.any?
+        begin
+          collect_image_paths(path)
+        rescue => e
+          Rails.logger.info e
+          Rails.logger.info path
+          next
+        end
       end
     end
   end
