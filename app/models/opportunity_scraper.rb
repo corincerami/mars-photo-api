@@ -80,7 +80,7 @@ class OpportunityScraper
     photo_page = Nokogiri::HTML(open(BASE_URI + path))
     early_path = path.scan(/\d\/\w\/\d+\//).first
     src = BASE_URI + early_path +
-      photo_page.css("img[width='500']").first.attributes["src"].value
+      photo_page.css("table[width='500'] img").first.attributes["src"].value
     p = Photo.find_or_create_by(sol: sol, camera: camera,
                                 img_src: src, rover: @rover)
     Rails.logger.info "Photo with id #{p.id} created from #{p.rover.name}"
