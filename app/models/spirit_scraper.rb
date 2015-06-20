@@ -63,7 +63,9 @@ class SpiritScraper
 
   def collect_image_paths(sol_path)
     photos_page = Nokogiri::HTML(open(BASE_URI + sol_path))
-    photo_links = photos_page.css("tr[bgcolor='#F4F4E9']").map { |p| p.css("a") }
+    photo_links = photos_page.css("tr[bgcolor='#F4F4E9']").map do |p|
+      p.css("a")
+    end
     photo_links.each do |links|
       links.each do |link|
         create_photos(link)
@@ -80,7 +82,7 @@ class SpiritScraper
     photo_page = Nokogiri::HTML(open(BASE_URI + path))
     early_path = path.scan(/\d\/\w\/\d+\//).first
     src = BASE_URI + early_path +
-      photo_page.css("table[width='500'] img").first.attributes["src"].value
+          photo_page.css("table[width='500'] img")[0].attributes["src"].value
     p = Photo.find_or_create_by(sol: sol, camera: camera,
                                 img_src: src, rover: @rover)
     Rails.logger.info "Photo with id #{p.id} created from #{p.rover.name}"
