@@ -1,8 +1,8 @@
-class SpiritScraper
+class OpportunitySpiritScraper
   BASE_URI = "http://mars.nasa.gov/mer/gallery/all/"
 
-  def initialize
-    @rover = Rover.find_by(name: "Spirit")
+  def initialize(rover)
+    @rover = Rover.find_by(name: rover)
   end
 
   SOL_SELECT_CSS_PATHS = [
@@ -28,7 +28,8 @@ class SpiritScraper
   end
 
   def main_page
-    Nokogiri::HTML(open(BASE_URI + "spirit.html"))
+    rover_html = "#{@rover.name.downcase}.html"
+    Nokogiri::HTML(open(BASE_URI + rover_html))
   end
 
   def sol_paths
@@ -47,7 +48,7 @@ class SpiritScraper
       regex = /(?<camera>\w)(?<sol>\d+)/.match(path)
       sol = regex[:sol]
       camera_name = CAMERAS[regex[:camera].to_sym]
-      camera = @rover.cameras.find_by(name: camera_name, rover: @rover)
+      camera = @rover.cameras.find_by(name: camera_name)
       photos = Photo.where(rover: @rover, sol: sol, camera: camera)
       if !photos.any?
         begin
@@ -63,9 +64,7 @@ class SpiritScraper
 
   def collect_image_paths(sol_path)
     photos_page = Nokogiri::HTML(open(BASE_URI + sol_path))
-    photo_links = photos_page.css("tr[bgcolor='#F4F4E9']").map do |p|
-      p.css("a")
-    end
+    photo_links = photos_page.css("tr[bgcolor='#F4F4E9']").map { |p| p.css("a") }
     photo_links.each do |links|
       links.each do |link|
         create_photos(link)
@@ -82,7 +81,7 @@ class SpiritScraper
     photo_page = Nokogiri::HTML(open(BASE_URI + path))
     early_path = path.scan(/\d\/\w\/\d+\//).first
     src = BASE_URI + early_path +
-          photo_page.css("table[width='500'] img")[0].attributes["src"].value
+      photo_page.css("table[width='500'] img").first.attributes["src"].value
     p = Photo.find_or_create_by(sol: sol, camera: camera,
                                 img_src: src, rover: @rover)
     Rails.logger.info "Photo with id #{p.id} created from #{p.rover.name}"

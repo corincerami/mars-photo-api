@@ -10,9 +10,9 @@ task scrape_curiosity: :environment do
 end
 
 task scrape_opportunity: :environment do
-  OpportunityScraper.new.scrape
+  OpportunitySpiritScraper.new("Opportunity").scrape
 end
 
 task scrape_spirit: :environment do
-  SpiritScraper.new.scrape
+  OpportunitySpiritScraper.new("Spirit").scrape
 end
