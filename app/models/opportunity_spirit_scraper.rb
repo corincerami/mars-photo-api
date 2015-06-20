@@ -74,18 +74,25 @@ class OpportunitySpiritScraper
 
   def create_photos(link)
     path = link.attributes["href"].value
-    parts = path.split("/")
-    sol = parts[2].to_i
-    camera_name = CAMERAS[parts[1].to_sym]
-    camera = @rover.cameras.find_by(name: camera_name)
+    reg = /(?<early_path>\d\/(?<camera_name>\w)\/(?<sol>\d+)\/)\S+/.match(path)
+    camera = @rover.cameras.find_by(name: CAMERAS[reg[:camera_name].to_sym])
     photo_page = Nokogiri::HTML(open(BASE_URI + path))
-    early_path = path.scan(/\d\/\w\/\d+\//).first
-    src = BASE_URI + early_path +
-      photo_page.css("table[width='500'] img").first.attributes["src"].value
-    p = Photo.find_or_create_by(sol: sol, camera: camera,
-                                img_src: src, rover: @rover)
-    Rails.logger.info "Photo with id #{p.id} created from #{p.rover.name}"
-    Rails.logger.info "img_src: #{p.img_src}, sol:" +
-      "#{p.sol}, camera: #{p.camera}"
+    src = build_src(reg[:early_path], photo_page)
+    photo = Photo.find_or_create_by(sol: reg[:sol].to_i, camera: camera,
+                                    img_src: src, rover: @rover)
+    log_photo(photo)
+  end
+
+  def build_src(early_path, photo_page)
+    BASE_URI +
+    early_path +
+    photo_page.css("table[width='500'] img").first.attributes["src"].value
+  end
+
+  def log_photo(photo)
+    Rails.logger.info "Photo with id #{photo.id} " +
+      "created from #{photo.rover.name}"
+    Rails.logger.info "img_src: #{photo.img_src}, sol:" +
+      "#{photo.sol}, camera: #{photo.camera}"
   end
 end
