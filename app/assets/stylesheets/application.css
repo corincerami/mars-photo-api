@@ -10,7 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *= require foundation.min
  *= require_self
 
  */
@@ -37,17 +37,6 @@
 
 body {
   background-color: #302F2C;
-}
-
-.text {
-  background-color: #DB6051;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.rover-photo {
-  width: 30%;
 }
 
 .rover-name {
