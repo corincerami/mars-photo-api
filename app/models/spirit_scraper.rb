@@ -1,8 +1,8 @@
-class OpportunityScraper
+class SpiritScraper
   BASE_URI = "http://mars.nasa.gov/mer/gallery/all/"
 
   def initialize
-    @rover = Rover.find_by(name: "Opportunity")
+    @rover = Rover.find_by(name: "Spirit")
   end
 
   SOL_SELECT_CSS_PATHS = [
@@ -28,7 +28,7 @@ class OpportunityScraper
   end
 
   def main_page
-    Nokogiri::HTML(open(BASE_URI + "opportunity.html"))
+    Nokogiri::HTML(open(BASE_URI + "spirit.html"))
   end
 
   def sol_paths
@@ -47,7 +47,7 @@ class OpportunityScraper
       regex = /(?<camera>\w)(?<sol>\d+)/.match(path)
       sol = regex[:sol]
       camera_name = CAMERAS[regex[:camera].to_sym]
-      camera = @rover.cameras.find_by(name: camera_name)
+      camera = @rover.cameras.find_by(name: camera_name, rover: @rover)
       photos = Photo.where(rover: @rover, sol: sol, camera: camera)
       if !photos.any?
         begin

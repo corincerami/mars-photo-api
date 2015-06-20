@@ -12,3 +12,7 @@ end
 task scrape_opportunity: :environment do
   OpportunityScraper.new.scrape
 end
+
+task scrape_spirit: :environment do
+  SpiritScraper.new.scrape
+end
