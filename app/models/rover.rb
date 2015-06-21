@@ -13,4 +13,8 @@ class Rover < ActiveRecord::Base
   def max_date
     photos.maximum(:earth_date)
   end
+
+  def total_photos
+    photos.count
+  end
 end
