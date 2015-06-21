@@ -5,4 +5,12 @@ class Rover < ActiveRecord::Base
   def to_param
     name.parameterize
   end
+
+  def max_sol
+    photos.maximum(:sol)
+  end
+
+  def max_date
+    photos.maximum(:earth_date)
+  end
 end
