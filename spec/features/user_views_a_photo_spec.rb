@@ -6,6 +6,6 @@ feature "User views a photo" do
     visit photo_path(photo)
 
     expect(page).to have_content photo.sol
-    expect(page).to have_content photo.camera.name
+    expect(page).to have_content photo.camera.full_name
   end
 end
