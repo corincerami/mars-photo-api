@@ -32,8 +32,8 @@ describe Api::V1::PhotosController do
       end
 
       it "renders photo data matching sol" do
-        expect(JSON.parse(response.body)["photos"].length).to eq 1
-        expect(JSON.parse(response.body)["photos"].first["sol"]).to eq @photo.sol
+        expect(json["photos"].length).to eq 1
+        expect(json["photos"].first["sol"]).to eq @photo.sol
       end
     end
 
@@ -50,8 +50,8 @@ describe Api::V1::PhotosController do
       end
 
       it "renders photo data matching sol and camera" do
-        expect(JSON.parse(response.body)["photos"].length).to eq 1
-        expect(JSON.parse(response.body)["photos"].first["camera"]["name"]).to eq @camera.name
+        expect(json["photos"].length).to eq 1
+        expect(json["photos"].first["camera"]["name"]).to eq @camera.name
       end
     end
 
@@ -68,8 +68,8 @@ describe Api::V1::PhotosController do
       end
 
       it "renders photo data matching Earth date" do
-        expect(JSON.parse(response.body)["photos"].length).to eq 1
-        expect(JSON.parse(response.body)["photos"].first["earth_date"]).to eq "2014-12-05"
+        expect(json["photos"].length).to eq 1
+        expect(json["photos"].first["earth_date"]).to eq "2014-12-05"
       end
     end
 
@@ -86,8 +86,8 @@ describe Api::V1::PhotosController do
       end
 
       it "renders photo data matching sol and camera" do
-        expect(JSON.parse(response.body)["photos"].length).to eq 1
-        expect(JSON.parse(response.body)["photos"].first["camera"]["name"]).to eq @camera.name
+        expect(json["photos"].length).to eq 1
+        expect(json["photos"].first["camera"]["name"]).to eq @camera.name
       end
     end
   end

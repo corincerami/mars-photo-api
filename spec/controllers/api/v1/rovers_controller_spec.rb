@@ -15,7 +15,7 @@ describe Api::V1::RoversController do
       end
 
       it 'renders rovers json' do
-        expect(JSON.parse(response.body)["rovers"].length).to eq 1
+        expect(json["rovers"].length).to eq 1
       end
     end
   end
