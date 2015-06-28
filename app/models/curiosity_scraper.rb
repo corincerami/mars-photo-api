@@ -1,6 +1,7 @@
 class CuriosityScraper
   BASE_URL = "http://mars.jpl.nasa.gov/msl/multimedia/raw/"
 
+  attr_reader :rover
   def initialize
     @rover = Rover.find_by(name: "Curiosity")
   end
