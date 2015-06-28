@@ -34,7 +34,7 @@ class Photo < ActiveRecord::Base
   end
 
   def formatted_earth_date
-    earth_date.strftime("%b %e, %Y")
+    earth_date.strftime("%b%e, %Y")
   end
 
   def calculate_earth_date
