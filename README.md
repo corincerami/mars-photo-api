@@ -1,10 +1,10 @@
-[![Build Status](https://travis-ci.org/chrisccerami/mars-curiosity-api.svg?branch=master)](https://travis-ci.org/chrisccerami/mars-curiosity-api)[![Code Climate](https://codeclimate.com/github/chrisccerami/mars-curiosity-api/badges/gpa.svg)](https://codeclimate.com/github/chrisccerami/mars-curiosity-api)
+[![Build Status](https://travis-ci.org/chrisccerami/mars-photo-api.svg)](https://travis-ci.org/chrisccerami/mars-photo-api)[![Code Climate](https://codeclimate.com/github/chrisccerami/mars-photo-api/badges/gpa.svg)](https://codeclimate.com/github/chrisccerami/mars-photo-api)
 
 # Mars Rover Photo API
 
-This API is designed to collect image data gathered by NASA's Curiosity and Opportunity rovers on Mars and make it more easily available to other developers, educators, and citizen scientists.
+This API is designed to collect image data gathered by NASA's Curiosity, Opportunity, and Spirit rovers on Mars and make it more easily available to other developers, educators, and citizen scientists.
 
-This API will soon also support queries for the Sprit rover. This version is considered pre-release, and may change frequently until 1.0.0 is released.
+This version is considered pre-release, and may change frequently until 1.0.0 is released.
 
 ## Photo Attributes
 
@@ -24,7 +24,7 @@ Along with querying by date, results can also be filtered by which camera with w
    MARDI       |  Mars Descent Imager
    NAVCAM      |  Navigation Camera
 
-### Opportunity's Cameras
+### Opportunity and Spirit's Cameras
 
   Abbreviation | Camera
   ------------ | -----------------------------
