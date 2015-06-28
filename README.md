@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/chrisccerami/mars-photo-api.svg)](https://travis-ci.org/chrisccerami/mars-photo-api)[![Code Climate](https://codeclimate.com/github/chrisccerami/mars-photo-api/badges/gpa.svg)](https://codeclimate.com/github/chrisccerami/mars-photo-api)
+[![Build Status](https://travis-ci.org/chrisccerami/mars-photo-api.svg)](https://travis-ci.org/chrisccerami/mars-photo-api)[![Code Climate](https://codeclimate.com/github/chrisccerami/mars-photo-api/badges/gpa.svg)](https://codeclimate.com/github/chrisccerami/mars-photo-api)[![Test Coverage](https://codeclimate.com/github/chrisccerami/mars-photo-api/badges/coverage.svg)](https://codeclimate.com/github/chrisccerami/mars-photo-api/coverage)
 
 # Mars Rover Photo API
 
