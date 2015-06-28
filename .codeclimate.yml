@@ -1,0 +1,6 @@
+# Remove any languages you don't want analyzed.
+languages:
+   Ruby: true
+# For all languages, we support a standard set of Glob patterns.
+exclude_paths:
+ - vendor/*
