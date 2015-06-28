@@ -52,4 +52,11 @@ RSpec.describe Photo, type: :model do
       end
     end
   end
+
+  describe ".formatted_earth_date" do
+    it "should be formatted like 'Dec 5, 2014'" do
+      @photo = FactoryGirl.create(:photo)
+      expect(@photo.formatted_earth_date).to eq "Dec 5, 2014"
+    end
+  end
 end
