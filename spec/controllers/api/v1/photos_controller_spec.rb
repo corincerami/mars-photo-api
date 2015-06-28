@@ -91,4 +91,21 @@ describe Api::V1::PhotosController do
       end
     end
   end
+
+  describe "GET 'show'" do
+    context "for an existing photo" do
+      before(:each) do
+        @photo = FactoryGirl.create(:photo)
+        get :show, { id: @photo.id }
+      end
+
+      it "returns http 200 success" do
+        expect(response.status).to eq 200
+      end
+
+      it "returns the photo's json" do
+        expect(json["photo"])
+      end
+    end
+  end
 end
