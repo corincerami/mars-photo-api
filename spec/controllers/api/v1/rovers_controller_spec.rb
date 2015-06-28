@@ -35,5 +35,20 @@ describe Api::V1::RoversController do
         expect(json["rover"]["name"]).to eq @rover.name
       end
     end
+
+    context "with an invalid rover name" do
+      before(:each) do
+        @rover = FactoryGirl.create(:rover)
+        get :show, { id: "Rover" }
+      end
+
+      it "returns http 200 success" do
+        expect(response.status).to eq 400
+      end
+
+      it "renders the proper rover json" do
+        expect(json["errors"]).to eq "Invalid Rover Name"
+      end
+    end
   end
 end
