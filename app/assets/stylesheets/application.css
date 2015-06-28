@@ -10,8 +10,9 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *= require foundation.min
  *= require_self
+
 
  */
 
@@ -31,27 +32,43 @@
 .title a {
   font-family: 'Alegreya Sans SC', sans-serif;
   font-size: 50px;
-  color: #FFFFE2;
+  color: #E8E4C2;
   text-decoration: none;
 }
 
 body {
   background-color: #302F2C;
-}
-
-.text {
-  background-color: #DB6051;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.rover-photo {
-  width: 30%;
-}
-
-.rover-name {
   font-family: 'Alegreya Sans SC', sans-serif;
   font-size: 20px;
-  color: #FFFFE2;
+  color: #E8E4C2;
+}
+
+h2 {
+  color: #E8E3C2;
+}
+
+h3 {
+  color: #E8E4C2;
+}
+
+h4 {
+  color: #E8E4C2;
+}
+
+.query-example {
+  background-color: #F8F4AC;
+  color: #000;
+  font-family: sans-serif;
+}
+
+.photo {
+  background-color: #52504B;
+  padding: 10px;
+  margin: 10px;
+}
+
+.highlight {
+  background-color: #52504B;
+  padding: 10px;
+  margin: 10px;
 }

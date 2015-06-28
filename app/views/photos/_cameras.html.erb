@@ -1,0 +1,25 @@
+<div class="highlight">
+  <h3><%= @rover.name %>'s Cameras</h3>
+  <div class="row">
+    <p class="small-3 columns">
+      Abbreviation
+    </p>
+
+    <p class="small-9 columns">
+      Full Name
+    </p>
+  </div>
+  <% @rover.cameras.each do |camera| %>
+    <div class="row">
+
+      <p class="small-3 columns">
+        <%= camera.name %>
+      </p>
+
+      <p class="small-9 columns">
+        <%= camera.full_name %>
+      </p>
+
+    </div>
+  <% end %>
+</div>
