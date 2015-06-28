@@ -22,6 +22,7 @@ end
 group :test do
   gem 'coveralls', require: false
   gem 'shoulda-matchers'
+  gem "codeclimate-test-reporter", require: nil
 end
 
 group :production do
