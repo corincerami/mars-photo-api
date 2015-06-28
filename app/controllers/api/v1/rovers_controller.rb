@@ -6,6 +6,10 @@ class Api::V1::RoversController < ApplicationController
 
   def show
     @rover = Rover.find_by(name: params[:id].capitalize)
-    render json: @rover
+    if !@rover.blank?
+      render json: @rover
+    else
+      render json: { errors: "Invalid Rover Name" }, status: :bad_request
+    end
   end
 end
