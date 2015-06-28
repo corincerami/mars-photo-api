@@ -43,6 +43,10 @@ body {
   color: #E8E4C2;
 }
 
+h2 {
+  color: #E8E3C2;
+}
+
 h3 {
   color: #E8E4C2;
 }
@@ -55,4 +59,16 @@ h4 {
   background-color: #F8F4AC;
   color: #000;
   font-family: sans-serif;
+}
+
+.photo {
+  background-color: #52504B;
+  padding: 10px;
+  margin: 10px;
+}
+
+.highlight {
+  background-color: #52504B;
+  padding: 10px;
+  margin: 10px;
 }

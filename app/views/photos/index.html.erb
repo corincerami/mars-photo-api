@@ -1,56 +1,76 @@
-<div class="text">This API is designed to collect image data gathered by
-  NASA's Mars rovers and make it more easily available to
-  other developers, educators, and citizen scientists.
+<div class="row">
+  <h2><%= @rover.name %></h2>
+  <p>This API is designed to collect image data gathered by
+    NASA's Mars rovers and make it more easily available to
+    other developers, educators, and citizen scientists.
+  </p>
+
+  <%= render "cameras" %>
 </div>
 
-<%= render "cameras" %>
-
-<div class="text">There are <%= @rover.photos.count %> photos in this collection
-  from <%= @rover.max_sol %> sols of <%= @rover.name %> exploring the Red
-  Planet. You can enter a number from 0 to <%= @rover.max_sol %>
-  to view the photos from that sol from any of <%= @rover.name %>'s cameras. The API
-  can also be queried in the following format:
-
-  <p>
-    <div>Queries by Martian sol:</div>
-    <div>http://mars-curiosity-api.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?sol=<%= @rover.max_sol %></div>
+<div class="row">
+  <p>There are <%= @rover.photos.count %> photos in this collection
+    from <%= @rover.max_sol %> sols of <%= @rover.name %> exploring the Red
+    Planet. You can enter a number from 0 to <%= @rover.max_sol %>
+    to view the photos from that sol from any of <%= @rover.name %>'s cameras. The API
+    can also be queried in the following format:
   </p>
 
   <p>
-    <div>Querying by Earth date:</div>
-    <div>http://mars-curiosity-api.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?earth_date=<%= @rover.max_date %></div>
+    Queries by Martian sol:
+    <p class="query-example">http://mars-curiosity-api.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?sol=<%= @rover.max_sol %></p>
   </p>
 
   <p>
-    <div>Filtering Queries by Camera:</div>
-    <div>http://mars-curiosity-api.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?sol=<%= @rover.max_sol %>&camera=fhaz</div>
-    <div>http://mars-curiosity-api.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?earth_date=<%= @rover.max_date %>&camera=fhaz</div>
+    Querying by Earth date:
+    <p class="query-example">http://mars-curiosity-api.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?earth_date=<%= @rover.max_date %></p>
   </p>
-<div>
 
-<%= form_tag rover_photos_path, method: :get do %>
-  <div>
-    <%= label_tag :sol %>
-    <%= text_field_tag :sol %>
-  </div>
+  <p>
+    Filtering Queries by Camera:
+    <p class="query-example">http://mars-curiosity-api.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?sol=<%= @rover.max_sol %>&camera=fhaz</p>
+    <p class="query-example">http://mars-curiosity-api.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?earth_date=<%= @rover.max_date %>&camera=fhaz</p>
+  </p>
+</div>
 
-  <div>
-    <%= label_tag :camera %>
-    <%= select_tag(:camera, options_for_select(@rover.cameras.map { |camera| [camera.name, camera.name] })) %>
-  </div>
-
-  <%= submit_tag "Search" %>
-<% end %>
-
-<% if !@photos.blank? %>
-  <% @photos.each do |photo| %>
-    <div>
-      <%= "Taken on sol #{photo.sol} (approximate Earth date: #{photo.formatted_earth_date}) with the #{photo.camera.name} camera" %>
+<div class="row">
+  <%= form_tag rover_photos_path, method: :get do %>
+    <div class="row">
+      <div class="small-3 columns">
+        <%= label_tag :sol %><br/>
+        <%= text_field_tag :sol %>
+      </div>
     </div>
-    <div>
-      <%= link_to (image_tag photo.img_src), photo_path(photo) %>
+
+    <div class="row">
+      <div class="small-3 columns">
+        <%= label_tag :camera %>
+        <%= select_tag(:camera, options_for_select(@rover.cameras.map { |camera| [camera.name, camera.name] })) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-3 columns">
+        <%= submit_tag "Search" %>
+      </div>
     </div>
   <% end %>
-<% else %>
-  <div class="text">No photos found with these parameters</div>
-<% end %>
+</div>
+
+<div class="row">
+  <h3>Photos</h3>
+  <% if !@photos.blank? %>
+    <% @photos.each do |photo| %>
+      <div class="photo">
+        <div>
+          <%= link_to (image_tag photo.img_src), photo_path(photo) %>
+        </div>
+        <p>
+          <%= "Taken on sol #{photo.sol} (approximate Earth date: #{photo.formatted_earth_date}) with the #{photo.camera.name} camera" %>
+        </p>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No photos found with these parameters</p>
+  <% end %>
+</div>
