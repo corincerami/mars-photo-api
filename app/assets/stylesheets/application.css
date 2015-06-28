@@ -13,6 +13,7 @@
  *= require foundation.min
  *= require_self
 
+
  */
 
 .header {
@@ -31,16 +32,27 @@
 .title a {
   font-family: 'Alegreya Sans SC', sans-serif;
   font-size: 50px;
-  color: #FFFFE2;
+  color: #E8E4C2;
   text-decoration: none;
 }
 
 body {
   background-color: #302F2C;
-}
-
-.rover-name {
   font-family: 'Alegreya Sans SC', sans-serif;
   font-size: 20px;
-  color: #FFFFE2;
+  color: #E8E4C2;
+}
+
+h3 {
+  color: #E8E4C2;
+}
+
+h4 {
+  color: #E8E4C2;
+}
+
+.query-example {
+  background-color: #F8F4AC;
+  color: #000;
+  font-family: sans-serif;
 }
