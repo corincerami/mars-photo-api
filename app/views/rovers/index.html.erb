@@ -7,6 +7,43 @@
       <p>
         This version is considered pre-release, and may change frequently until 1.0.0 is released.
       </p>
+    </div>
+  </div>
+</div>
+
+<div class="row highlight" id="rover-links">
+  <h3>
+    Choose a Rover to Explore
+  </h3>
+  <div class="small-12 large-4 columns">
+    Curiosity<br/>
+    <%= link_to image_tag("curiosity_rover.jpg", class: "rover-photo"), rover_photos_path(@curiosity) %>
+    <p>
+      <%= @curiosity.photos.count %> photos
+    </p>
+  </div>
+
+  <div class="small-12 large-4 columns">
+    Opportunity<br/>
+    <%= link_to image_tag("opportunity_rover.jpg", class: "rover-photo"), rover_photos_path(@opportunity) %>
+    <p>
+      <%= @opportunity.photos.count %> photos
+    </p>
+  </div>
+
+  <div class="small-12 large-4 columns">
+    Spirit<br/>
+    <%= link_to image_tag("spirit_rover.png", class: "rover-photo"), rover_photos_path(@spirit) %>
+    <p>
+      <%= @spirit.photos.count %> photos
+    </p>
+  </div>
+</div>
+
+<div clas="row">
+  <div class="row" id="docs">
+    <div class="small-12 columns">
+      <h2>Documentation</h2>
 
       <h3>Photo Attributes</h3>
 
@@ -72,37 +109,5 @@
         </ol>
       </p>
     </div>
-  </div>
-</div>
-
-<div class="row">
-  <p>
-    Choose a Rover to Explore
-  </p>
-</div>
-
-<div class="row">
-  <div class="small-12 large-4 columns">
-    Curiosity<br/>
-    <%= link_to image_tag("curiosity_rover.jpg", class: "rover-photo"), rover_photos_path(@curiosity) %>
-    <p>
-      <%= @curiosity.photos.count %> photos
-    </p>
-  </div>
-
-  <div class="small-12 large-4 columns">
-    Opportunity<br/>
-    <%= link_to image_tag("opportunity_rover.jpg", class: "rover-photo"), rover_photos_path(@opportunity) %>
-    <p>
-      <%= @opportunity.photos.count %> photos
-    </p>
-  </div>
-
-  <div class="small-12 large-4 columns">
-    Spirit<br/>
-    <%= link_to image_tag("spirit_rover.png", class: "rover-photo"), rover_photos_path(@spirit) %>
-    <p>
-      <%= @spirit.photos.count %> photos
-    </p>
   </div>
 </div>
