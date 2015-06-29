@@ -10,13 +10,23 @@ RSpec.describe OpportunitySpiritScraper, type: :model do
     end
   end
 
+  OpportunitySpiritScraper::SOL_SELECT_CSS_PATHS = ["select[id^=Engineering_Cameras_Entry]"]
+
   describe ".sol_paths" do
     it "should return paths for individual sol pages" do
       opp = FactoryGirl.create(:rover, name: "Opportunity")
       scraper = OpportunitySpiritScraper.new("Opportunity")
 
-      OpportunitySpiritScraper::SOL_SELECT_CSS_PATHS = ["select[id^=Engineering_Cameras_Entry]"]
       expect(scraper.sol_paths).to eq ["opportunity_e001.html"]
+    end
+  end
+
+  describe ".collect_sol_paths" do
+    it "should create photos" do
+      opp = FactoryGirl.create(:rover, name: "Opportunity")
+      scraper = OpportunitySpiritScraper.new("Opportunity")
+
+      expect{ scraper.collect_sol_paths }.to change { Photo.count }.by(3)
     end
   end
 end
