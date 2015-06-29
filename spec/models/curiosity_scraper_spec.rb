@@ -28,7 +28,7 @@ RSpec.describe CuriosityScraper, type: :model do
     end
   end
 
-  describe ".create_photos" do
+  describe ".scrape" do
     it "should create photo objects" do
       curiosity = FactoryGirl.create(:rover)
       scraper = CuriosityScraper.new
@@ -39,7 +39,7 @@ RSpec.describe CuriosityScraper, type: :model do
         end
       end
 
-      expect{ scraper.create_photos }.to change { Photo.count }.by(2)
+      expect{ scraper.scrape }.to change { Photo.count }.by(2)
     end
   end
 end

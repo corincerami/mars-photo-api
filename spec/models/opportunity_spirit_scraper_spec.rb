@@ -21,12 +21,12 @@ RSpec.describe OpportunitySpiritScraper, type: :model do
     end
   end
 
-  describe ".collect_sol_paths" do
+  describe ".scrape" do
     it "should create photos" do
       opp = FactoryGirl.create(:rover, name: "Opportunity")
       scraper = OpportunitySpiritScraper.new("Opportunity")
 
-      expect{ scraper.collect_sol_paths }.to change { Photo.count }.by(3)
+      expect{ scraper.scrape }.to change { Photo.count }.by(3)
     end
   end
 end
