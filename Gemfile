@@ -27,5 +27,5 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'uglifier'
-  gem 'unicorn'
+  gem 'puma'
 end
