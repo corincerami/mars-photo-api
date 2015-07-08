@@ -42,18 +42,28 @@
 
   <p>
     Queries by Martian sol:
-    <p class="query-example">http://mars-curiosity-api.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?sol=<%= @rover.max_sol %></p>
+    <p class="query-example">http://mars-photos.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?sol=<%= @rover.max_sol %></p>
   </p>
 
   <p>
     Querying by Earth date:
-    <p class="query-example">http://mars-curiosity-api.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?earth_date=<%= @rover.max_date %></p>
+    <p class="query-example">http://mars-photos.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?earth_date=<%= @rover.max_date %></p>
   </p>
 
   <p>
     Filtering Queries by Camera:
-    <p class="query-example">http://mars-curiosity-api.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?sol=<%= @rover.max_sol %>&camera=fhaz</p>
-    <p class="query-example">http://mars-curiosity-api.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?earth_date=<%= @rover.max_date %>&camera=fhaz</p>
+    <p class="query-example">http://mars-photos.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?sol=<%= @rover.max_sol %>&camera=fhaz</p>
+    <p class="query-example">http://mars-photos.herokuapp.com/api/v1/rovers/<%= @rover.name.downcase %>/photos?earth_date=<%= @rover.max_date %>&camera=fhaz</p>
+  </p>
+
+  <h4>Paginated Results</h4>
+
+  <p>
+    Responses will be limited to 25 photos per call. Queries that should return more than 25 photos will be split onto several pages, which can be accessed by adding a 'page' param to the query.
+
+    <p class="query-example">
+      http://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?sol=1000&page=2
+    </p>
   </p>
 </div>
 
