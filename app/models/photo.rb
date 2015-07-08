@@ -23,6 +23,8 @@ class Photo < ActiveRecord::Base
       photos = where(sol: params[:sol])
     elsif params[:earth_date]
       photos = where(earth_date: Date.strptime(params[:earth_date]))
+    else
+      photos = Photo.none
     end
     photos
   end

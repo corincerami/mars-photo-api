@@ -66,6 +66,9 @@ GEM
       activesupport (>= 4.1.0)
     i18n (0.7.0)
     json (1.8.3)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     loofah (2.0.2)
@@ -170,6 +173,7 @@ DEPENDENCIES
   factory_girl
   factory_girl_rails (~> 4.0)
   foundation-rails
+  kaminari
   launchy
   nokogiri
   pg

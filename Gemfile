@@ -9,6 +9,7 @@ gem 'rails', '4.2.0'
 gem 'foundation-rails'
 gem 'nokogiri'
 gem 'active_model_serializers'
+gem 'kaminari'
 
 group :development, :test do
   gem 'rspec-rails'
