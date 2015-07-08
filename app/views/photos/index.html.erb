@@ -60,6 +60,7 @@
 <div class="row">
   <h3>Photos</h3>
   <% if !@photos.blank? %>
+    <%= paginate @photos %>
     <% @photos.each do |photo| %>
       <div class="photo">
         <div>
