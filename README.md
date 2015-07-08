@@ -40,23 +40,23 @@ The API can be queried in the following format:
 
 #### Queries by Martian sol:
 
-Queries by sol can range from 0, which is the date of landing, up to the current maximum in the database. The current max sol can be found at http://mars-curiosity-api.herokuapp.com at present.
+Queries by sol can range from 0, which is the date of landing, up to the current maximum in the database. The current max sol can be found at http://mars-photos.herokuapp.com at present.
 
-http://mars-curiosity-api.herokuapp.com/api/v1/rovers/curiosity/photos?sol=1000
+http://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?sol=1000
 
 #### Querying by Earth date:
 
 Dates should be formatted as 'yyyy-mm-dd'. The earliest date available is the date of landing for each rover.
 
-http://mars-curiosity-api.herokuapp.com/api/v1/rovers/curiosity/photos?earth_date=2015-6-3
+http://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?earth_date=2015-6-3
 
 #### Filtering Queries by Camera:
 
 The camera parameter is not case sensitive, but must be one of the camera abbreviations listed in the table above for the respective rover.
 
-http://mars-curiosity-api.herokuapp.com/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz
+http://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz
 
-http://mars-curiosity-api.herokuapp.com/api/v1/rovers/opportunity/photos?earth_date=2015-6-3&camera=pancam
+http://mars-photos.herokuapp.com/api/v1/rovers/opportunity/photos?earth_date=2015-6-3&camera=pancam
 
 
 The database will be updated regularly with the latest photos from the red planet.
@@ -65,7 +65,7 @@ The database will be updated regularly with the latest photos from the red plane
 
 If you would like to contribute to Mars Rover Photo API, feel free to create a pull request. If you'd like to contact me, you can reach me at chrisccerami@gmail.com or on Twitter @chrisccerami.
 
-1. Fork it ( https://github.com/chrisccerami/mars-curiosity-api/fork )
+1. Fork it ( https://github.com/chrisccerami/mars-photos-api/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
