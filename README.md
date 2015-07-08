@@ -58,6 +58,12 @@ http://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?sol=1000&camera=
 
 http://mars-photos.herokuapp.com/api/v1/rovers/opportunity/photos?earth_date=2015-6-3&camera=pancam
 
+#### Paginated Results
+
+Responses will be limited to 25 photos per call. Queries that should return more than 25 photos will be split onto several pages, which can be accessed by adding a 'page' param to the query.
+
+http://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?sol=1000&page=2
+
 
 The database will be updated regularly with the latest photos from the red planet.
 
