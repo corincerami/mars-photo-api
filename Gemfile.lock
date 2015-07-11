@@ -89,6 +89,7 @@ GEM
     puma (2.11.0)
       rack (>= 1.1, < 2.0)
     rack (1.6.4)
+    rack-cors (0.3.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.0)
@@ -179,6 +180,7 @@ DEPENDENCIES
   pg
   pry
   puma
+  rack-cors
   rails (= 4.2.0)
   rails_12factor
   rake
