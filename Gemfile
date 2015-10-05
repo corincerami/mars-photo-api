@@ -4,13 +4,13 @@ ruby "2.2.2"
 
 gem 'pg'
 gem 'rake'
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 gem 'foundation-rails'
 gem 'nokogiri'
 gem 'active_model_serializers'
 gem 'kaminari'
 gem 'rack-cors', require: 'rack/cors'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec-rails'
