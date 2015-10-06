@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root "api/v1/rovers#index"
+  root 'static#explore'
+
+  get '/explore(/*whatevs)' => 'static#explore', :as => :explore
 
   namespace :api do
     namespace :v1 do

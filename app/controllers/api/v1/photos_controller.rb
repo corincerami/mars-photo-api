@@ -7,7 +7,7 @@ class Api::V1::PhotosController < ApplicationController
   def index
     @rover = Rover.find_by(name: params[:rover_id].titleize)
     @photos = @rover.photos.search(photo_params, params[:rover_id])
-    if !@photos.blank?
+    if @photos.any?
       render json: @photos.page(params[:page])
     else
       render json: { errors: "No Photos Found" }, status: :bad_request
