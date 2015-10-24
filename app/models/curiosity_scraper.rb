@@ -29,6 +29,7 @@ class CuriosityScraper
         if !image.to_s.include?("_T")
           sol = url.scan(/(?<==)\d+/).first
           camera_name = url.scan(/(?<=camera=)\w+/).first
+          camera_name = "NAVCAM" if camera_name == "NAV_LEFT" || camera_name == "NAV_RIGHT"
           camera = @rover.cameras.find_by(name: camera_name)
           p = Photo.find_or_create_by(sol: sol, camera: camera,
                                       img_src: image, rover: @rover)
