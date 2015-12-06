@@ -20,25 +20,36 @@ class CuriosityScraper
     main_page.css("div.image_list a").map { |link| link['href'] }
   end
 
+  private
+
   def create_photos
     collect_links.each do |url|
-      image_page = Nokogiri::HTML(open(BASE_URL + url))
-      image_array = image_page.css("div.RawImageCaption div.RawImageUTC a")
-        .map { |link| link["href"] }
-      image_array.each do |image|
-        if !image.to_s.include?("_T")
-          sol = url.scan(/(?<==)\d+/).first
-          camera_name = url.scan(/(?<=camera=)\w+/).first
-          camera_name = "NAVCAM" if camera_name == "NAV_LEFT" || camera_name == "NAV_RIGHT"
-          camera = @rover.cameras.find_by(name: camera_name)
-          p = Photo.find_or_create_by(sol: sol, camera: camera,
-                                      img_src: image, rover: @rover)
-          Rails.logger.info "Photo with id #{p.id} created" +
-            " from #{p.rover.name}"
-          Rails.logger.info "img_src: #{p.img_src}, sol:" +
-            " #{p.sol}, camera: #{p.camera}"
-        end
-      end
+      scrape_photo_page(url)
     end
+  end
+
+  def scrape_photo_page(url)
+    image_page = Nokogiri::HTML(open(BASE_URL + url))
+    image_array = image_page.css("div.RawImageCaption div.RawImageUTC a")
+      .map { |link| link["href"] }
+    image_array.each do |image|
+      create_photo(image, url)
+    end
+  end
+
+  def create_photo(image, url)
+    if !thumbnail?(image)
+      sol = url.scan(/(?<==)\d+/).first
+      camera_name = url.scan(/(?<=camera=)\w+/).first
+      camera_name = "NAVCAM" if camera_name == "NAV_LEFT" || camera_name == "NAV_RIGHT"
+      camera = @rover.cameras.find_by(name: camera_name)
+      photo = Photo.find_or_initialize_by(sol: sol, camera: camera,
+                                          img_src: image, rover: @rover)
+      photo.log_and_save_if_new
+    end
+  end
+
+  def thumbnail?(image_url)
+    image_url.to_s.include?("_T")
   end
 end
