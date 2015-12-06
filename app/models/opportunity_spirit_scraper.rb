@@ -78,21 +78,14 @@ class OpportunitySpiritScraper
     camera = @rover.cameras.find_by(name: CAMERAS[reg[:camera_name].to_sym])
     photo_page = Nokogiri::HTML(open(BASE_URI + path))
     src = build_src(reg[:early_path], photo_page)
-    photo = Photo.find_or_create_by(sol: reg[:sol].to_i, camera: camera,
+    photo = Photo.find_or_initialize_by(sol: reg[:sol].to_i, camera: camera,
                                     img_src: src, rover: @rover)
-    log_photo(photo)
+    photo.log_and_save_if_new
   end
 
   def build_src(early_path, photo_page)
     BASE_URI +
     early_path +
     photo_page.css("table[width='500'] img").first.attributes["src"].value
-  end
-
-  def log_photo(photo)
-    Rails.logger.info "Photo with id #{photo.id} " +
-      "created from #{photo.rover.name}"
-    Rails.logger.info "img_src: #{photo.img_src}, sol:" +
-      "#{photo.sol}, camera: #{photo.camera}"
   end
 end

@@ -6,7 +6,8 @@ class Photo < ActiveRecord::Base
 
   validates :img_src, uniqueness: true
 
-  SOL_IN_SECONDS = 88775.244
+  SECONDS_PER_SOL = 88775.244
+  SECONDS_PER_DAY = 86400
 
   def self.search(params, rover)
     photos = search_by_date(params)
@@ -41,10 +42,24 @@ class Photo < ActiveRecord::Base
 
   def calculate_earth_date
     # numbers of martian rotations since landing converted to earth rotations
-    rover.landing_date + (sol.to_i * SOL_IN_SECONDS).seconds / 86400
+    rover.landing_date + (sol.to_i * SECONDS_PER_SOL).seconds / SECONDS_PER_DAY
   end
 
   def set_earth_date
     update(earth_date: calculate_earth_date)
+  end
+
+  def log
+    Rails.logger.info "Photo with id #{id} " +
+      "created from #{rover.name}"
+    Rails.logger.info "img_src: #{img_src}, sol:" +
+      "#{sol}, camera: #{camera}"
+  end
+
+  def log_and_save_if_new
+    if new_record?
+      log
+      save
+    end
   end
 end
