@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929175428) do
+ActiveRecord::Schema.define(version: 20160929212810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160929175428) do
   add_index "photos", ["img_src"], name: "index_photos_on_img_src", using: :btree
   add_index "photos", ["rover_id"], name: "index_photos_on_rover_id", using: :btree
   add_index "photos", ["sol", "camera_id", "img_src", "rover_id"], name: "index_photos_on_sol_and_camera_id_and_img_src_and_rover_id", unique: true, using: :btree
+  add_index "photos", ["sol"], name: "index_photos_on_sol", using: :btree
 
   create_table "rovers", force: :cascade do |t|
     t.string "name"
