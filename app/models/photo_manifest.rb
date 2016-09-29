@@ -10,9 +10,9 @@ class PhotoManifest
   end
 
   def to_a
-    rover.photos.includes(:camera).group_by(&:sol).map do |sol, photos|
-      photos_by_sol(sol, photos)
-    end
+    rover.photos.joins(:camera).group(:sol)
+      .select('sol, count(photos.id) AS cnt, ARRAY_AGG(DISTINCT cameras.name) AS cameras')
+      .map { |photos| {sol: photos.sol, total_photos: photos.cnt, cameras: photos.cameras} }
   end
 
   def photos
@@ -33,19 +33,5 @@ class PhotoManifest
 
   def cache_key_name
     "#{rover.name.downcase}-manifest"
-  end
-
-  def photos_by_sol(sol, photos)
-    {
-      sol: sol,
-      total_photos: photos.count,
-      cameras: photos_by_camera(photos)
-    }
-  end
-
-  def photos_by_camera(photos)
-    photos.group_by { |photo| photo.camera.name }.map do |camera, camera_photos|
-       [camera, camera_photos.count]
-    end.to_h
   end
 end
