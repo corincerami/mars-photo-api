@@ -17,4 +17,8 @@ class Rover < ActiveRecord::Base
   def total_photos
     photos.count
   end
+
+  def photo_manifest
+    PhotoManifest.new(self).to_a
+  end
 end
