@@ -1,5 +1,9 @@
 class PhotoManifest
+  include ActiveModel::Serialization
+
   attr_reader :rover
+
+  delegate :name, :landing_date, :launch_date, :status, :max_sol, :max_date, :total_photos, to: :rover
 
   def initialize(rover)
     @rover = rover
@@ -9,6 +13,10 @@ class PhotoManifest
     rover.photos.group_by(&:sol).map do |sol, photos|
       photos_by_sol(sol, photos)
     end
+  end
+
+  def photos
+    to_a
   end
 
   private
