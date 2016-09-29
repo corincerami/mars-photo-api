@@ -7,3 +7,6 @@ sudo: required
 
 before_script:
   - psql -c 'create database mars_curiosity_test;' -U postgres
+
+services:
+  - redis-server

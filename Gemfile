@@ -11,6 +11,7 @@ gem 'active_model_serializers'
 gem 'kaminari'
 gem 'rack-cors', require: 'rack/cors'
 gem 'newrelic_rpm'
+gem 'redis'
 
 group :development, :test do
   gem 'rspec-rails'

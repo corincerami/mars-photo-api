@@ -37,37 +37,16 @@ describe Api::V1::PhotosController do
       end
     end
 
-    context "with sol query - page 1" do
+    context "with sol query" do
       before(:each) do
         @rover = FactoryGirl.create(:rover)
         @camera = FactoryGirl.create(:camera)
         FactoryGirl.create_list(:photo, 25, rover: @rover)
-        get :index, { rover_id: @rover.name, sol: 829, page: 1 }
+        get :index, { rover_id: @rover.name, sol: 829 }
       end
 
       it "returns http 200 success" do
         expect(response.status).to eq 200
-      end
-
-      it "limits responses to 25 per page" do
-        expect(json["photos"].length).to eq 25
-      end
-    end
-
-    context "with sol query - page 3" do
-      before(:each) do
-        @rover = FactoryGirl.create(:rover)
-        @camera = FactoryGirl.create(:camera)
-        FactoryGirl.create_list(:photo, 51, rover: @rover)
-        get :index, { rover_id: @rover.name, sol: 829, page: 3 }
-      end
-
-      it "returns http 200 success" do
-        expect(response.status).to eq 200
-      end
-
-      it "limits responses to 25 per page" do
-        expect(json["photos"].length).to eq 1
       end
     end
 
