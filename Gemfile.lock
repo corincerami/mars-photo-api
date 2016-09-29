@@ -123,6 +123,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
+    redis (3.3.1)
     rspec-core (3.4.1)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -185,8 +186,9 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails_12factor
   rake
+  redis
   rspec-rails
   uglifier
 
 BUNDLED WITH
-   1.10.3
+   1.10.6

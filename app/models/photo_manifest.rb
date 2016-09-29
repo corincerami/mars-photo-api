@@ -16,20 +16,36 @@ class PhotoManifest
   end
 
   def photos
-    to_a
+    if $redis.get(cache_key_name).present?
+      JSON.parse($redis.get cache_key_name)
+    else
+      cache
+    end
+  end
+
+  def cache
+    result = to_a
+    $redis.set cache_key_name, result.to_json
+    result
   end
 
   private
+
+  def cache_key_name
+    "#{rover.name.downcase}-manifest"
+  end
 
   def photos_by_sol(sol, photos)
     {
       sol: sol,
       total_photos: photos.count,
-      cameras: cameras_from_photos(photos)
+      cameras: photos_by_camera(photos)
     }
   end
 
-  def cameras_from_photos(photos)
-    photos.map { |photo| photo.camera.name }.uniq
+  def photos_by_camera(photos)
+    photos.group_by { |photo| photo.camera.name }.map do |camera, camera_photos|
+       [camera, camera_photos.count]
+    end.to_h
   end
 end
