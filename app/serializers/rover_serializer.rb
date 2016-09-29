@@ -1,5 +1,5 @@
 class RoverSerializer < ActiveModel::Serializer
-  attributes :id, :name, :landing_date, :max_sol, :max_date, :total_photos
+  attributes :id, :name, :landing_date, :launch_date, :status, :max_sol, :max_date, :total_photos, :photo_manifest
 
   has_many :cameras
 end

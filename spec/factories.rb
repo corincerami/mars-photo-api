@@ -7,6 +7,8 @@ FactoryGirl.define do
   factory :rover do
     name "Curiosity"
     landing_date Date.new(2012, 8, 6)
+    launch_date Date.new(2011, 11, 26)
+    status "active"
   end
 
   factory :photo do
