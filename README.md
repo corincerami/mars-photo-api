@@ -40,6 +40,8 @@ Along with querying by date, results can also be filtered by the camera with whi
 
 The API can be queried in the following format:
 
+### Photo Endpoint
+
 #### Queries by Martian sol:
 
 Queries by sol can range from 0, which is the date of landing, up to the current maximum in the database. The current max sol for each rover can be found at that rover's endpoint.
@@ -60,12 +62,40 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
 
 https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?earth_date=2015-6-3&camera=pancam
 
-#### Paginated Results
+### Mission Manifest Endpoint
 
-Responses will be limited to 25 photos per call. Queries that should return more than 25 photos will be split onto several pages, which can be accessed by adding a 'page' param to the query.
+A mission manifest is available for each Rover at the `/manifest/<rover_name>`. This manifest will list details of the Rover's mission to help narrow down photo queries to the API. The information in the manifest includes:
 
-https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=2
+- name
+- landing_date
+- launch_date
+- status
+- max_sol
+- max_date
+- total_photos
 
+It also includes a list of objects under the `photos` key which are grouped by `sol`, and each of which contains:
+
+- sol
+- total_photos
+- cameras
+
+An example entry from `/manifests/Curiosity` might look like:
+
+```
+{
+  sol: 0,
+  total_photos: 3702,
+  cameras: [
+    "CHEMCAM",
+    "FHAZ",
+    "MARDI",
+    "RHAZ"
+  ]
+}
+```
+
+This would tell you that this rover, on sol 0, took 3702 photos, and those are from among the CHEMCAM, FHAZ, MARDI, and RHAZ cameras.
 
 The database will be updated regularly with the latest photos from the red planet.
 
