@@ -64,7 +64,7 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?earth_date=201
 
 ### Mission Manifest Endpoint
 
-A mission manifest is available for each Rover at the `/manifest/<rover_name>`. This manifest will list details of the Rover's mission to help narrow down photo queries to the API. The information in the manifest includes:
+A mission manifest is available for each Rover at the `/manifests/<rover_name>`. This manifest will list details of the Rover's mission to help narrow down photo queries to the API. The information in the manifest includes:
 
 - name
 - landing_date
