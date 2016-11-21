@@ -26,6 +26,7 @@ class PhotoManifest
   def cache
     result = to_a
     $redis.set cache_key_name, result.to_json
+    set_redis_expiration
     result
   end
 
@@ -33,5 +34,11 @@ class PhotoManifest
 
   def cache_key_name
     "#{rover.name.downcase}-manifest"
+  end
+
+  def set_redis_expiration
+    if rover.active?
+      $redis.expire cache_key_name, 1.day
+    end
   end
 end

@@ -21,4 +21,8 @@ class Rover < ActiveRecord::Base
   def photo_manifest
     PhotoManifest.new(self).to_a
   end
+
+  def active?
+    status == "active"
+  end
 end
