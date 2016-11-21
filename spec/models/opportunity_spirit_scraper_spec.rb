@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe OpportunitySpiritScraper, type: :model do
+  before(:each) do
+    stub_const "OpportunitySpiritScraper::SOL_SELECT_CSS_PATHS", ["select[id^=Engineering_Cameras_Entry]"]
+  end
+
   describe ".main_page" do
     it "should return a Nokogiri page" do
       opp = FactoryGirl.create(:rover, name: "Opportunity")
@@ -9,8 +13,6 @@ RSpec.describe OpportunitySpiritScraper, type: :model do
       expect(scraper.main_page.title).to eq "Mars Exploration Rover Mission: Multimedia: All Raw Images: Opportunity"
     end
   end
-
-  OpportunitySpiritScraper::SOL_SELECT_CSS_PATHS = ["select[id^=Engineering_Cameras_Entry]"]
 
   describe ".sol_paths" do
     it "should return paths for individual sol pages" do
