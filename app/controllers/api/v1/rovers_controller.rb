@@ -5,7 +5,7 @@ class Api::V1::RoversController < ApplicationController
   end
 
   def show
-    @rover = Rover.find_by(name: params[:id].capitalize)
+    @rover = Rover.find_by name: params[:id].capitalize
     if !@rover.blank?
       render json: @rover
     else
