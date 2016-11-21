@@ -1,14 +1,12 @@
 source 'https://rubygems.org'
 
-ruby "2.2.2"
+ruby "2.3.0"
 
 gem 'pg'
 gem 'rake'
-gem 'rails', '4.2.0'
-gem 'foundation-rails'
+gem 'rails', '~> 4.2.6'
 gem 'nokogiri'
 gem 'active_model_serializers'
-gem 'kaminari'
 gem 'rack-cors', require: 'rack/cors'
 gem 'newrelic_rpm'
 gem 'redis'
