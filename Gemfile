@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.3.0"
+ruby '2.3.0'
 
 gem 'pg'
 gem 'rake'
@@ -13,15 +13,14 @@ gem 'redis'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'capybara'
-  gem 'launchy'
   gem 'factory_girl'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'pry'
+  gem 'fakeredis'
 end
 
 group :test do
-  gem "codeclimate-test-reporter", require: nil
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 group :production do
