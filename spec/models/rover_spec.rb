@@ -1,14 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Rover, type: :model do
-  describe ".to_param" do
-    it "should parameterize the Rover's name" do
-      @rover = FactoryGirl.create(:rover)
-
-      expect(@rover.to_param).to eq "curiosity"
-    end
-  end
-
   describe ".max_sol" do
     it "should return the highest sol for the Rover's photos" do
       @photo = FactoryGirl.create(:photo)

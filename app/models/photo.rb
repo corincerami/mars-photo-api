@@ -10,10 +10,10 @@ class Photo < ActiveRecord::Base
   SECONDS_PER_DAY = 86400
 
   def self.search(params, rover)
-    photos = search_by_date(params)
+    photos = search_by_date params
     if params[:camera]
       if photos.any?
-        photos = photos.search_by_camera(params, rover)
+        photos = photos.search_by_camera params, rover
       end
     end
     photos
@@ -21,39 +21,23 @@ class Photo < ActiveRecord::Base
 
   def self.search_by_date(params)
     if params[:sol]
-      photos = where(sol: params[:sol])
+      where sol: params[:sol]
     elsif params[:earth_date]
-      photos = where(earth_date: Date.strptime(params[:earth_date]))
+      where earth_date: Date.strptime(params[:earth_date])
     else
-      photos = Photo.none
+      none
     end
-    photos
   end
 
   def self.search_by_camera(params, rover)
-    rover = Rover.find_by(name: rover.titleize)
-    camera = rover.cameras.find_by(name: params[:camera].upcase)
-    where(camera: camera)
-  end
-
-  def formatted_earth_date
-    earth_date.strftime("%b%e, %Y")
-  end
-
-  def calculate_earth_date
-    # numbers of martian rotations since landing converted to earth rotations
-    rover.landing_date + (sol.to_i * SECONDS_PER_SOL).seconds / SECONDS_PER_DAY
-  end
-
-  def set_earth_date
-    update(earth_date: calculate_earth_date)
+    rover = Rover.find_by name: rover.titleize
+    camera = rover.cameras.find_by name: params[:camera].upcase
+    where camera: camera
   end
 
   def log
-    Rails.logger.info "Photo with id #{id} " +
-      "created from #{rover.name}"
-    Rails.logger.info "img_src: #{img_src}, sol:" +
-      "#{sol}, camera: #{camera}"
+    Rails.logger.info "Photo with id #{id} created from #{rover.name}"
+    Rails.logger.info "img_src: #{img_src}, sol: #{sol}, camera: #{camera}"
   end
 
   def log_and_save_if_new
@@ -61,5 +45,19 @@ class Photo < ActiveRecord::Base
       log
       save
     end
+  end
+
+  private
+
+  def set_earth_date
+    update earth_date: calculate_earth_date
+  end
+
+  def calculate_earth_date
+    rover.landing_date + earth_days_since_landing
+  end
+
+  def earth_days_since_landing
+    sol.to_i * SECONDS_PER_SOL / SECONDS_PER_DAY
   end
 end
