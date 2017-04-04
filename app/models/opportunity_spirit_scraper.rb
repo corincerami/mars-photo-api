@@ -1,5 +1,5 @@
 class OpportunitySpiritScraper
-  BASE_URI = "http://mars.nasa.gov/mer/gallery/all/"
+  BASE_URI = "https://mars.nasa.gov/mer/gallery/all/"
 
   def initialize(rover)
     @rover = Rover.find_by(name: rover)
