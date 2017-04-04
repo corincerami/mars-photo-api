@@ -24,11 +24,7 @@ RSpec.describe CuriosityScraper, type: :model do
   describe ".scrape" do
     let!(:fhaz) { create(:camera, rover: curiosity) }
     it "should create photo objects" do
-      class CuriosityScraper
-        def collect_links
-          ["./?s=1004&camera=FHAZ%5F"]
-        end
-      end
+      allow(scraper).to receive(:collect_links).and_return ["./?s=1004&camera=FHAZ%5F"]
 
       expect{ scraper.scrape }.to change { Photo.count }.by(2)
     end

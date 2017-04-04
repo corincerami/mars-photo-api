@@ -1,5 +1,5 @@
 class CuriosityScraper
-  BASE_URL = "http://mars.jpl.nasa.gov/msl/multimedia/raw/"
+  BASE_URL = "https://mars.jpl.nasa.gov/msl/multimedia/raw/"
 
   attr_reader :rover
   def initialize
@@ -12,7 +12,7 @@ class CuriosityScraper
 
   # grabs the HTML from the main page of the curiosity rover image gallery
   def main_page
-    Nokogiri::HTML(open("http://mars.jpl.nasa.gov/msl/multimedia/raw/"))
+    Nokogiri::HTML(open("https://mars.jpl.nasa.gov/msl/multimedia/raw/"))
   end
 
   def collect_links
