@@ -1,34 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe OpportunitySpiritScraper, type: :model do
+  let!(:rolver) { create(:rover, name: "Opportunity") }
+  let(:scraper) { OpportunitySpiritScraper.new("Opportunity") }
+
   before(:each) do
-    stub_const "OpportunitySpiritScraper::SOL_SELECT_CSS_PATHS", ["select[id^=Engineering_Cameras_Entry]"]
+    stub_const "OpportunitySpiritScraper::SOL_SELECT_CSS_PATHS", ["#Engineering_Cameras_Front_Hazcam"]
   end
 
   describe ".main_page" do
     it "should return a Nokogiri page" do
-      opp = FactoryGirl.create(:rover, name: "Opportunity")
-      scraper = OpportunitySpiritScraper.new("Opportunity")
-
       expect(scraper.main_page.title).to eq "Mars Exploration Rover Mission: Multimedia: All Raw Images: Opportunity"
     end
   end
 
   describe ".sol_paths" do
     it "should return paths for individual sol pages" do
-      opp = FactoryGirl.create(:rover, name: "Opportunity")
-      scraper = OpportunitySpiritScraper.new("Opportunity")
-
-      expect(scraper.sol_paths).to eq ["opportunity_e001.html"]
+      expect(scraper.sol_paths).to include "opportunity_f4688.html"
     end
   end
 
   describe ".scrape" do
     it "should create photos" do
-      opp = FactoryGirl.create(:rover, name: "Opportunity")
-      scraper = OpportunitySpiritScraper.new("Opportunity")
-
-      expect{ scraper.scrape }.to change { Photo.count }.by(3)
+      allow(scraper).to receive(:sol_paths).and_return ["opportunity_f4688.html"]
+      expect{ scraper.scrape }.to change { Photo.count }.by(2)
     end
   end
 end

@@ -10,8 +10,7 @@ class OpportunitySpiritScraper
     "#Engineering_Cameras_Rear_Hazcam",
     "#Engineering_Cameras_Navigation_Camera",
     "#Engineering_Cameras_Panoramic_Camera",
-    "#Engineering_Cameras_Microscopic_Imager",
-    "select[id^=Engineering_Cameras_Entry]"
+    "#Engineering_Cameras_Microscopic_Imager"
   ]
 
   CAMERAS = {
