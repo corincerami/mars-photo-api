@@ -13,6 +13,7 @@ engines:
 exclude_paths:
 - "spec/**/*"
 - "db/**/*"
+- "public"
 ratings:
   paths:
    - "app/**/*"
