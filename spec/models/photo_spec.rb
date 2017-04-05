@@ -10,7 +10,7 @@ RSpec.describe Photo, type: :model do
       it "returns matching photos" do
         params = { sol: 829, rover: photo.rover.name }
 
-        expect(Photo.search(params, photo.rover.name)).to include photo
+        expect(Photo.search(params, photo.rover)).to include photo
       end
     end
 
@@ -19,7 +19,7 @@ RSpec.describe Photo, type: :model do
         photo.camera.update(rover: photo.rover)
         params = { sol: 829, rover: photo.rover.name, camera: photo.camera.name }
 
-        expect(Photo.search(params, photo.rover.name)).to include photo
+        expect(Photo.search(params, photo.rover)).to include photo
       end
     end
 
@@ -27,7 +27,7 @@ RSpec.describe Photo, type: :model do
       it "returns matching photos" do
         params = { earth_date: "2014-12-05" }
 
-        expect(Photo.search(params, photo.rover.name)).to include photo
+        expect(Photo.search(params, photo.rover)).to include photo
       end
     end
 
@@ -36,7 +36,7 @@ RSpec.describe Photo, type: :model do
         photo.camera.update(rover: photo.rover)
         params = { earth_date: "2014-12-05", camera: photo.camera.name }
 
-        expect(Photo.search(params, photo.rover.name)).to include photo
+        expect(Photo.search(params, photo.rover)).to include photo
       end
     end
   end

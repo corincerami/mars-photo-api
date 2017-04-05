@@ -30,7 +30,6 @@ class Photo < ActiveRecord::Base
   end
 
   def self.search_by_camera(params, rover)
-    rover = Rover.find_by name: rover.titleize
     camera = rover.cameras.find_by name: params[:camera].upcase
     where camera: camera
   end
