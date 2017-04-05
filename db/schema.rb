@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -29,14 +28,13 @@ ActiveRecord::Schema.define(version: 20160929212810) do
     t.date    "earth_date"
     t.integer "rover_id"
     t.integer "camera_id"
+    t.index ["camera_id"], name: "index_photos_on_camera_id", using: :btree
+    t.index ["earth_date"], name: "index_photos_on_earth_date", using: :btree
+    t.index ["img_src"], name: "index_photos_on_img_src", using: :btree
+    t.index ["rover_id"], name: "index_photos_on_rover_id", using: :btree
+    t.index ["sol", "camera_id", "img_src", "rover_id"], name: "index_photos_on_sol_and_camera_id_and_img_src_and_rover_id", unique: true, using: :btree
+    t.index ["sol"], name: "index_photos_on_sol", using: :btree
   end
-
-  add_index "photos", ["camera_id"], name: "index_photos_on_camera_id", using: :btree
-  add_index "photos", ["earth_date"], name: "index_photos_on_earth_date", using: :btree
-  add_index "photos", ["img_src"], name: "index_photos_on_img_src", using: :btree
-  add_index "photos", ["rover_id"], name: "index_photos_on_rover_id", using: :btree
-  add_index "photos", ["sol", "camera_id", "img_src", "rover_id"], name: "index_photos_on_sol_and_camera_id_and_img_src_and_rover_id", unique: true, using: :btree
-  add_index "photos", ["sol"], name: "index_photos_on_sol", using: :btree
 
   create_table "rovers", force: :cascade do |t|
     t.string "name"

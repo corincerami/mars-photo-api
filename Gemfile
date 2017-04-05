@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-ruby '2.3.4'
+ruby '2.4.1'
 
 gem 'pg'
 gem 'rake'
-gem 'rails'
+gem 'rails', '~> 5.0'
 gem 'nokogiri'
 gem 'active_model_serializers', '~> 0.9.3'
 gem 'rack-cors', require: 'rack/cors'

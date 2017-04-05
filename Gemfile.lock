@@ -170,7 +170,7 @@ DEPENDENCIES
   pry
   puma
   rack-cors
-  rails
+  rails (~> 5.0)
   rails_12factor
   rake
   redis
@@ -178,7 +178,7 @@ DEPENDENCIES
   uglifier
 
 RUBY VERSION
-   ruby 2.3.4p301
+   ruby 2.4.1p111
 
 BUNDLED WITH
    1.14.6
