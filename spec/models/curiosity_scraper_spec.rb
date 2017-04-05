@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe CuriosityScraper, type: :model do
   let!(:curiosity) { create(:rover) }
   let(:scraper) { CuriosityScraper.new }
-  describe "@rover" do
+  describe "#rover" do
     it "should be Curiosity" do
       expect(scraper.rover).to eq curiosity
     end
