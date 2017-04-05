@@ -7,7 +7,7 @@ describe Api::V1::PhotosController do
 
       before(:each) do
         @rover = FactoryGirl.create(:rover)
-        get :index, { rover_id: @rover.name.downcase }
+        get :index, params: { rover_id: @rover.name.downcase }
       end
 
       it "returns http 400 bad request" do
@@ -24,7 +24,7 @@ describe Api::V1::PhotosController do
         @rover = FactoryGirl.create(:rover)
         @camera = FactoryGirl.create(:camera)
         @photo = FactoryGirl.create(:photo, rover: @rover)
-        get :index, { rover_id: @rover.name, sol: 829 }
+        get :index, params: { rover_id: @rover.name, sol: 829 }
       end
 
       it "returns http 200 success" do
@@ -42,7 +42,7 @@ describe Api::V1::PhotosController do
         @rover = FactoryGirl.create(:rover)
         @camera = FactoryGirl.create(:camera)
         FactoryGirl.create_list(:photo, 25, rover: @rover)
-        get :index, { rover_id: @rover.name, sol: 829 }
+        get :index, params: { rover_id: @rover.name, sol: 829 }
       end
 
       it "returns http 200 success" do
@@ -55,7 +55,7 @@ describe Api::V1::PhotosController do
         @rover = FactoryGirl.create(:rover)
         @camera = FactoryGirl.create(:camera, rover: @rover)
         @photo = FactoryGirl.create(:photo, rover: @rover, camera: @camera)
-        get :index, { rover_id: @rover.name, sol: 829, camera: @camera.name }
+        get :index, params: { rover_id: @rover.name, sol: 829, camera: @camera.name }
       end
 
       it "returns http 200 success" do
@@ -73,7 +73,7 @@ describe Api::V1::PhotosController do
         @rover = FactoryGirl.create(:rover)
         @camera = FactoryGirl.create(:camera)
         @photo = FactoryGirl.create(:photo, rover: @rover)
-        get :index, { rover_id: @rover.name, earth_date: "2014-12-05" }
+        get :index, params: { rover_id: @rover.name, earth_date: "2014-12-05" }
       end
 
       it "returns http 200 success" do
@@ -91,7 +91,7 @@ describe Api::V1::PhotosController do
         @rover = FactoryGirl.create(:rover)
         @camera = FactoryGirl.create(:camera, rover: @rover)
         @photo = FactoryGirl.create(:photo, rover: @rover, camera: @camera)
-        get :index, { rover_id: @rover.name.downcase, earth_date: "2014-12-05", camera: @camera.name }
+        get :index, params: { rover_id: @rover.name.downcase, earth_date: "2014-12-05", camera: @camera.name }
       end
 
       it "returns http 200 success" do
@@ -109,7 +109,7 @@ describe Api::V1::PhotosController do
     context "for an existing photo" do
       before(:each) do
         @photo = FactoryGirl.create(:photo)
-        get :show, { id: @photo.id }
+        get :show, params: { id: @photo.id }
       end
 
       it "returns http 200 success" do

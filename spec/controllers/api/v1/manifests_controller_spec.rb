@@ -10,7 +10,7 @@ describe Api::V1::ManifestsController do
         create(:photo, rover: @rover, sol: 30, camera: @camera)
         create(:photo, rover: @rover, sol: 100, camera: @camera)
         create(:photo, rover: @rover, sol: 100, camera: @camera)
-        get :show, { id: @rover.name }
+        get :show, params: { id: @rover.name }
       end
 
       after(:each) do
@@ -49,7 +49,7 @@ describe Api::V1::ManifestsController do
     context "with an invalid rover name" do
       before(:each) do
         @rover = create(:rover)
-        get :show, { id: "Rover" }
+        get :show, params: { id: "Rover" }
       end
 
       it "returns http 400 bad request" do
