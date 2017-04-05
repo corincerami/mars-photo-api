@@ -12,7 +12,7 @@ engines:
       score_threshold: 15
 exclude_paths:
 - "spec/**/*"
-- "db/migrate/*"
+- "db/**/*"
 ratings:
   paths:
    - "app/**/*"
