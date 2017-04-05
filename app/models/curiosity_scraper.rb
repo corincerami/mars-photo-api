@@ -17,7 +17,9 @@ class CuriosityScraper
 
   def collect_links
     # collects link suffixes to pages for martian solar cycle from each camera
-    main_page.css("div.image_list a").map { |link| link['href'] }
+    main_page.css("div.image_list a").map { |link| link['href'] }.reject { |param_string|
+      photos_exist_for_sol? param_string
+    }
   end
 
   private
@@ -60,5 +62,10 @@ class CuriosityScraper
 
   def navcam_names
     ["NAV_LEFT", "NAV_RIGHT", "NAV"]
+  end
+
+  def photos_exist_for_sol?(param_string)
+    sol = param_string.match(/s=(\d+)/)[1]
+    rover.photos.where(sol: sol).any?
   end
 end
