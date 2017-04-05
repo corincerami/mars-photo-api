@@ -1,6 +1,8 @@
 class OpportunitySpiritScraper
   BASE_URI = "https://mars.nasa.gov/mer/gallery/all/"
 
+  attr_reader :rover
+
   def initialize(rover)
     @rover = Rover.find_by(name: rover)
   end
@@ -27,7 +29,7 @@ class OpportunitySpiritScraper
   end
 
   def main_page
-    rover_html = "#{@rover.name.downcase}.html"
+    rover_html = "#{rover.name.downcase}.html"
     Nokogiri::HTML(open(BASE_URI + rover_html))
   end
 
@@ -47,8 +49,8 @@ class OpportunitySpiritScraper
       regex = /(?<camera>\w)(?<sol>\d+)/.match(path)
       sol = regex[:sol]
       camera_name = CAMERAS[regex[:camera].to_sym]
-      camera = @rover.cameras.find_by(name: camera_name)
-      photos = Photo.where(rover: @rover, sol: sol, camera: camera)
+      camera = rover.cameras.find_by(name: camera_name)
+      photos = rover.photos.where(sol: sol, camera: camera)
       if !photos.any?
         begin
           collect_image_paths(path)
@@ -74,11 +76,11 @@ class OpportunitySpiritScraper
   def create_photos(link)
     path = link.attributes["href"].value
     reg = /(?<early_path>\d\/(?<camera_name>\w)\/(?<sol>\d+)\/)\S+/.match(path)
-    camera = @rover.cameras.find_by(name: CAMERAS[reg[:camera_name].to_sym])
+    camera = rover.cameras.find_by(name: CAMERAS[reg[:camera_name].to_sym])
     photo_page = Nokogiri::HTML(open(BASE_URI + path))
     src = build_src(reg[:early_path], photo_page)
     photo = Photo.find_or_initialize_by(sol: reg[:sol].to_i, camera: camera,
-                                    img_src: src, rover: @rover)
+                                    img_src: src, rover: rover)
     photo.log_and_save_if_new
   end
 
