@@ -86,6 +86,38 @@ describe Api::V1::PhotosController do
         expect(json["photos"].first["camera"]["name"]).to eq camera.name
       end
     end
+
+    context "with pagination" do
+      let(:params) { {rover_id: rover.name.downcase, sol: 1001} }
+
+      before(:each) do
+        create_list(:photo, 35, rover: rover, sol: 1001)
+      end
+
+      it "returns 25 entries per page when a page param is provided" do
+        get :index, params: params.merge(page: 1)
+
+        expect(json["photos"].length).to eq 25
+      end
+
+      it "returns all entries when no page param is provided" do
+        get :index, params: params
+
+        expect(json["photos"].length).to eq 35
+      end
+
+      it "returns n entries per page when a per_page param is provided" do
+        get :index, params: params.merge(page: 1, per_page: 30)
+
+        expect(json["photos"].length).to eq 30
+      end
+
+      it "returns the remaining entries on the last page of results" do
+        get :index, params: params.merge(page: 2, per_page: 30)
+
+        expect(json["photos"].length).to eq 5
+      end
+    end
   end
 
   describe "GET 'show'" do
