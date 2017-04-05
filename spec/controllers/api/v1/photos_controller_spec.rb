@@ -91,7 +91,7 @@ describe Api::V1::PhotosController do
       let(:params) { {rover_id: rover.name.downcase, sol: 1001} }
 
       before(:each) do
-        create_list(:photo, 35, rover: rover, sol: 1001)
+        create_list(:photo, 35, rover: rover, camera: camera, sol: 1001)
       end
 
       it "returns 25 entries per page when a page param is provided" do
