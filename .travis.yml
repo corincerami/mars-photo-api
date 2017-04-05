@@ -1,9 +1,10 @@
 language: ruby
 
 rvm:
-  - 2.3.4
-
-sudo: required
+  - 2.4.1
 
 before_script:
   - psql -c 'create database mars_curiosity_test;' -U postgres
+
+after_script:
+  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN bundle exec codeclimate-test-reporter

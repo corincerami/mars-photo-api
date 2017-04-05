@@ -1,5 +1,8 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_filter "db"
+  add_filter "spec"
+end
 
 RSpec.configure do |config|
   require "json"

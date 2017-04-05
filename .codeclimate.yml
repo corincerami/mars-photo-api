@@ -1,6 +1,19 @@
-# Remove any languages you don't want analyzed.
-languages:
-   Ruby: true
-# For all languages, we support a standard set of Glob patterns.
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+  rubocop:
+    enabled: true
+  flog:
+    enabled: true
+    config:
+      score_threshold: 15
 exclude_paths:
- - vendor/*
+- "spec/**/*"
+- "db/**/*"
+ratings:
+  paths:
+   - "app/**/*"
+   - "**.rb"
