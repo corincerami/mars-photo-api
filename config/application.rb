@@ -4,7 +4,7 @@ require 'rails/all'
 
 Bundler.require(*Rails.groups)
 
-module CuriosityApi
+module MarsRoverPhotoApi
   class Application < Rails::Application
     config.middleware.use Rack::Cors do
       allow do
@@ -13,5 +13,6 @@ module CuriosityApi
       end
     end
     config.public_file_server.enabled = true
+    config.api_only = true
   end
 end
