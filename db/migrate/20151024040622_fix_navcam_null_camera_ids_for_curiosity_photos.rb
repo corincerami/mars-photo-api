@@ -1,4 +1,4 @@
-class FixNavcamNullCameraIdsForCuriosityPhotos < ActiveRecord::Migration
+class FixNavcamNullCameraIdsForCuriosityPhotos < ActiveRecord::Migration[4.2]
   class Rover < ActiveRecord::Base
     has_many :cameras
     has_many :photos

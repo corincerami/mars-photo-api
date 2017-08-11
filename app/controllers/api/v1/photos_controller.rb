@@ -22,7 +22,7 @@ class Api::V1::PhotosController < ApplicationController
   def photos(rover)
     photos = rover.photos.search photo_params, rover
     if params[:page]
-      photos = photos.page(params[:page]).per(params[:per_page])
+      photos = photos.page(params[:page]).per params[:per_page]
     end
     photos
   end

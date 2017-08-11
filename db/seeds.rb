@@ -26,3 +26,7 @@ spirit.cameras.find_or_create_by(name: "NAVCAM", full_name: "Navigation Camera")
 spirit.cameras.find_or_create_by(name: "PANCAM", full_name: "Panoramic Camera")
 spirit.cameras.find_or_create_by(name: "MINITES", full_name: "Miniature Thermal Emission Spectrometer (Mini-TES)")
 spirit.cameras.find_or_create_by(name: "ENTRY", full_name: "Entry, Descent, and Landing Camera")
+
+CuriosityScraper.new.scrape
+OpportunitySpiritScraper.new(opportunity).scrape
+OpportunitySpiritScraper.new(spirit).scrape

@@ -7,7 +7,7 @@ module Api
       end
 
       def show
-        @rover = Rover.find_by(name: params[:id].capitalize)
+        @rover = Rover.find_by name: params[:id].capitalize
         if !@rover.blank?
           render json: @rover, serializer: serializer
         else

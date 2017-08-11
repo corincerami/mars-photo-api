@@ -15,31 +15,31 @@ ActiveRecord::Schema.define(version: 20160929212810) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cameras", force: :cascade do |t|
-    t.string  "name"
+  create_table "cameras", id: :serial, force: :cascade do |t|
+    t.string "name"
     t.integer "rover_id"
-    t.string  "full_name"
+    t.string "full_name"
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.string  "img_src",    null: false
-    t.integer "sol",        null: false
-    t.string  "old_camera"
-    t.date    "earth_date"
+  create_table "photos", id: :serial, force: :cascade do |t|
+    t.string "img_src", null: false
+    t.integer "sol", null: false
+    t.string "old_camera"
+    t.date "earth_date"
     t.integer "rover_id"
     t.integer "camera_id"
-    t.index ["camera_id"], name: "index_photos_on_camera_id", using: :btree
-    t.index ["earth_date"], name: "index_photos_on_earth_date", using: :btree
-    t.index ["img_src"], name: "index_photos_on_img_src", using: :btree
-    t.index ["rover_id"], name: "index_photos_on_rover_id", using: :btree
-    t.index ["sol", "camera_id", "img_src", "rover_id"], name: "index_photos_on_sol_and_camera_id_and_img_src_and_rover_id", unique: true, using: :btree
-    t.index ["sol"], name: "index_photos_on_sol", using: :btree
+    t.index ["camera_id"], name: "index_photos_on_camera_id"
+    t.index ["earth_date"], name: "index_photos_on_earth_date"
+    t.index ["img_src"], name: "index_photos_on_img_src"
+    t.index ["rover_id"], name: "index_photos_on_rover_id"
+    t.index ["sol", "camera_id", "img_src", "rover_id"], name: "index_photos_on_sol_and_camera_id_and_img_src_and_rover_id", unique: true
+    t.index ["sol"], name: "index_photos_on_sol"
   end
 
-  create_table "rovers", force: :cascade do |t|
+  create_table "rovers", id: :serial, force: :cascade do |t|
     t.string "name"
-    t.date   "landing_date"
-    t.date   "launch_date"
+    t.date "landing_date"
+    t.date "launch_date"
     t.string "status"
   end
 

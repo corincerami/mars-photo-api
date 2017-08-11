@@ -2,13 +2,13 @@ module Api
   module V0
     class PhotosController < ApplicationController
       def show
-        @photo = Photo.find(params[:id])
+        @photo = Photo.find params[:id]
         render json: @photo
       end
 
       def index
-        @rover = Rover.find_by(name: params[:rover_id].titleize)
-        @photos = @rover.photos.search(photo_params, params[:rover_id])
+        @rover = Rover.find_by name: params[:rover_id].titleize
+        @photos = @rover.photos.search photo_params, params[:rover_id]
         if @photos.any?
           render json: @photos.page(params[:page])
         else
@@ -19,7 +19,7 @@ module Api
       private
 
       def photo_params
-        params.permit(:sol, :camera, :earth_date)
+        params.permit :sol, :camera, :earth_date
       end
     end
   end
