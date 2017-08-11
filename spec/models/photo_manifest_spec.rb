@@ -3,7 +3,7 @@ require 'rails_helper'
 describe PhotoManifest do
   let(:rover) { create(:rover) }
   let(:manifest) { PhotoManifest.new(rover) }
-  let(:cache_key) { "#{rover.name.downcase}-manifest" }
+  let(:cache_key) { manifest.send :cache_key_name }
 
   describe "#to_a" do
     before(:each) do
@@ -34,14 +34,24 @@ describe PhotoManifest do
     it "returns result from cache if cached" do
       expect($redis).to receive(:get).twice.with(cache_key).and_return "[]"
       expect($redis).not_to receive(:set).with cache_key, manifest.to_a.to_json
-
       manifest.photos
     end
 
     it "creates a new collection and caches it if not cached" do
-      expect($redis).to receive(:set).with cache_key, manifest.to_a.to_json
+      expect($redis).to receive(:set).once.with cache_key, manifest.to_a.to_json
       expect($redis).to receive(:get).once.with cache_key
+      manifest.photos
+    end
 
+    it "creates a new collection if more photos have been added since the last cache" do
+      expect($redis).to receive(:set).once.with cache_key, manifest.to_a.to_json
+      expect($redis).to receive(:get).once.with cache_key
+      manifest.photos
+
+      create(:photo, rover: rover)
+      new_cache_key = manifest.send :cache_key_name
+      expect($redis).to receive(:set).once.with new_cache_key, manifest.to_a.to_json
+      expect($redis).to receive(:get).once.with new_cache_key
       manifest.photos
     end
   end
