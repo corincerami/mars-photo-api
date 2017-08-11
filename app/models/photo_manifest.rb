@@ -33,7 +33,7 @@ class PhotoManifest
   private
 
   def cache_key_name
-    "#{rover.name.downcase}-manifest"
+    "#{rover.name.downcase}-manifest-#{rover.photos.count}"
   end
 
   def set_redis_expiration
