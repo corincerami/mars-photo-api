@@ -13,15 +13,15 @@ gem 'redis'
 gem 'kaminari'
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_girl'
-  gem 'factory_girl_rails', '~> 4.0'
   gem 'pry'
-  gem 'fakeredis'
 end
 
 group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl'
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'codeclimate-test-reporter', require: nil
+  gem 'fakeredis'
 end
 
 group :production do
