@@ -11,7 +11,7 @@ describe Api::V1::PhotosController do
         get :index, params: { rover_id: rover.name.downcase }
       end
 
-      it "retrns an empty collection" do
+      it "returns an empty collection" do
         expect(json["photos"]).to be_empty
       end
     end
@@ -31,14 +31,17 @@ describe Api::V1::PhotosController do
       end
     end
 
-    context "with sol query" do
+    context "with bad Rover name" do
       before(:each) do
-        create_list(:photo, 25, rover: rover)
-        get :index, params: { rover_id: rover.name, sol: 829 }
+        get :index, params: { rover_id: "this doesn't exist", sol: 829 }
       end
 
-      it "returns http 200 success" do
-        expect(response.status).to eq 200
+      it "returns http 400 bad request" do
+        expect(response.status).to eq 400
+      end
+
+      it "returns an error message" do
+        expect(json["errors"]).to eq "Invalid Rover Name"
       end
     end
 
