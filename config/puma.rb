@@ -1,4 +1,4 @@
-workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+workers Integer(ENV['WEB_CONCURRENCY'] || 2) unless ENV["OS"] && ENV["OS"].include?("Windows")
 threads_count = Integer(ENV['MAX_THREADS'] || 1)
 threads threads_count, threads_count
 

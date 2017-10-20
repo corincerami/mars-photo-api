@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.4.1'
+ruby '2.4.2'
 
 gem 'pg'
 gem 'rake'
@@ -11,6 +11,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'newrelic_rpm'
 gem 'redis'
 gem 'kaminari'
+gem 'tzinfo-data'
 
 group :development, :test do
   gem 'pry'
