@@ -14,27 +14,19 @@ Each rover has its own set of photos stored in the database, which can be querie
 
 Along with querying by date, results can also be filtered by the camera with which it was taken. Each camera has a unique function and perspective, and they are named as follows:
 
-### Curiosity's Cameras
+### Cameras
 
-  Abbreviation | Camera
-  ------------ | ------------------------------
-   FHAZ        |  Front Hazard Avoidance Camera
-   RHAZ        |  Rear Hazard Avoidance Camera
-   MAST        |  Mast Camera
-   CHEMCAM     |  Chemistry and Camera Complex
-   MAHLI       |  Mars Hand Lens Imager
-   MARDI       |  Mars Descent Imager
-   NAVCAM      |  Navigation Camera
-
-### Opportunity and Spirit's Cameras
-
-  Abbreviation | Camera
-  ------------ | -----------------------------
-    FHAZ       |  Front Hazard Avoidance Camera
-    RHAZ       |  Rear Hazard Avoidance Camera
-    PANCAM     |  Panoramic Camera
-    NAVCAM     |  Navigation Camera
-    MINITES    |  Miniature Thermal Emission Spectrometer (Mini-TES)
+  Abbreviation | Camera                         | Curiosity | Opportunity | Spirit
+  ------------ | ------------------------------ | --------  | ----------- | ------ |
+   FHAZ|Front Hazard Avoidance Camera|✔|✔|✔|
+   RHAZ|Rear Hazard Avoidance Camera|✔|✔|✔|
+   MAST|Mast Camera| ✔||
+   CHEMCAM|Chemistry and Camera Complex  |✔||
+   MAHLI|Mars Hand Lens Imager|✔||
+   MARDI|Mars Descent Imager|✔||
+   NAVCAM|Navigation Camera|✔|✔|✔|
+   PANCAM|Panoramic Camera| |✔|✔|
+   MINITES|Miniature Thermal Emission Spectrometer (Mini-TES)| |✔|✔|
 
 ## Querying the API
 
