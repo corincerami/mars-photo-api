@@ -1,4 +1,5 @@
 class CuriosityScraper
+  require "open-uri"
   BASE_URL = "https://mars.jpl.nasa.gov/msl/multimedia/raw/"
 
   attr_reader :rover

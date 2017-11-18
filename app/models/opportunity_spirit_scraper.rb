@@ -1,4 +1,6 @@
 class OpportunitySpiritScraper
+  require "open-uri"
+
   BASE_URI = "https://mars.nasa.gov/mer/gallery/all/"
 
   attr_reader :rover
