@@ -20,7 +20,7 @@ class Api::V1::PhotosController < ApplicationController
   end
 
   def photos(rover)
-    photos = rover.photos.search photo_params, rover
+    photos = rover.photos.order(:camera_id, :id).search photo_params, rover
     if params[:page]
       photos = photos.page(params[:page]).per params[:per_page]
     end
