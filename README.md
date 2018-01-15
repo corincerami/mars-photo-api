@@ -30,6 +30,8 @@ Along with querying by date, results can also be filtered by the camera with whi
 
 ## Querying the API
 
+Substitute `https://api.nasa.gov/mars-photos/` with `https://mars-photos.herokuapp.com/` if you want to query the API from a web application. The heroku version allows cross-origin requests and *doesnt require an API key*.
+
 The API can be queried in the following format:
 
 ### Photo Endpoint
