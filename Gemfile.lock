@@ -186,7 +186,7 @@ DEPENDENCIES
   kaminari
   newrelic_rpm
   nokogiri
-  pg
+  pg (~> 0.21)
   pry
   puma
   rack-cors
@@ -202,4 +202,4 @@ RUBY VERSION
    ruby 2.4.2p198
 
 BUNDLED WITH
-   1.16.0.pre.3
+   1.16.0
