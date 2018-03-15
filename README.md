@@ -56,6 +56,12 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
 
 https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?earth_date=2015-6-3&camera=pancam
 
+#### Query For Latest Photos
+
+If you just want to receive photo data for the most recent Sol for which photos exist for a particular rover, you can visit the `/latest_photos` endpoint.
+
+https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos
+
 ### Mission Manifest Endpoint
 
 A mission manifest is available for each Rover at the `/manifests/<rover_name>`. This manifest will list details of the Rover's mission to help narrow down photo queries to the API. The information in the manifest includes:
