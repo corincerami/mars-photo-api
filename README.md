@@ -98,6 +98,10 @@ An example entry from `/manifests/Curiosity` might look like:
 
 This would tell you that this rover, on sol 0, took 3702 photos, and those are from among the CHEMCAM, FHAZ, MARDI, and RHAZ cameras.
 
+### Requesting Randomized Photos
+
+While
+
 The database will be updated regularly with the latest photos from the red planet.
 
 ## Contributing
