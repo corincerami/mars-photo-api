@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       end
       resources :photos, only: :show
       resources :manifests, only: :show
+
+      get 'surprise', to: 'surprises#index'
     end
 
     namespace :v0 do
