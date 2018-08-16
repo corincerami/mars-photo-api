@@ -10,9 +10,9 @@ class PhotoManifest
   end
 
   def to_a
-    rover.photos.joins(:camera).group(:sol)
-      .select('sol, count(photos.id) AS cnt, ARRAY_AGG(DISTINCT cameras.name) AS cameras')
-      .map { |photos| {sol: photos.sol, total_photos: photos.cnt, cameras: photos.cameras} }
+    rover.photos.joins(:camera).group(:sol, :earth_date)
+      .select('sol, earth_date, count(photos.id) AS cnt, ARRAY_AGG(DISTINCT cameras.name) AS cameras')
+      .map { |photos| {sol: photos.sol, earth_date: photos.earth_date, total_photos: photos.cnt, cameras: photos.cameras} }
   end
 
   def photos

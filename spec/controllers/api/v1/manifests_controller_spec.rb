@@ -39,9 +39,9 @@ describe Api::V1::ManifestsController do
 
       it "contains a record for each sol for which there are photos" do
         expect(json["photo_manifest"]["photos"]).to contain_exactly(
-          {"sol" => 1, "total_photos" => 1, "cameras" => ["FHAZ"]},
-          {"sol" => 30, "total_photos" => 1, "cameras" => ["FHAZ"]},
-          {"sol" => 100, "total_photos" => 2, "cameras" => ["FHAZ"]}
+          {"sol" => 1, "earth_date"=>"2012-08-07", "total_photos" => 1, "cameras" => ["FHAZ"]},
+          {"sol" => 30, "earth_date"=>"2012-09-05", "total_photos" => 1, "cameras" => ["FHAZ"]},
+          {"sol" => 100, "earth_date"=>"2012-11-16", "total_photos" => 2, "cameras" => ["FHAZ"]}
         )
       end
     end
