@@ -85,6 +85,7 @@ An example entry from `/manifests/Curiosity` might look like:
 ```
 {
   sol: 0,
+  earth_date: "2012-08-06"
   total_photos: 3702,
   cameras: [
     "CHEMCAM",
