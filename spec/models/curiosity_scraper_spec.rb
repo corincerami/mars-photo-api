@@ -11,22 +11,23 @@ RSpec.describe CuriosityScraper, type: :model do
 
   describe ".main_page" do
     it "should return a Nokogiri page" do
-      expect(scraper.main_page.title).to eq "Raw Images - NASA Mars Curiosity Rover"
+      expect(scraper.main_page.title).to eq "Raw Images - NASA Mars"
     end
   end
 
   describe ".collect_links" do
     it "should return links to each sol" do
-      expect(scraper.collect_links).to include "./?s=1004&camera=FHAZ%5F"
+      expect(scraper.collect_links).to include "https://mars.nasa.gov/msl/raw/listimagesraw.cfm?&s=1004"
     end
   end
 
   describe ".scrape" do
-    let!(:fhaz) { create(:camera, rover: curiosity) }
+    let!(:fhaz) { create :camera, rover: curiosity, name: "FHAZ" }
+    let!(:rhaz) { create :camera, rover: curiosity, name: "RHAZ" }
     it "should create photo objects" do
-      allow(scraper).to receive(:collect_links).and_return ["./?s=1004&camera=FHAZ%5F"]
+      allow(scraper).to receive(:collect_links).and_return ["https://mars.nasa.gov/msl/raw/listimagesraw.cfm?&s=1004"]
 
-      expect{ scraper.scrape }.to change { Photo.count }.by(2)
+      expect{ scraper.scrape }.to change { Photo.count }.by(4)
     end
   end
 end
