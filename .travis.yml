@@ -8,3 +8,6 @@ before_script:
 
 after_script:
   - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN bundle exec codeclimate-test-reporter
+
+services:
+  - postgresql

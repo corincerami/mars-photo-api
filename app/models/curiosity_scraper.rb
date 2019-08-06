@@ -17,9 +17,11 @@ class CuriosityScraper
   end
 
   def collect_links
-    # collects link suffixes to pages for martian solar cycle from each camera
-    main_page.css("div.image_list a").map { |link| link['href'] }.reject { |param_string|
-      photos_exist_for_sol? param_string
+    latest_sol_available = main_page.css("#listImagesContentTxt").attr('value').value.to_i
+    latest_sol_scraped = rover.photos.maximum(:sol).to_i
+    sols_to_scrape = latest_sol_scraped..latest_sol_available
+    sols_to_scrape.map { |sol|
+      "https://mars.nasa.gov/msl/raw/listimagesraw.cfm?&s=#{sol}"
     }
   end
 
@@ -32,8 +34,8 @@ class CuriosityScraper
   end
 
   def scrape_photo_page(url)
-    image_page = Nokogiri::HTML(open(BASE_URL + url))
-    image_array = image_page.css("div.RawImageCaption div.RawImageUTC a")
+    image_page = Nokogiri::HTML(open url)
+    image_array = image_page.css("div.RawImageCaption a")
       .map { |link| link["href"] }
     image_array.each do |image|
       create_photo(image, url)
@@ -43,30 +45,33 @@ class CuriosityScraper
   def create_photo(image, url)
     if !thumbnail?(image)
       sol = url.scan(/(?<==)\d+/).first
-      camera = camera_from_url url
-      fail "Camera not found. Name: #{camera_name}" if camera.nil?
+      camera = camera_from_url image
+      fail "Camera not found. Name: #{camera}" if camera.is_a?(String)
       photo = Photo.find_or_initialize_by(sol: sol, camera: camera,
                                           img_src: image, rover: rover)
       photo.log_and_save_if_new
     end
   end
 
+  def camera_abbreviations
+    {
+      fcam: "FHAZ",
+      rcam: "RHAZ",
+      ccam: "CHEMCAM",
+      mcam: "MAST",
+      ncam: "NAVCAM",
+      mhli: "MAHLI",
+      mrdi: "MARDI"
+    }
+  end
+
   def thumbnail?(image_url)
     image_url.to_s.include?("_T")
   end
 
-  def camera_from_url(url)
-    camera_name = url.scan(/(?<=camera=)\w+/).first
-    camera_name = "NAVCAM" if navcam_names.include? camera_name
-    rover.cameras.find_by(name: camera_name)
-  end
-
-  def navcam_names
-    ["NAV_LEFT", "NAV_RIGHT", "NAV"]
-  end
-
-  def photos_exist_for_sol?(param_string)
-    sol = param_string.match(/s=(\d+)/)[1]
-    rover.photos.where(sol: sol).any?
+  def camera_from_url(image_url)
+    camera_abbreviation = image_url.match(/\/(?<camera>\w{4})\/\w+.(JPG|jpg|PNG|png)/)[:camera]
+    camera_name = camera_abbreviations[camera_abbreviation.to_sym]
+    rover.cameras.find_by(name: camera_name) || camera_name || camera_abbreviation
   end
 end
