@@ -6,7 +6,7 @@ This API is designed to collect image data gathered by NASA's Curiosity, Opportu
 
 ## API Keys
 
-You do not need to authenticate in order to explore the NASA data at https://api.nasa.gov/mars-photos/. However, if you will be intensively using the APIs to, say, support a mobile application, then you should sign up for a [NASA developer key](https://api.nasa.gov/index.html#apply-for-an-api-key). You can include this API key in a request with a query parameter `api_key=<YOUR_KEY>`.
+You do not need to authenticate in order to explore rate-limited (30 requests per IP address per hour / 50 requests per IP address per day) NASA data at https://api.nasa.gov/mars-photos/ if you include `api_key=DEMO_KEY`. However, if you will be intensively using the APIs to, say, support a mobile application, then you should sign up for a [NASA developer key](https://api.nasa.gov/index.html#apply-for-an-api-key). You can include this API key in a request with a query parameter `api_key=<YOUR_KEY>`.
 
 ## Photo Attributes
 
@@ -40,27 +40,27 @@ The API can be queried in the following format:
 
 Queries by sol can range from 0, which is the date of landing, up to the current maximum in the database. The current max sol for each rover can be found at that rover's endpoint.
 
-https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000
+https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY
 
 #### Querying by Earth date:
 
 Dates should be formatted as 'yyyy-mm-dd'. The earliest date available is the date of landing for each rover.
 
-https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3
+https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=DEMO_KEY
 
 #### Filtering Queries by Camera:
 
 The camera parameter is not case sensitive, but must be one of the camera abbreviations listed in the table above for the respective rover.
 
-https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz
+https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=DEMO_KEY
 
-https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?earth_date=2015-6-3&camera=pancam
+https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?earth_date=2015-6-3&camera=pancam&api_key=DEMO_KEY
 
 #### Query For Latest Photos
 
 If you just want to receive photo data for the most recent Sol for which photos exist for a particular rover, you can visit the `/latest_photos` endpoint.
 
-https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos
+https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos&api_key=DEMO_KEY
 
 ### Mission Manifest Endpoint
 
