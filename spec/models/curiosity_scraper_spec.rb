@@ -11,7 +11,7 @@ RSpec.describe CuriosityScraper, type: :model do
 
   describe ".main_page" do
     it "should return a Nokogiri page" do
-      expect(scraper.main_page.title).to eq "Raw Images - NASA Mars"
+      expect(scraper.main_page.title).to eq "Raw Images | Multimedia – NASA’s Mars Exploration Program "
     end
   end
 
