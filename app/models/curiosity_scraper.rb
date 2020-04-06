@@ -14,7 +14,7 @@ class CuriosityScraper
 
   # grabs the HTML from the main page of the curiosity rover image gallery
   def main_page
-    Nokogiri::HTML(open("https://mars.nasa.gov/msl/multimedia/raw-images/?order=sol+desc%2Cinstrument_sort+asc%2Csample_type_sort+asc%2C+date_taken+desc&per_page=50&page=0&mission=msl"))
+    Nokogiri::HTML(URI.open("https://mars.nasa.gov/msl/multimedia/raw-images/?order=sol+desc%2Cinstrument_sort+asc%2Csample_type_sort+asc%2C+date_taken+desc&per_page=50&page=0&mission=msl"))
   end
 
   def collect_links
@@ -35,7 +35,7 @@ class CuriosityScraper
   end
 
   def scrape_photo_page(url)
-    image_page = Nokogiri::HTML(open url)
+    image_page = Nokogiri::HTML(URI.open url)
     image_array = image_page.css("div.RawImageCaption a")
       .map { |link| link["href"] }
     image_array.each do |image|
