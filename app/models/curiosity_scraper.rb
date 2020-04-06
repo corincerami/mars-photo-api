@@ -1,5 +1,6 @@
 class CuriosityScraper
   require "open-uri"
+  require 'json'
   BASE_URL = "https://mars.jpl.nasa.gov/msl/multimedia/raw/"
 
   attr_reader :rover
@@ -13,11 +14,11 @@ class CuriosityScraper
 
   # grabs the HTML from the main page of the curiosity rover image gallery
   def main_page
-    Nokogiri::HTML(open("https://mars.jpl.nasa.gov/msl/multimedia/raw/"))
+    Nokogiri::HTML(open("https://mars.nasa.gov/msl/multimedia/raw-images/?order=sol+desc%2Cinstrument_sort+asc%2Csample_type_sort+asc%2C+date_taken+desc&per_page=50&page=0&mission=msl"))
   end
 
   def collect_links
-    latest_sol_available = main_page.css("#listImagesContentTxt").attr('value').value.to_i
+    latest_sol_available = JSON.parse(main_page.css('[data-react-props]').last.attr('data-react-props'))["header_counts"]["latest_sol"].to_i
     latest_sol_scraped = rover.photos.maximum(:sol).to_i
     sols_to_scrape = latest_sol_scraped..latest_sol_available
     sols_to_scrape.map { |sol|
