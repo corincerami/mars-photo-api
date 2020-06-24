@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.7.1'
 
-gem 'pg', '~> 0.21'
+gem 'pg', '~> 1.0'
 gem 'rake'
 gem 'rails', '~> 5.0'
 gem 'nokogiri', '~>1.10'
