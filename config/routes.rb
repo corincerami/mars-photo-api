@@ -12,10 +12,5 @@ Rails.application.routes.draw do
       resources :photos, only: :show
       resources :manifests, only: :show
     end
-
-    namespace :v0 do
-      resources :rovers, only: [:show, :index]
-      resources :photos, only: [:show, :index]
-    end
   end
 end

@@ -1,13 +1,13 @@
 class Api::V1::PhotosController < ApplicationController
   def show
     photo = Photo.find params[:id]
-    render json: photo
+    render json: photo, serializer: PhotoSerializer, root: :photo
   end
 
   def index
     rover = Rover.find_by name: params[:rover_id].titleize
     if rover
-      render json: photos(rover)
+      render json: photos(rover), each_serializer: PhotoSerializer, root: :photos
     else
       render json: { errors: "Invalid Rover Name" }, status: :bad_request
     end
