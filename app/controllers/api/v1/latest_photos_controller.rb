@@ -3,7 +3,7 @@ class Api::V1::LatestPhotosController < ApplicationController
     def index
       @rover = Rover.find_by name: params[:rover_id].titleize
       if @rover
-        render json: search_photos
+        render json: search_photos, each_serializer: PhotoSerializer, root: :latest_photos
       else
         render json: { errors: "Invalid Rover Name" }, status: :bad_request
       end

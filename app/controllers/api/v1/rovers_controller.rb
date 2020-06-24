@@ -1,7 +1,7 @@
 class Api::V1::RoversController < ApplicationController
   def index
     rovers = Rover.all
-    render json: rovers
+    render json: rovers, each_serializer: RoverSerializer, root: :rovers
   end
 
   def show
