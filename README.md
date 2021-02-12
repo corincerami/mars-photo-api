@@ -6,7 +6,7 @@ This API is designed to collect image data gathered by NASA's Curiosity, Opportu
 
 ## API Keys
 
-You do not need to authenticate in order to explore the NASA data at https://api.nasa.gov/mars-photos/. However, if you will be intensively using the APIs to, say, support a mobile application, then you should sign up for a [NASA developer key](https://api.nasa.gov/index.html#apply-for-an-api-key). You can include this API key in a request with a query parameter `api_key=<YOUR_KEY>`.
+You can use the API key *DEMO_KEY* to check things out. However, if you will be intensively using the APIs to, say, support a mobile application, then you should sign up for a [NASA developer key](https://api.nasa.gov/index.html#apply-for-an-api-key). You can include this API key in a request with a query parameter `api_key=<YOUR_KEY>`.
 
 ## Photo Attributes
 
