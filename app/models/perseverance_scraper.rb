@@ -1,7 +1,7 @@
 class PerseveranceScraper
   require "open-uri"
   require 'json'
-  BASE_URL = "https://mars.jpl.nasa.gov/msl/multimedia/raw/"
+  BASE_URL = "https://mars.nasa.gov/mars2020/multimedia/raw-images/"
 
   attr_reader :rover
   def initialize
@@ -16,7 +16,6 @@ class PerseveranceScraper
     response = (URI.open("https://mars.nasa.gov/rss/api/?feed=raw_images&category=mars2020&feedtype=json&latest=true").read)
     latest_sol_available = JSON.parse(response)["latest_sol"].to_i
     latest_sol_scraped = rover.photos.maximum(:sol).to_i
-    puts latest_sol_available
     sols_to_scrape = latest_sol_scraped..latest_sol_available
     sols_to_scrape.map { |sol|
 	    "https://mars.nasa.gov/rss/api/?feed=raw_images&category=mars2020&feedtype=json&sol=#{sol}"

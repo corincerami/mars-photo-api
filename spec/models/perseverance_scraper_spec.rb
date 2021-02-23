@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PerseveranceScraper, type: :model do
-	let!(:perseverance) { create(:rover, name: "Perseverance", landing_date: Date.new(2021, 2, 18), launch_date: Date.new(2020, 7, 30), status: "active") }
+  let!(:perseverance) { create(:rover, name: "Perseverance", landing_date: Date.new(2021, 2, 18), launch_date: Date.new(2020, 7, 30), status: "active") }
   let(:scraper) { PerseveranceScraper.new }
   describe "#rover" do
     it "should be Perseverance" do
