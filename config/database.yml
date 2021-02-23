@@ -5,14 +5,14 @@ default: &default
 
 development:
   <<: *default
-  database: mars_curiosity_development
+  database: mars_perseverance_development
   password: <%= ENV["RAILS_DB_PASSWORD"] %>
 
 test:
   <<: *default
-  database: mars_curiosity_test
+  database: mars_perseverance_test
   password: <%= ENV["RAILS_DB_PASSWORD"] %>
 
 production:
   <<: *default
-  database: mars_curiosity_production
+  database: mars_perseverance_production
