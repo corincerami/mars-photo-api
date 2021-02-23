@@ -2,7 +2,7 @@
 
 # Mars Rover Photo API
 
-This API is designed to collect image data gathered by NASA's Curiosity, Opportunity, and Spirit rovers on Mars and make it more easily available to other developers, educators, and citizen scientists.
+This API is designed to collect image data gathered by NASA's Perseverance, Curiosity, Opportunity, and Spirit rovers on Mars and make it more easily available to other developers, educators, and citizen scientists.
 
 ## API Keys
 
@@ -15,6 +15,25 @@ Each rover has its own set of photos stored in the database, which can be querie
 Along with querying by date, results can also be filtered by the camera with which it was taken. Each camera has a unique function and perspective, and they are named as follows:
 
 ### Cameras
+#### Perseverance rover
+
+  Abbreviation | Camera                       
+  ------------ | ------------------------------
+   EDL_RUCAM|Rover Up-Look Camera
+   EDL_RDCAM|Rover Up-Down Camera
+   EDL_DDCAM|Descent Stage Down-Look Camera
+   EDL_PUCAM1|Parachute Up-Look Camera A
+   EDL_PUCAM2|Parachute Up-Look Camera B
+   NAVCAM_LEFT|Navigation Camera - Left
+   NAVCAM_RIGHT|Navigation Camera - Right
+   MCZ_RIGHT|Mast Camera Zoom - Right
+   MCZ_LEFT|Mast Camera Zoom - Left
+   FRONT_HAZCAM_LEFT_A|Front Hazard Avoidance Camera - Left
+   FRONT_HAZCAM_RIGHT_A|Front Hazard Avoidance Camera - Right
+   REAR_HAZCAM_LEFT|Rear Hazard Avoidance Camera - Left
+   REAR_HAZCAM_RIGHT|Rear Hazard Avoidance Camera - Right
+
+#### Other rovers
 
   Abbreviation | Camera                         | Curiosity | Opportunity | Spirit
   ------------ | ------------------------------ | --------  | ----------- | ------ |

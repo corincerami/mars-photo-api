@@ -33,8 +33,10 @@ class PerseveranceScraper
   def scrape_photo_page(url)
     image_array = JSON.parse(URI.open(url).read)
     image_array['images'].each do |image|
-      url = image['image_files']['large']
-      create_photo(image)
+      if(image['sample_type'] == 'Full')
+        url = image['image_files']['large']
+        create_photo(image)
+      end
     end
   end
 
