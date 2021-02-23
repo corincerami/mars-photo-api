@@ -4,7 +4,7 @@ rvm:
   - 2.7.1
 
 before_script:
-  - psql -c 'create database mars_curiosity_test;' -U postgres
+  - psql -c 'create database mars_perseverance_test;' -U postgres
 
 after_script:
   - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN bundle exec codeclimate-test-reporter
