@@ -5,9 +5,9 @@ FactoryBot.define do
   end
 
   factory :rover do
-    name { "Perserverance" }
-    landing_date { Date.new(2021, 2, 18) }
-    launch_date { Date.new(2020,  7, 30) }
+    name { "Curiosity" }
+    landing_date { Date.new(2012, 8, 6) }
+    launch_date { Date.new(2011, 11, 26) }
     status { "active" }
   end
 
