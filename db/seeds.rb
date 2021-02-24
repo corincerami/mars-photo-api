@@ -8,7 +8,7 @@ spirit = Rover.find_or_create_by(name: "Spirit",
                                  landing_date: Date.new(2004, 1, 4))
 
 perseverance.cameras.find_or_create_by(name: "EDL_RUCAM", full_name: "Rover Up-Look Camera")
-perseverance.cameras.find_or_create_by(name: "EDL_RDCAM", full_name: "Rover Up-Down Camera")
+perseverance.cameras.find_or_create_by(name: "EDL_RDCAM", full_name: "Rover Down-Look Camera")
 perseverance.cameras.find_or_create_by(name: "EDL_DDCAM", full_name: "Descent Stage Down-Look Camera")
 perseverance.cameras.find_or_create_by(name: "EDL_PUCAM1", full_name: "Parachute Up-Look Camera A")
 perseverance.cameras.find_or_create_by(name: "EDL_PUCAM2", full_name: "Parachute Up-Look Camera B")
