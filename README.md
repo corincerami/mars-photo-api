@@ -20,7 +20,7 @@ Along with querying by date, results can also be filtered by the camera with whi
   Abbreviation | Camera                       
   ------------ | ------------------------------
    EDL_RUCAM|Rover Up-Look Camera
-   EDL_RDCAM|Rover Up-Down Camera
+   EDL_RDCAM|Rover Down-Look Camera
    EDL_DDCAM|Descent Stage Down-Look Camera
    EDL_PUCAM1|Parachute Up-Look Camera A
    EDL_PUCAM2|Parachute Up-Look Camera B
