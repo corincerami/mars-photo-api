@@ -44,10 +44,13 @@ class PerseveranceScraper
     sol = image['sol']
     camera = camera_from_json image
     link = image['image_files']['large']
-    fail "Camera not found. Name: #{camera}" if camera.is_a?(String)
-    photo = Photo.find_or_initialize_by(sol: sol, camera: camera,
-                                        img_src: link, rover: rover)
-    photo.log_and_save_if_new
+    if camera.is_a?(String)
+      puts "WARNING: Camera not found. Name: #{camera}"
+    else
+      photo = Photo.find_or_initialize_by(sol: sol, camera: camera,
+                                          img_src: link, rover: rover)
+      photo.log_and_save_if_new
+    end
   end
 
   def camera_abbreviations
@@ -58,7 +61,7 @@ class PerseveranceScraper
       epu1cam: "EDL_PUCAM1",
       epu2cam: "EDL_PUCAM2",
       navlcam: "NAVCAM_LEFT",
-      nacrcam: "NAVCAM_RIGHT",
+      navrcam: "NAVCAM_RIGHT",
       mczlcam: "MCZ_LEFT",
       mczrcam: "MCZ_RIGHT",
       fhlacam: "FRONT_HAZCAM_LEFT_A",
@@ -66,7 +69,9 @@ class PerseveranceScraper
       fhlbcam: "FRONT_HAZCAM_LEFT_B",
       fhrbcam: "FRONT_HAZCAM_RIGHT_B",
       rhlcam:  "REAR_HAZCAM_LEFT",
-      rhrcam:  "REAR_HAZCAM_RIGHT"
+      rhrcam:  "REAR_HAZCAM_RIGHT",
+      skycam:  "SKYCAM",
+      watson:  "SHERLOC_WATSON"
     }
   end
 
