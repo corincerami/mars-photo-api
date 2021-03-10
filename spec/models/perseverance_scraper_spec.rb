@@ -22,7 +22,7 @@ RSpec.describe PerseveranceScraper, type: :model do
     let!(:epu1cam) {create :camera, rover: perseverance, name: "EDL_PUCAM1" }
     let!(:epu2cam) {create :camera, rover: perseverance, name: "EDL_PUCAM2" }
     let!(:navlcam) {create :camera, rover: perseverance, name: "NAVCAM_LEFT" }
-    let!(:nacrcam) {create :camera, rover: perseverance, name: "NAVCAM_RIGHT" }
+    let!(:navrcam) {create :camera, rover: perseverance, name: "NAVCAM_RIGHT" }
     let!(:mczlcam) {create :camera, rover: perseverance, name: "MCZ_LEFT" }
     let!(:mczrcam) {create :camera, rover: perseverance, name: "MCZ_RIGHT" }
     let!(:fhlacam) {create :camera, rover: perseverance, name: "FRONT_HAZCAM_LEFT_A" }
@@ -31,11 +31,13 @@ RSpec.describe PerseveranceScraper, type: :model do
     let!(:fhrbcam) {create :camera, rover: perseverance, name: "FRONT_HAZCAM_RIGHT_B" }
     let!(:rhlcam) {create :camera, rover: perseverance, name:  "REAR_HAZCAM_LEFT" }
     let!(:rhrcam) {create :camera, rover: perseverance, name:  "REAR_HAZCAM_RIGHT" }
+    let!(:skycam) {create :camera, rover: perseverance, name:  "SKYCAM" }
+    let!(:waston) {create :camera, rover: perseverance, name:  "SHERLOC_WATSON" }
 
     it "should create photo objects" do
       allow(scraper).to receive(:collect_links).and_return ["https://mars.nasa.gov/rss/api/?feed=raw_images&category=mars2020&feedtype=json&sol=1"]
 
-      expect{ scraper.scrape }.to change { Photo.count }.by(191)
+      expect{ scraper.scrape }.to change { Photo.count }.by(201)
     end
   end
 end

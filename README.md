@@ -32,6 +32,8 @@ Along with querying by date, results can also be filtered by the camera with whi
    FRONT_HAZCAM_RIGHT_A|Front Hazard Avoidance Camera - Right
    REAR_HAZCAM_LEFT|Rear Hazard Avoidance Camera - Left
    REAR_HAZCAM_RIGHT|Rear Hazard Avoidance Camera - Right
+   SKYCAM|MEDA Skycam
+   SHERLOC_WATSON|SHERLOC WATSON Camera
 
 #### Other rovers
 
