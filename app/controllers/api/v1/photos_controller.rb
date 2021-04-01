@@ -45,45 +45,8 @@ class Api::V1::PhotosController < ApplicationController
       photos = photos.page(params[:page]).per params[:per_page]
     end
 
-    # Resize photos
-    # Curiosity: thumbnail ends in "-thm.jpg" or "-thm.png"
-    # Spirit + Opportunity: thumbnail ends in "-THM.jpg"
-    case params[:size]
-    when nil, "large"
-      # do nothing
-    when "small"
-      case params[:rover_id]
-      when "curiosity"
-        resize_each photos, ".jpg", "-thm.jpg"
-      when "spirit", "opportunity"
-        resize_each photos, ".jpg", "-THM.jpg"
-      when "perseverance"
-        resize_each photos, "1200.jpg", "320.jpg"
-      else
-        # ERROR: invalid size parameter for rover
-      end
-    when "medium"
-      if params[:rover_id] == "perseverance"
-        resize_each photos, "1200.jpg", "800.jpg"
-      else
-        # ERROR: invalid size parameter for rover
-      end
-    when "full"
-      if params[:rover_id] == "perseverance"
-        resize_each photos, "_1200.jpg", ".png"
-      else
-        # ERROR: invalid size parameter for rover
-      end
-    else
-      # ERROR: invalid size parameter
-    end
+    resize_photos photos, params
 
     photos
-  end
-
-  def resize_each(photos, old_suffix, new_suffix)
-    photos.map do |photo|
-      photo[:img_src] = photo[:img_src].delete_suffix(old_suffix) + new_suffix
-    end
   end
 end
