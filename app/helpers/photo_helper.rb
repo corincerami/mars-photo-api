@@ -41,10 +41,13 @@ module PhotoHelper
   end
 
   def resize_photos photos, params
+
+    rover_name = params[:rover_id].downcase
+
     case params[:size]
     when nil, "large" # do nothing
     when "small"
-      case params[:rover_id]
+      case rover_name
       when "curiosity"
         resize_each photos, ".jpg", "-thm.jpg"
       when "spirit", "opportunity"
@@ -56,14 +59,14 @@ module PhotoHelper
         puts "WARNING: invalid size parameter for rover"
       end
     when "medium"
-      if params[:rover_id] == "perseverance"
+      if rover_name == "perseverance"
         resize_each photos, "1200.jpg", "800.jpg"
       else
         # WARNING: invalid size parameter for rover
         puts "WARNING: invalid size parameter for rover"
       end
     when "full"
-      if params[:rover_id] == "perseverance"
+      if rover_name == "perseverance"
         resize_each photos, "_1200.jpg", ".png"
       else
         # WARNING: invalid size parameter for rover
