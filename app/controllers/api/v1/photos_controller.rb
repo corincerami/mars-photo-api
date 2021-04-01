@@ -7,7 +7,7 @@ class Api::V1::PhotosController < ApplicationController
   def index
     rover = Rover.find_by name: params[:rover_id].titleize
     if rover
-      render json: photos(rover), each_serializer: PhotoSerializer, root: :photos
+      render json: search_photos(rover), each_serializer: PhotoSerializer, root: :photos
     else
       render json: { errors: "Invalid Rover Name" }, status: :bad_request
     end
@@ -19,7 +19,7 @@ class Api::V1::PhotosController < ApplicationController
     params.permit :sol, :camera, :earth_date, :rover_id
   end
 
-  def photos(rover)
+  def search_photos(rover)
     photos = rover.photos.order(:camera_id, :id).search photo_params, rover
     if params[:page]
       photos = photos.page(params[:page]).per params[:per_page]
