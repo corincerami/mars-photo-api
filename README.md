@@ -92,7 +92,7 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos?api_key=D
 
 Specify the size of the photo you would like to receive. Default value is `large`. Notice only Perseverance photos have a guaranteed width. Photos from other rovers tend to be smaller than their Perseverance counterparts.
 
-https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=DEMO_KEY&size=full
+https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=DEMO_KEY&size=small
 
 | Size Parameter Value | Width (px) | Format | Curiosity | Opportunity | Spirit | Perseverance |
 |----------------------|------------|--------|-----------|-------------|--------|--------------|
