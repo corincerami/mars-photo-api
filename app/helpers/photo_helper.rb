@@ -9,25 +9,25 @@ module PhotoHelper
     when "small"
       case rover_name
       when "curiosity"
-        resize photo, ".jpg", "-thm.jpg"
+        replace_photo_suffix photo, ".jpg", "-thm.jpg"
       when "spirit", "opportunity"
-        resize photo, ".jpg", "-THM.jpg"
+        replace_photo_suffix photo, ".jpg", "-THM.jpg"
       when "perseverance"
-        resize photo, "1200.jpg", "320.jpg"
+        replace_photo_suffix photo, "1200.jpg", "320.jpg"
       else
         # WARNING: invalid size parameter for rover
         puts "WARNING: invalid size parameter for rover"
       end
     when "medium"
       if rover_name == "perseverance"
-        resize photo, "1200.jpg", "800.jpg"
+        replace_photo_suffix photo, "1200.jpg", "800.jpg"
       else
         # WARNING: invalid size parameter for rover
         puts "WARNING: invalid size parameter for rover"
       end
     when "full"
       if rover_name == "perseverance"
-        resize photo, "_1200.jpg", ".png"
+        replace_photo_suffix photo, "_1200.jpg", ".png"
       else
         # WARNING: invalid size parameter for rover
         puts "WARNING: invalid size parameter for rover"
@@ -49,25 +49,25 @@ module PhotoHelper
     when "small"
       case rover_name
       when "curiosity"
-        resize_each photos, ".jpg", "-thm.jpg"
+        replace_each_photo_suffix photos, ".jpg", "-thm.jpg"
       when "spirit", "opportunity"
-        resize_each photos, ".jpg", "-THM.jpg"
+        replace_each_photo_suffix photos, ".jpg", "-THM.jpg"
       when "perseverance"
-        resize_each photos, "1200.jpg", "320.jpg"
+        replace_each_photo_suffix photos, "1200.jpg", "320.jpg"
       else
         # WARNING: invalid size parameter for rover
         puts "WARNING: invalid size parameter for rover"
       end
     when "medium"
       if rover_name == "perseverance"
-        resize_each photos, "1200.jpg", "800.jpg"
+        replace_each_photo_suffix photos, "1200.jpg", "800.jpg"
       else
         # WARNING: invalid size parameter for rover
         puts "WARNING: invalid size parameter for rover"
       end
     when "full"
       if rover_name == "perseverance"
-        resize_each photos, "_1200.jpg", ".png"
+        replace_each_photo_suffix photos, "_1200.jpg", ".png"
       else
         # WARNING: invalid size parameter for rover
         puts "WARNING: invalid size parameter for rover"
@@ -82,13 +82,13 @@ module PhotoHelper
 
   private
 
-  def resize_each(photos, old_suffix, new_suffix)
+  def replace_each_photo_suffix(photos, old_suffix, new_suffix)
     photos.map do |photo|
-      resize photo, old_suffix, new_suffix
+      replace_photo_suffix photo, old_suffix, new_suffix
     end
   end
 
-  def resize(photo, old_suffix, new_suffix)
+  def replace_photo_suffix(photo, old_suffix, new_suffix)
     photo[:img_src] = photo[:img_src].delete_suffix(old_suffix) + new_suffix
   end
 end
