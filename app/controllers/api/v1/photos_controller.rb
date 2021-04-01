@@ -16,7 +16,7 @@ class Api::V1::PhotosController < ApplicationController
   private
 
   def photo_params
-    params.permit :sol, :camera, :earth_date
+    params.permit :sol, :camera, :earth_date, :rover_id
   end
 
   def photos(rover)
