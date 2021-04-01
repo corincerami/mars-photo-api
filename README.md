@@ -90,16 +90,18 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos?api_key=D
 
 #### Size parameter:
 
-Specify the size of the photo you would like to receive. Default is `large` (1200px wide).
+Specify the size of the photo you would like to receive. Default value is `large`. Notice only Perseverance photos have a guaranteed width. Photos from other rovers tend to be smaller than their Perseverance counterparts.
 
-https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=DEMO_KEY&size=full_res
+https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=DEMO_KEY&size=full
 
-| Size Parameter Value | Width (px) | Format |
-|----------------------|------------|--------|
-| small                | 320        | JPEG   |
-| medium               | 800        | JPEG   |
-| large                | 1200       | JPEG   |
-| full_res             | varies     | PNG    |
+| Size Parameter Value | Width (px) | Format | Curiosity | Opportunity | Spirit | Perseverance |
+|----------------------|------------|--------|-----------|-------------|--------|--------------|
+| `small`              | varies     | JPEG   | ✔         | ✔           | ✔      |              |
+| `large`              | varies     | JPEG   | ✔         | ✔           | ✔      |              |
+| `small`              | 320        | JPEG   |           |             |        | ✔            |
+| `medium`             | 800        | JPEG   |           |             |        | ✔            |
+| `large`              | 1200       | JPEG   |           |             |        | ✔            |
+| `full`               | varies     | PNG    |           |             |        | ✔            |
 
 ### Mission Manifest Endpoint
 
