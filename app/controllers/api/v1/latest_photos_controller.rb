@@ -4,7 +4,7 @@ class Api::V1::LatestPhotosController < ApplicationController
   def index
     @rover = Rover.find_by name: params[:rover_id].titleize
     if @rover
-      photos = search_photos(@rover)
+      photos = search_photos @rover, photo_params
       error = resize_photos photos, params
 
       if error.nil?
