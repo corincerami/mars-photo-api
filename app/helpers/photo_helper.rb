@@ -2,6 +2,7 @@ module PhotoHelper
 
   def resize_photo photo, params
 
+    error = nil;
     rover_name = Rover.find_by( id: photo[:rover_id] )[:name].downcase
 
     case params[:size]
@@ -15,33 +16,30 @@ module PhotoHelper
       when "perseverance"
         replace_photo_suffix photo, "1200.jpg", "320.jpg"
       else
-        # WARNING: invalid size parameter for rover
-        puts "WARNING: invalid size parameter for rover"
+        error = "Invalid size parameter 'small' for '#{rover_name.titleize}' rover";
       end
     when "medium"
       if rover_name == "perseverance"
         replace_photo_suffix photo, "1200.jpg", "800.jpg"
       else
-        # WARNING: invalid size parameter for rover
-        puts "WARNING: invalid size parameter for rover"
+        error = "Invalid size parameter 'medium' for '#{rover_name.titleize}' rover";
       end
     when "full"
       if rover_name == "perseverance"
         replace_photo_suffix photo, "_1200.jpg", ".png"
       else
-        # WARNING: invalid size parameter for rover
-        puts "WARNING: invalid size parameter for rover"
+        error = "Invalid size parameter 'full' for '#{rover_name.titleize}' rover";
       end
     else
-      # WARNING: invalid size parameter
-      puts "WARNING: invalid size parameter"
+      error = "Unrecognized size parameter: '#{params[:size]}'";
     end
 
-    photo
+    error
   end
 
   def resize_photos photos, params
 
+    error = nil;
     rover_name = params[:rover_id].downcase
 
     case params[:size]
@@ -55,29 +53,25 @@ module PhotoHelper
       when "perseverance"
         replace_each_photo_suffix photos, "1200.jpg", "320.jpg"
       else
-        # WARNING: invalid size parameter for rover
-        puts "WARNING: invalid size parameter for rover"
+        error = "Invalid size parameter 'small' for '#{rover_name.titleize}' rover";
       end
     when "medium"
       if rover_name == "perseverance"
         replace_each_photo_suffix photos, "1200.jpg", "800.jpg"
       else
-        # WARNING: invalid size parameter for rover
-        puts "WARNING: invalid size parameter for rover"
+        error = "Invalid size parameter 'medium' for '#{rover_name.titleize}' rover";
       end
     when "full"
       if rover_name == "perseverance"
         replace_each_photo_suffix photos, "_1200.jpg", ".png"
       else
-        # WARNING: invalid size parameter for rover
-        puts "WARNING: invalid size parameter for rover"
+        error = "Invalid size parameter 'full' for '#{rover_name.titleize}' rover";
       end
     else
-      # WARNING: invalid size parameter
-      puts "WARNING: invalid size parameter"
+      error = "Unrecognized size parameter: '#{params[:size]}'";
     end
 
-    photos
+    error
   end
 
   private
