@@ -22,13 +22,4 @@ class Api::V1::LatestPhotosController < ApplicationController
   def photo_params
     params.permit(:camera, :earth_date, :rover_id).merge(sol: @rover.photos.maximum(:sol))
   end
-
-  def search_photos rover
-    photos = rover.photos.order(:camera_id, :id).search photo_params, rover
-    if params[:page]
-      photos = photos.page(params[:page]).per params[:per_page]
-    end
-
-    photos
-  end
 end
