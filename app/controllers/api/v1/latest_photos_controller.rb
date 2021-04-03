@@ -1,11 +1,10 @@
 class Api::V1::LatestPhotosController < ApplicationController
-  include PhotoHelper
-
+  
   def index
     @rover = Rover.find_by name: params[:rover_id].titleize
     if @rover
-      photos = search_photos @rover, photo_params
-      error = resize_photos photos, params
+      photos = helpers.search_photos @rover, photo_params
+      error = helpers.resize_photos photos, params
 
       if error.nil?
         render json: photos, each_serializer: PhotoSerializer, root: :latest_photos

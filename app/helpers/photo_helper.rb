@@ -1,7 +1,5 @@
 module PhotoHelper
 
-  private
-
   def search_photos rover, params
     photos = rover.photos.order(:camera_id, :id).search params, rover
 
@@ -85,6 +83,8 @@ module PhotoHelper
 
     error
   end
+
+  private
 
   def replace_each_photo_suffix(photos, old_suffix, new_suffix)
     photos.map do |photo|

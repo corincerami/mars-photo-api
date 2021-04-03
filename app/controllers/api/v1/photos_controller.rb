@@ -5,7 +5,7 @@ class Api::V1::PhotosController < ApplicationController
     photo = Photo.find photo_params[:id]
     photo = helpers.resize_photo photo, photo_params
 
-    error = resize_photo photo, params
+    error = helpers.resize_photo photo, params
 
     if error.nil?
       render json: photo, serializer: PhotoSerializer, root: :photo
@@ -18,8 +18,8 @@ class Api::V1::PhotosController < ApplicationController
     rover = Rover.find_by name: params[:rover_id].titleize
 
     if rover
-      photos = search_photos rover, photo_params
-      error = resize_photos photos, params
+      photos = helpers.search_photos rover, photo_params
+      error = helpers.resize_photos photos, params
 
       if error.nil?
         render json: photos, each_serializer: PhotoSerializer, root: :photos
