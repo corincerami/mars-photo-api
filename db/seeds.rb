@@ -22,6 +22,8 @@ perseverance.cameras.find_or_create_by(name: "REAR_HAZCAM_LEFT", full_name: "Rea
 perseverance.cameras.find_or_create_by(name: "REAR_HAZCAM_RIGHT", full_name: "Rear Hazard Avoidance Camera - Right")
 perseverance.cameras.find_or_create_by(name: "SKYCAM", full_name: "MEDA Skycam")
 perseverance.cameras.find_or_create_by(name: "SHERLOC_WATSON", full_name: "SHERLOC WATSON Camera")
+perseverance.cameras.find_or_create_by(name: "SUPERCAM_RMI", full_name: "SuperCam Remote Micro Imager")
+perseverance.cameras.find_or_create_by(name: "LCAM", full_name: "Lander Vision System Camera")
 
 opportunity.cameras.find_or_create_by(name: "FHAZ", full_name: "Front Hazard Avoidance Camera")
 opportunity.cameras.find_or_create_by(name: "RHAZ", full_name: "Read Hazard Avoidance Camera")
