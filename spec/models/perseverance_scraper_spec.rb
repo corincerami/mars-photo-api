@@ -33,11 +33,12 @@ RSpec.describe PerseveranceScraper, type: :model do
     let!(:rhrcam) {create :camera, rover: perseverance, name:  "REAR_HAZCAM_RIGHT" }
     let!(:skycam) {create :camera, rover: perseverance, name:  "SKYCAM" }
     let!(:waston) {create :camera, rover: perseverance, name:  "SHERLOC_WATSON" }
+    let!(:supercam) { create :camera, rover: perseverance, name: "SUPERCAM_RMI" }
 
     it "should create photo objects" do
       allow(scraper).to receive(:collect_links).and_return ["https://mars.nasa.gov/rss/api/?feed=raw_images&category=mars2020&feedtype=json&sol=1"]
 
-      expect{ scraper.scrape }.to change { Photo.count }.by(201)
+      expect{ scraper.scrape }.to change { Photo.count }.by(205)
     end
   end
 end
