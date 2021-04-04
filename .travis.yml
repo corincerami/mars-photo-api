@@ -1,7 +1,7 @@
 language: ruby
 
 rvm:
-  - 2.7.1
+  - 3.0.0
 
 before_script:
   - psql -c 'create database mars_curiosity_test;' -U postgres
