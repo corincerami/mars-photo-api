@@ -87,12 +87,13 @@ module PhotoHelper
   private
 
   def replace_each_photo_suffix(photos, old_suffix, new_suffix)
+  def replace_each_photo_suffix photos, old_suffix_length, new_suffix
     photos.map do |photo|
-      replace_photo_suffix photo, old_suffix, new_suffix
+      replace_photo_suffix photo, old_suffix_length, new_suffix
     end
   end
 
-  def replace_photo_suffix(photo, old_suffix, new_suffix)
-    photo[:img_src] = photo[:img_src].delete_suffix(old_suffix) + new_suffix
+  def replace_photo_suffix photo, old_suffix_length, new_suffix
+    photo[:img_src] = photo[:img_src][0, str.length - old_suffix_length] + new_suffix
   end
 end
