@@ -47,7 +47,6 @@ module PhotoHelper
   end
 
   def replace_photo_suffix photo, old_suffix_length, new_suffix
-    p old_suffix_length
     photo[:img_src] = photo[:img_src][0, photo[:img_src].length - old_suffix_length] + new_suffix
   end
 
