@@ -11,74 +11,28 @@ module PhotoHelper
   end
 
   def resize_photo photo, params
-
     error = nil;
     rover_name = Rover.find_by( id: photo[:rover_id] )[:name].downcase
+    suffix_data = lookup_suffix rover_name, params[:size]
 
-    case params[:size]
-    when nil, "large" # do nothing
-    when "small"
-      case rover_name
-      when "curiosity"
-        replace_photo_suffix photo, ".jpg", "-thm.jpg"
-      when "spirit", "opportunity"
-        replace_photo_suffix photo, ".jpg", "-THM.jpg"
-      when "perseverance"
-        replace_photo_suffix photo, "1200.jpg", "320.jpg"
-      else
-        error = "Invalid size parameter 'small' for '#{rover_name.titleize}' rover";
-      end
-    when "medium"
-      if rover_name == "perseverance"
-        replace_photo_suffix photo, "1200.jpg", "800.jpg"
-      else
-        error = "Invalid size parameter 'medium' for '#{rover_name.titleize}' rover";
-      end
-    when "full"
-      if rover_name == "perseverance"
-        replace_photo_suffix photo, "_1200.jpg", ".png"
-      else
-        error = "Invalid size parameter 'full' for '#{rover_name.titleize}' rover";
-      end
+    if suffix_data.nil?
+      error = "Invalid size parameter '#{params[:size]}' for '#{rover_name.titleize}' rover";
     else
-      error = "Unrecognized size parameter: '#{params[:size]}'";
+      replace_photo_suffix photo, suffix_data[:old_length], suffix_data[:new]
     end
 
     error
   end
 
   def resize_photos photos, params
-
     error = nil;
     rover_name = params[:rover_id].downcase
+    suffix_data = lookup_suffix rover_name, params[:size]
 
-    case params[:size]
-    when nil, "large" # do nothing
-    when "small"
-      case rover_name
-      when "curiosity"
-        replace_each_photo_suffix photos, ".jpg", "-thm.jpg"
-      when "spirit", "opportunity"
-        replace_each_photo_suffix photos, ".jpg", "-THM.jpg"
-      when "perseverance"
-        replace_each_photo_suffix photos, "1200.jpg", "320.jpg"
-      else
-        error = "Invalid size parameter 'small' for '#{rover_name.titleize}' rover";
-      end
-    when "medium"
-      if rover_name == "perseverance"
-        replace_each_photo_suffix photos, "1200.jpg", "800.jpg"
-      else
-        error = "Invalid size parameter 'medium' for '#{rover_name.titleize}' rover";
-      end
-    when "full"
-      if rover_name == "perseverance"
-        replace_each_photo_suffix photos, "_1200.jpg", ".png"
-      else
-        error = "Invalid size parameter 'full' for '#{rover_name.titleize}' rover";
-      end
+    if suffix_data.nil?
+      error = "Invalid size parameter '#{params[:size]}' for '#{rover_name.titleize}' rover";
     else
-      error = "Unrecognized size parameter: '#{params[:size]}'";
+      replace_each_photo_suffix photos, suffix_data[:old_length], suffix_data[:new]
     end
 
     error
@@ -86,7 +40,6 @@ module PhotoHelper
 
   private
 
-  def replace_each_photo_suffix(photos, old_suffix, new_suffix)
   def replace_each_photo_suffix photos, old_suffix_length, new_suffix
     photos.map do |photo|
       replace_photo_suffix photo, old_suffix_length, new_suffix
@@ -94,6 +47,48 @@ module PhotoHelper
   end
 
   def replace_photo_suffix photo, old_suffix_length, new_suffix
-    photo[:img_src] = photo[:img_src][0, str.length - old_suffix_length] + new_suffix
+    p old_suffix_length
+    photo[:img_src] = photo[:img_src][0, photo[:img_src].length - old_suffix_length] + new_suffix
+  end
+
+  def lookup_suffix rover_name, size
+    suffix_hash = {
+      :curiosity => {
+        :original_length => 4, # .jpg or .JPG
+        :small => '-thm.jpg',
+        :medium => '-br.jpg',
+        :large => '.jpg'
+      },
+      :spirit => {
+        :original_length => 7, # -BR.JPG
+        :small => '-THM.jpg',
+        :medium => '-BR.jpg',
+        :large => '.jpg'
+      },
+      :opportunity => {
+        :original_length => 7, # -BR.JPG
+        :small => '-THM.jpg',
+        :medium => '-BR.jpg',
+        :large => '.jpg'
+      },
+      :perseverance => {
+        :original_length => 9, # _1200.jpg
+        :small => '_320.jpg',
+        :medium => '_800.jpg',
+        :large => '_1200.jpg',
+        :full => '.png'
+      }
+    }
+
+    if suffix_hash.key?(rover_name.to_sym) && !suffix_hash[rover_name.to_sym][size.to_sym].nil? then
+      size = size || 'large'
+
+      {
+        :old_length => suffix_hash[rover_name.to_sym][:original_length],
+        :new => suffix_hash[rover_name.to_sym][size.to_sym]
+      }
+    else
+      nil
+    end
   end
 end
