@@ -55,37 +55,45 @@ module PhotoHelper
     suffix_hash = {
       :curiosity => {
         :original_length => 4, # .jpg or .JPG
-        :small => '-thm.jpg',
-        :medium => '-br.jpg',
-        :large => '.jpg'
+        :sizes => {
+          :small => '-thm.jpg',
+          :medium => '-br.jpg',
+          :large => '.jpg'
+        }
       },
       :spirit => {
         :original_length => 7, # -BR.JPG
-        :small => '-THM.jpg',
-        :medium => '-BR.jpg',
-        :large => '.jpg'
+        :sizes => {
+          :small => '-THM.jpg',
+          :medium => '-BR.jpg',
+          :large => '.jpg'
+        }
       },
       :opportunity => {
         :original_length => 7, # -BR.JPG
-        :small => '-THM.jpg',
-        :medium => '-BR.jpg',
-        :large => '.jpg'
+        :sizes => {
+          :small => '-THM.jpg',
+          :medium => '-BR.jpg',
+          :large => '.jpg'
+        }
       },
       :perseverance => {
         :original_length => 9, # _1200.jpg
-        :small => '_320.jpg',
-        :medium => '_800.jpg',
-        :large => '_1200.jpg',
-        :full => '.png'
+        :sizes => {
+          :small => '_320.jpg',
+          :medium => '_800.jpg',
+          :large => '_1200.jpg',
+          :full => '.png'
+        }
       }
     }
 
-    if suffix_hash.key?(rover_name.to_sym) && !suffix_hash[rover_name.to_sym][size.to_sym].nil? then
-      size = size || 'large'
+    size = size || 'large'
 
+    if suffix_hash.key?(rover_name.to_sym) && suffix_hash[rover_name.to_sym][:sizes].key?(size.to_sym) then
       {
         :old_length => suffix_hash[rover_name.to_sym][:original_length],
-        :new => suffix_hash[rover_name.to_sym][size.to_sym]
+        :new => suffix_hash[rover_name.to_sym][:sizes][size.to_sym]
       }
     else
       nil
