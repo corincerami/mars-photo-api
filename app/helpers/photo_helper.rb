@@ -16,7 +16,7 @@ module PhotoHelper
     suffix_data = lookup_suffix rover_name, params[:size]
 
     if suffix_data.nil?
-      error = "Invalid size parameter '#{params[:size]}' for '#{rover_name.titleize}' rover";
+      error = "Invalid size parameter '#{params[:size]}' for '#{rover_name.titleize}' photo";
     else
       replace_photo_suffix photo, suffix_data[:old_length], suffix_data[:new]
     end
@@ -30,7 +30,7 @@ module PhotoHelper
     suffix_data = lookup_suffix rover_name, params[:size]
 
     if suffix_data.nil?
-      error = "Invalid size parameter '#{params[:size]}' for '#{rover_name.titleize}' rover";
+      error = "Invalid size parameter '#{params[:size]}' for '#{rover_name.titleize}' photos";
     else
       replace_each_photo_suffix photos, suffix_data[:old_length], suffix_data[:new]
     end
