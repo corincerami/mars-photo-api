@@ -11,31 +11,25 @@ module PhotoHelper
   end
 
   def resize_photo photo, params
-    error = nil;
     rover_name = Rover.find_by( id: photo[:rover_id] )[:name].downcase
     suffix_data = lookup_suffix rover_name, params[:size]
 
-    if suffix_data.nil?
-      error = "Invalid size parameter '#{params[:size]}' for '#{rover_name.titleize}' photo";
-    else
+    if !suffix_data.nil?
       replace_photo_suffix photo, suffix_data[:old_length], suffix_data[:new]
+    else
+      nil
     end
-
-    error
   end
 
   def resize_photos photos, params
-    error = nil;
     rover_name = params[:rover_id].downcase
     suffix_data = lookup_suffix rover_name, params[:size]
 
-    if suffix_data.nil?
-      error = "Invalid size parameter '#{params[:size]}' for '#{rover_name.titleize}' photos";
-    else
+    if !suffix_data.nil?
       replace_each_photo_suffix photos, suffix_data[:old_length], suffix_data[:new]
+    else
+      nil
     end
-
-    error
   end
 
   private
@@ -47,7 +41,9 @@ module PhotoHelper
   end
 
   def replace_photo_suffix photo, old_suffix_length, new_suffix
-    photo[:img_src] = photo[:img_src][0, photo[:img_src].length - old_suffix_length] + new_suffix
+    new_photo = photo.clone;
+    new_photo[:img_src] = photo[:img_src][0, photo[:img_src].length - old_suffix_length] + new_suffix
+    new_photo
   end
 
   def lookup_suffix rover_name, size
