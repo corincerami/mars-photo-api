@@ -43,23 +43,23 @@ module PhotoHelper
         :sizes => {
           :small => '-thm.jpg',
           :medium => '-br.jpg',
-          :large => '.jpg'
+          :large => '.JPG'
         }
       },
       :spirit => {
         :original_length => 7, # -BR.JPG
         :sizes => {
-          :small => '-THM.jpg',
-          :medium => '-BR.jpg',
-          :large => '.jpg'
+          :small => '-THM.JPG',
+          :medium => '-BR.JPG',
+          :large => '.JPG'
         }
       },
       :opportunity => {
         :original_length => 7, # -BR.JPG
         :sizes => {
-          :small => '-THM.jpg',
-          :medium => '-BR.jpg',
-          :large => '.jpg'
+          :small => '-THM.JPG',
+          :medium => '-BR.JPG',
+          :large => '.JPG'
         }
       },
       :perseverance => {
