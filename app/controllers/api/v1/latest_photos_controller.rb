@@ -6,10 +6,10 @@ class Api::V1::LatestPhotosController < ApplicationController
       photos = helpers.search_photos @rover, photo_params
       photos = helpers.resize_photos photos, params
 
-      if !photos.nil?
+      if photos != 'size error'
         render json: photos, each_serializer: PhotoSerializer, root: :latest_photos
       else
-        render json: { errors: "Invalid size parameter '#{photo_params[:size]}' for '#{@rover.titleize}' photos" }, status: :bad_request
+        render json: { errors: "Invalid size parameter '#{photo_params[:size]}' for #{@rover.name.titleize} photos" }, status: :bad_request
       end
     else
       render json: { errors: "Invalid Rover Name" }, status: :bad_request

@@ -17,7 +17,7 @@ module PhotoHelper
     if !suffix_data.nil?
       replace_photo_suffix photo, suffix_data[:old_length], suffix_data[:new]
     else
-      nil
+      'size error'
     end
   end
 
@@ -28,7 +28,7 @@ module PhotoHelper
     if !suffix_data.nil?
       replace_each_photo_suffix photos, suffix_data[:old_length], suffix_data[:new]
     else
-      nil
+      'size error'
     end
   end
 
