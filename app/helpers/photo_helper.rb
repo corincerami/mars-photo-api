@@ -1,7 +1,7 @@
 module PhotoHelper
 
   def resize_photo photo, params
-    rover_name = Rover.find_by( id: photo[:rover_id] )[:name].downcase
+    rover_name = photo.rover.name.downcase
     suffix_data = lookup_suffix rover_name, params[:size]
 
     if !suffix_data.nil?
@@ -32,7 +32,7 @@ module PhotoHelper
 
   def replace_photo_suffix photo, old_suffix_length, new_suffix
     new_photo = photo.clone;
-    new_photo[:img_src] = photo[:img_src][0, photo[:img_src].length - old_suffix_length] + new_suffix
+    new_photo.img_src = photo.img_src[0, photo.img_src.length - old_suffix_length] + new_suffix
     new_photo
   end
 
@@ -73,12 +73,13 @@ module PhotoHelper
       }
     }
 
-    size = size || 'large'
+    rover = rover_name.downcase.to_sym
+    size = size.nil? ? :large : size.to_sym
 
-    if suffix_hash.key?(rover_name.to_sym) && suffix_hash[rover_name.to_sym][:sizes].key?(size.to_sym) then
+    if suffix_hash.key?(rover) && suffix_hash[rover][:sizes].key?(size) then
       {
-        :old_length => suffix_hash[rover_name.to_sym][:original_length],
-        :new => suffix_hash[rover_name.to_sym][:sizes][size.to_sym]
+        :old_length => suffix_hash[rover][:original_length],
+        :new => suffix_hash[rover][:sizes][size]
       }
     else
       nil
