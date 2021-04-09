@@ -150,7 +150,7 @@ describe Api::V1::PhotosController do
       sizes.each do |size, suffix|
         context "with rover_id '#{rover_id}' and size '#{size}'" do
           before(:each) do
-            photo.rover.update(name: rover_id)
+            rover.update(name: rover_id)
             get :index, params: { rover_id: rover_id, sol: 829, size: size }
           end
 
@@ -182,7 +182,7 @@ describe Api::V1::PhotosController do
       sizes.each do |size, suffix|
         context "one of #{rover_id}'s photos with size parameter '#{size}'" do
           before(:each) do
-            photo.rover.update(name: rover_id)
+            rover.update(name: rover_id)
             get :show, params: { id: photo.id, size: size }
           end
 
