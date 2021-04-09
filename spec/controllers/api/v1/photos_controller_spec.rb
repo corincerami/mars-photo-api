@@ -149,12 +149,8 @@ describe Api::V1::PhotosController do
     suffix_hash.each do |rover_id, sizes|
       sizes.each do |size, suffix|
         context "with rover_id '#{rover_id}' and size '#{size}'" do
-          let(:temp_rover) { create(:rover) }
-          let(:temp_camera) { create(:camera, rover: temp_rover) }
-          let!(:temp_photo) { create(:photo, rover: temp_rover, camera: temp_camera) }
-
           before(:each) do
-            temp_rover.update(name: rover_id)
+            photo.rover.update(name: rover_id)
             get :index, params: { rover_id: rover_id, sol: 829, size: size }
           end
 
