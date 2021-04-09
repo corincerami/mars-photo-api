@@ -90,18 +90,18 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos?api_key=D
 
 #### Size parameter:
 
-Specify the size of the photo you would like to receive. Default value is `large`. Notice only Perseverance photos have a guaranteed width. Photos from other rovers tend to be smaller than their Perseverance counterparts.
+Specify the size of the photo you would like to receive. Default value is `large`. Notice only Perseverance photos have a guaranteed width.
 
 https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=DEMO_KEY&size=small
 
-| Size Parameter Value | Width (px) | Format | Curiosity | Opportunity | Spirit | Perseverance |
-|----------------------|------------|--------|-----------|-------------|--------|--------------|
-| `small`              | varies     | JPEG   | ✔         | ✔           | ✔      |              |
-| `large`              | varies     | JPEG   | ✔         | ✔           | ✔      |              |
-| `small`              | 320        | JPEG   |           |             |        | ✔            |
-| `medium`             | 800        | JPEG   |           |             |        | ✔            |
-| `large`              | 1200       | JPEG   |           |             |        | ✔            |
-| `full`               | varies     | PNG    |           |             |        | ✔            |
+| Size Parameter Value | Format | Curiosity   | Opportunity | Spirit | Perseverance |
+|----------------------|--------|:-----------:|:-----------:|:------:|:------------:|
+| `small`              | JPEG   | ✔           | ✔           | ✔      | ✔            |
+| `medium`             | JPEG   | ✔           | ✔           | ✔      | ✔            |
+| `large`              | JPEG   | ✔           | ✔           | ✔      | ✔            |
+| `full`               | PNG    | N/A         | N/A         | N/A    | ✔            |
+
+*Note: Only **Perseverance** `small`, `medium`, and `large` size images have guaranteed widths of `300px`, `800px`, and `1200px` respectively. All other dimensions are variable.*
 
 ### Mission Manifest Endpoint
 
