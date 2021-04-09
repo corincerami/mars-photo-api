@@ -177,5 +177,21 @@ describe Api::V1::PhotosController do
         expect(json["photo"])
       end
     end
+
+    suffix_hash.each do |rover_id, sizes|
+      sizes.each do |size, suffix|
+        context "one of #{rover_id}'s photos with size parameter '#{size}'" do
+          before(:each) do
+            photo.rover.update(name: rover_id)
+            get :show, params: { id: photo.id, size: size }
+          end
+
+          it "modifies img_src" do
+            photo = json['photo']
+            expect(photo['img_src']).to end_with suffix
+          end
+        end
+      end
+    end
   end
 end
