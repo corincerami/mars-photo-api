@@ -5,6 +5,30 @@ describe Api::V1::PhotosController do
   let(:camera) { create(:camera, rover: rover) }
   let!(:photo) { create(:photo, rover: rover, camera: camera) }
 
+  suffix_hash = {
+    'Curiosity' => {
+      'small' => '-thm.jpg',
+      'medium' => '-br.jpg',
+      'large' => '.JPG'
+    },
+    'Spirit' => {
+      'small' => '-THM.JPG',
+      'medium' => '-BR.JPG',
+      'large' => '.JPG'
+    },
+    'Opportunity' => {
+      'small' => '-THM.JPG',
+      'medium' => '-BR.JPG',
+      'large' => '.JPG'
+    },
+    'Perseverance' => {
+      'small' => '_320.jpg',
+      'medium' => '_800.jpg',
+      'large' => '_1200.jpg',
+      'full' => '.png'
+    }
+  }
+
   describe "GET 'index'" do
     context "with no query parameters" do
       before(:each) do
@@ -119,6 +143,26 @@ describe Api::V1::PhotosController do
         get :index, params: params.merge(page: 2, per_page: 30)
 
         expect(json["photos"].length).to eq 5
+      end
+    end
+
+    suffix_hash.each do |rover_id, sizes|
+      sizes.each do |size, suffix|
+        context "with rover_id '#{rover_id}' and size '#{size}'" do
+          let(:temp_rover) { create(:rover) }
+          let(:temp_camera) { create(:camera, rover: temp_rover) }
+          let!(:temp_photo) { create(:photo, rover: temp_rover, camera: temp_camera) }
+
+          before(:each) do
+            temp_rover.update(name: rover_id)
+            get :index, params: { rover_id: rover_id, sol: 829, size: size }
+          end
+
+          it "modifies img_src" do
+            photo = json['photos'].first
+            expect(photo['img_src']).to end_with suffix
+          end
+        end
       end
     end
   end
