@@ -65,7 +65,7 @@ describe Api::V1::LatestPhotosController do
 
     context "with camera query" do
       before(:each) do
-        create_list(:photo, 3, rover: rover, camera: create(:camera, {name: 'TEST', rover: rover}), sol: 99999)
+        create_list(:photo, 3, rover: rover, camera: create(:camera, {name: 'TEST', rover: rover}), sol: 9999)
         get :index, params: { rover_id: rover.name, camera: 'TEST' }
       end
 
