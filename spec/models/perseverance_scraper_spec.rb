@@ -17,23 +17,23 @@ RSpec.describe PerseveranceScraper, type: :model do
   end
 
   describe ".scrape" do
-    let!(:erucam) {create :camera, rover: perseverance, name:  "EDL_RUCAM" }
-    let!(:erdcam) {create :camera, rover: perseverance, name:  "EDL_RDCAM" }
-    let!(:edocam) {create :camera, rover: perseverance, name:  "EDL_DDCAM" }
-    let!(:epu1cam) {create :camera, rover: perseverance, name: "EDL_PUCAM1" }
-    let!(:epu2cam) {create :camera, rover: perseverance, name: "EDL_PUCAM2" }
-    let!(:navlcam) {create :camera, rover: perseverance, name: "NAVCAM_LEFT" }
-    let!(:navrcam) {create :camera, rover: perseverance, name: "NAVCAM_RIGHT" }
-    let!(:mczlcam) {create :camera, rover: perseverance, name: "MCZ_LEFT" }
-    let!(:mczrcam) {create :camera, rover: perseverance, name: "MCZ_RIGHT" }
-    let!(:fhlacam) {create :camera, rover: perseverance, name: "FRONT_HAZCAM_LEFT_A" }
-    let!(:fhracam) {create :camera, rover: perseverance, name: "FRONT_HAZCAM_RIGHT_A" }
-    let!(:fhlbcam) {create :camera, rover: perseverance, name: "FRONT_HAZCAM_LEFT_B" }
-    let!(:fhrbcam) {create :camera, rover: perseverance, name: "FRONT_HAZCAM_RIGHT_B" }
-    let!(:rhlcam) {create :camera, rover: perseverance, name:  "REAR_HAZCAM_LEFT" }
-    let!(:rhrcam) {create :camera, rover: perseverance, name:  "REAR_HAZCAM_RIGHT" }
-    let!(:skycam) {create :camera, rover: perseverance, name:  "SKYCAM" }
-    let!(:waston) {create :camera, rover: perseverance, name:  "SHERLOC_WATSON" }
+    let!(:erucam) { create :camera, rover: perseverance, name: "EDL_RUCAM" }
+    let!(:erdcam) { create :camera, rover: perseverance, name: "EDL_RDCAM" }
+    let!(:edocam) { create :camera, rover: perseverance, name: "EDL_DDCAM" }
+    let!(:epu1cam) { create :camera, rover: perseverance, name: "EDL_PUCAM1" }
+    let!(:epu2cam) { create :camera, rover: perseverance, name: "EDL_PUCAM2" }
+    let!(:navlcam) { create :camera, rover: perseverance, name: "NAVCAM_LEFT" }
+    let!(:navrcam) { create :camera, rover: perseverance, name: "NAVCAM_RIGHT" }
+    let!(:mczlcam) { create :camera, rover: perseverance, name: "MCZ_LEFT" }
+    let!(:mczrcam) { create :camera, rover: perseverance, name: "MCZ_RIGHT" }
+    let!(:fhlacam) { create :camera, rover: perseverance, name: "FRONT_HAZCAM_LEFT_A" }
+    let!(:fhracam) { create :camera, rover: perseverance, name: "FRONT_HAZCAM_RIGHT_A" }
+    let!(:fhlbcam) { create :camera, rover: perseverance, name: "FRONT_HAZCAM_LEFT_B" }
+    let!(:fhrbcam) { create :camera, rover: perseverance, name: "FRONT_HAZCAM_RIGHT_B" }
+    let!(:rhlcam) { create :camera, rover: perseverance, name: "REAR_HAZCAM_LEFT" }
+    let!(:rhrcam) { create :camera, rover: perseverance, name: "REAR_HAZCAM_RIGHT" }
+    let!(:skycam) { create :camera, rover: perseverance, name: "SKYCAM" }
+    let!(:waston) { create :camera, rover: perseverance, name: "SHERLOC_WATSON" }
     let!(:supercam) { create :camera, rover: perseverance, name: "SUPERCAM_RMI" }
 
     before(:each) do
