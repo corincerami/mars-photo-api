@@ -147,16 +147,35 @@ describe Api::V1::PhotosController do
     end
 
     suffix_hash.each do |rover_id, sizes|
-      sizes.each do |size, suffix|
-        context "with rover_id '#{rover_id}' and size '#{size}'" do
+      context "with rover_id '#{rover_id}'" do
+        before(:each) do
+          rover.update(name: rover_id)
+        end
+
+        sizes.each do |size, suffix|
+          context "and size '#{size}'" do
+            before(:each) do
+              get :index, params: { rover_id: rover_id, sol: 829, size: size }
+            end
+
+            it "modifies img_src" do
+              photo = json['photos'].first
+              expect(photo['img_src']).to end_with suffix
+            end
+          end
+        end
+
+        context "with invalid size parameter" do
           before(:each) do
-            rover.update(name: rover_id)
-            get :index, params: { rover_id: rover_id, sol: 829, size: size }
+            get :index, params: { rover_id: rover_id, sol: 829, size: "not a size" }
           end
 
-          it "modifies img_src" do
-            photo = json['photos'].first
-            expect(photo['img_src']).to end_with suffix
+          it "returns http 400 bad request" do
+            expect(response.status).to eq 400
+          end
+
+          it "returns an error message" do
+            expect(json["errors"]).to eq "Invalid size parameter 'not a size' for #{rover_id}"
           end
         end
       end
@@ -179,16 +198,35 @@ describe Api::V1::PhotosController do
     end
 
     suffix_hash.each do |rover_id, sizes|
-      sizes.each do |size, suffix|
-        context "one of #{rover_id}'s photos with size parameter '#{size}'" do
+      context "one of #{rover_id}'s photos" do
+        before(:each) do
+          rover.update(name: rover_id)
+        end
+
+        sizes.each do |size, suffix|
+          context "with size parameter '#{size}'" do
+            before(:each) do
+              get :show, params: { id: photo.id, size: size }
+            end
+
+            it "modifies img_src" do
+              photo = json['photo']
+              expect(photo['img_src']).to end_with suffix
+            end
+          end
+        end
+
+        context "with invalid size parameter" do
           before(:each) do
-            rover.update(name: rover_id)
-            get :show, params: { id: photo.id, size: size }
+            get :show, params: { id: photo.id, size: "not a size" }
           end
 
-          it "modifies img_src" do
-            photo = json['photo']
-            expect(photo['img_src']).to end_with suffix
+          it "returns http 400 bad request" do
+            expect(response.status).to eq 400
+          end
+
+          it "returns an error message" do
+            expect(json["errors"]).to eq "Invalid size parameter 'not a size' for #{rover_id}"
           end
         end
       end
