@@ -36,16 +36,17 @@ RSpec.describe PerseveranceScraper, type: :model do
     let!(:waston) {create :camera, rover: perseverance, name:  "SHERLOC_WATSON" }
     let!(:supercam) { create :camera, rover: perseverance, name: "SUPERCAM_RMI" }
 
-    it "should create photo objects" do
+    before(:each) do
       allow(scraper).to receive(:collect_links).and_return ["https://mars.nasa.gov/rss/api/?feed=raw_images&category=mars2020&feedtype=json&sol=1"]
+    end
 
+    it "should create photo objects" do
       expect{ scraper.scrape }.to change { Photo.count }.by(34)
     end
 
     context "finds an invalid camera name" do
       before(:each) do
         allow($stdout).to receive(:write) # stub stdout
-        allow(scraper).to receive(:collect_links).and_return ["https://mars.nasa.gov/rss/api/?feed=raw_images&category=mars2020&feedtype=json&sol=1"]
         allow(scraper).to receive(:camera_from_json).and_return('NOT_A_CAMERA')
       end
 
