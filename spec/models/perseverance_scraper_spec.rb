@@ -38,7 +38,7 @@ RSpec.describe PerseveranceScraper, type: :model do
     it "should create photo objects" do
       allow(scraper).to receive(:collect_links).and_return ["https://mars.nasa.gov/rss/api/?feed=raw_images&category=mars2020&feedtype=json&sol=1"]
 
-      expect{ scraper.scrape }.to change { Photo.count }.by(205)
+      expect{ scraper.scrape }.to change { Photo.count }.by(34)
     end
   end
 end
