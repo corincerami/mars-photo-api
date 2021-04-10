@@ -53,31 +53,8 @@ class PerseveranceScraper
     end
   end
 
-  def camera_abbreviations
-    {
-      erucam:  "EDL_RUCAM",
-      erdcam:  "EDL_RDCAM",
-      edocam:  "EDL_DDCAM",
-      epu1cam: "EDL_PUCAM1",
-      epu2cam: "EDL_PUCAM2",
-      navlcam: "NAVCAM_LEFT",
-      navrcam: "NAVCAM_RIGHT",
-      mczlcam: "MCZ_LEFT",
-      mczrcam: "MCZ_RIGHT",
-      fhlacam: "FRONT_HAZCAM_LEFT_A",
-      fhracam: "FRONT_HAZCAM_RIGHT_A",
-      fhlbcam: "FRONT_HAZCAM_LEFT_B",
-      fhrbcam: "FRONT_HAZCAM_RIGHT_B",
-      rhlcam:  "REAR_HAZCAM_LEFT",
-      rhrcam:  "REAR_HAZCAM_RIGHT",
-      skycam:  "SKYCAM",
-      watson:  "SHERLOC_WATSON"
-    }
-  end
-
   def camera_from_json(image)
     camera_name = image['camera']['instrument']
     rover.cameras.find_by(name: camera_name) || camera_name
   end
 end
-
