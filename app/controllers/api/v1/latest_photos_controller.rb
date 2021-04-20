@@ -7,12 +7,12 @@ class Api::V1::LatestPhotosController < ApplicationController
         .permit(:rover_id, :camera, :earth_date, :size, :page, :per_page)
         .merge(sol: rover.photos.maximum(:sol))
       photos = rover.photos.search validated_params, rover
-      photos = helpers.resize_photos photos, validated_params
 
-      if photos != 'size error'
+      begin
+        photos = helpers.resize_photos photos, validated_params
         render json: photos, each_serializer: PhotoSerializer, root: :latest_photos
-      else
-        render json: { errors: "Invalid size parameter '#{validated_params[:size]}' for #{rover.name.titleize}" }, status: :bad_request
+      rescue StandardError => e
+        render json: { errors: e.inspect }, status: :bad_request
       end
     else
       render json: { errors: "Invalid Rover Name" }, status: :bad_request

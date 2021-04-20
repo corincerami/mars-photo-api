@@ -3,14 +3,12 @@ class Api::V1::PhotosController < ApplicationController
 
   def show
     photo = Photo.find @params[:id]
-    resized_photo = helpers.resize_photo photo, @params
 
-    if resized_photo != 'size error'
+    begin
+      resized_photo = helpers.resize_photo photo, @params
       render json: resized_photo, serializer: PhotoSerializer, root: :photo
-    else
-      render json: {
-        errors: "Invalid size parameter '#{@params[:size]}' for #{photo.rover.name.titleize}"
-      }, status: :bad_request
+    rescue StandardError => e
+      render json: { errors: e.message }, status: :bad_request
     end
   end
 
@@ -19,14 +17,12 @@ class Api::V1::PhotosController < ApplicationController
 
     if rover
       photos = rover.photos.search @params, rover
-      photos = helpers.resize_photos photos, @params
 
-      if photos != 'size error'
+      begin
+        photos = helpers.resize_photos photos, @params
         render json: photos, each_serializer: PhotoSerializer, root: :photos
-      else
-        render json: {
-          errors: "Invalid size parameter '#{@params[:size]}' for #{@params[:rover_id].titleize}"
-        }, status: :bad_request
+      rescue StandardError => e
+        render json: { errors: e.message }, status: :bad_request
       end
     else
       render json: { errors: "Invalid Rover Name" }, status: :bad_request

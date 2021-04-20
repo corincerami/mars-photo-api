@@ -1,5 +1,17 @@
 module PhotoHelper
 
+  class InvalidSizeParameter < StandardError
+    def initialize(
+        size,
+        rover_name,
+        exception_type="custom"
+      )
+
+      @exception_type = exception_type
+      super("Invalid size parameter '#{size}' for #{rover_name.titleize}")
+    end
+  end
+
   def resize_photo photo, params
     rover_name = photo.rover.name.downcase
     suffix_data = lookup_suffix rover_name, params[:size]
@@ -7,7 +19,7 @@ module PhotoHelper
     if !suffix_data.nil?
       replace_photo_suffix photo, suffix_data[:old_length], suffix_data[:new]
     else
-      'size error'
+      raise InvalidSizeParameter.new params[:size], rover_name
     end
   end
 
@@ -18,7 +30,7 @@ module PhotoHelper
     if suffix_data.present?
       replace_each_photo_suffix photos, suffix_data[:old_length], suffix_data[:new]
     else
-      'size error'
+      raise InvalidSizeParameter.new params[:size], rover_name
     end
   end
 
