@@ -15,7 +15,7 @@ module PhotoHelper
     rover_name = params[:rover_id].downcase
     suffix_data = lookup_suffix rover_name, params[:size]
 
-    if !suffix_data.nil?
+    if suffix_data.present?
       replace_each_photo_suffix photos, suffix_data[:old_length], suffix_data[:new]
     else
       'size error'

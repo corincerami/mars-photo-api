@@ -2,7 +2,7 @@ class Api::V1::LatestPhotosController < ApplicationController
   def index
     rover = Rover.find_by name: params[:rover_id].titleize
 
-    if rover then
+    if rover
       validated_params = params
         .permit(:rover_id, :camera, :earth_date, :size, :page, :per_page)
         .merge(sol: rover.photos.maximum(:sol))
