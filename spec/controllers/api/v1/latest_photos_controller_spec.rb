@@ -138,10 +138,6 @@ describe Api::V1::LatestPhotosController do
           it "returns http 400 bad request" do
             expect(response.status).to eq 400
           end
-
-          it "returns an error message" do
-            expect(json["errors"]).to eq "Invalid size parameter 'not a size' for #{rover_id}"
-          end
         end
       end
     end
