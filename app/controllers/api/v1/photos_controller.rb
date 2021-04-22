@@ -16,8 +16,8 @@ class Api::V1::PhotosController < ApplicationController
     rover = Rover.find_by name: @params[:rover_id].titleize
 
     if rover
-      photos = rover.photos.search @params, rover
-
+      photos = helpers.search_photos rover, @params
+      
       begin
         photos = helpers.resize_photos photos, @params
         render json: photos, each_serializer: PhotoSerializer, root: :photos

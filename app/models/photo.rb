@@ -11,19 +11,9 @@ class Photo < ActiveRecord::Base
 
   def self.search(params, rover)
     photos = search_by_date params
-
-    if params[:camera]
-      if photos.any?
-        photos = photos.search_by_camera params, rover
-      end
+    if params[:camera] and photos.any?
+      photos = photos.search_by_camera params, rover
     end
-
-    photos = photos.order(:camera_id, :id)
-
-    if params[:page]
-      photos = photos.page(params[:page]).per params[:per_page]
-    end
-
     photos
   end
 

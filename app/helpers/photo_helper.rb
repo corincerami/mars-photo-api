@@ -1,5 +1,15 @@
 module PhotoHelper
 
+  def search_photos rover, params
+    photos = rover.photos.order(:camera_id, :id).search params, rover
+
+    if params[:page]
+      photos = photos.page(params[:page]).per params[:per_page]
+    end
+
+    photos
+  end
+
   class InvalidSizeParameter < StandardError
     def initialize(
         size,

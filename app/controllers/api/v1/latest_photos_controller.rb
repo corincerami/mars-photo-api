@@ -6,7 +6,7 @@ class Api::V1::LatestPhotosController < ApplicationController
       validated_params = params
         .permit(:rover_id, :camera, :earth_date, :size, :page, :per_page)
         .merge(sol: rover.photos.maximum(:sol))
-      photos = rover.photos.search validated_params, rover
+      photos = helpers.search_photos rover, validated_params
 
       begin
         photos = helpers.resize_photos photos, validated_params
