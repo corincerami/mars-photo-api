@@ -16,8 +16,6 @@ module PhotoHelper
         rover_name,
         exception_type="custom"
       )
-
-      @exception_type = exception_type
       super("Invalid size parameter '#{size}' for #{rover_name.titleize}")
     end
   end
