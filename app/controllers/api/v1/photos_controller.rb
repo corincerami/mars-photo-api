@@ -21,7 +21,7 @@ class Api::V1::PhotosController < ApplicationController
       begin
         photos = helpers.resize_photos photos, @params
         render json: photos, each_serializer: PhotoSerializer, root: :photos
-      rescue StandardError => e
+      rescue PhotoHelper::InvalidSizeParameter => e
         render json: { errors: e.message }, status: :bad_request
       end
     else

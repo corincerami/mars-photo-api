@@ -11,8 +11,8 @@ class Api::V1::LatestPhotosController < ApplicationController
       begin
         photos = helpers.resize_photos photos, validated_params
         render json: photos, each_serializer: PhotoSerializer, root: :latest_photos
-      rescue StandardError => e
-        render json: { errors: e.inspect }, status: :bad_request
+      rescue PhotoHelper::InvalidSizeParameter => e
+        render json: { errors: e.message }, status: :bad_request
       end
     else
       render json: { errors: "Invalid Rover Name" }, status: :bad_request
