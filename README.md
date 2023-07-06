@@ -1,6 +1,11 @@
-[![Version](https://img.shields.io/badge/version-1.1.2-brightgreen.svg)](http://github.com/chrisccerami/mars-photo-api)[![Build Status](https://travis-ci.org/chrisccerami/mars-photo-api.svg)](https://travis-ci.org/chrisccerami/mars-photo-api)[![Code Climate](https://codeclimate.com/github/chrisccerami/mars-photo-api/badges/gpa.svg)](https://codeclimate.com/github/chrisccerami/mars-photo-api)[![Test Coverage](https://codeclimate.com/github/chrisccerami/mars-photo-api/badges/coverage.svg)](https://codeclimate.com/github/chrisccerami/mars-photo-api/coverage)
-
 # Mars Rover Photo API
+
+API Version: [![Version](https://img.shields.io/badge/version-1.1.2-brightgreen.svg)](http://github.com/chrisccerami/mars-photo-api)
+
+Build status: [![CircleCI](https://dl.circleci.com/status-badge/img/gh/corincerami/mars-photo-api/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/corincerami/mars-photo-api/tree/master)
+
+Test coverage: [![Test Coverage](https://codeclimate.com/github/chrisccerami/mars-photo-api/badges/coverage.svg)](https://codeclimate.com/github/chrisccerami/mars-photo-api/coverage)
+
 
 This API is designed to collect image data gathered by NASA's Perseverance, Curiosity, Opportunity, and Spirit rovers on Mars and make it more easily available to other developers, educators, and citizen scientists.
 
@@ -17,7 +22,7 @@ Along with querying by date, results can also be filtered by the camera with whi
 ### Cameras
 #### Perseverance rover
 
-  Abbreviation | Camera                       
+  Abbreviation | Camera
   ------------ | ------------------------------
    EDL_RUCAM|Rover Up-Look Camera
    EDL_RDCAM|Rover Down-Look Camera
