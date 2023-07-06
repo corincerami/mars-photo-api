@@ -4,7 +4,7 @@ ruby '3.0.2'
 
 gem 'pg', '~> 1.0'
 gem 'rake'
-gem 'rails', '~> 6.0'
+gem 'rails', '~> 7.0.0'
 gem 'nokogiri', '~>1.12'
 gem 'active_model_serializers', '~> 0.9.3'
 gem 'rack-cors', require: 'rack/cors'
