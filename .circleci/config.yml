@@ -6,7 +6,7 @@ jobs:
     # Primary container image where all commands run
 
     docker:
-      - image: cimg/ruby:3.0.2-node
+      - image: cimg/ruby:3.2.2-node
         environment:
           RAILS_ENV: test
           PGHOST: 127.0.0.1
