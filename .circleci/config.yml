@@ -1,0 +1,57 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/mars-photo-api
+
+    # Primary container image where all commands run
+
+    docker:
+      - image: cimg/ruby:3.0.2-node
+        environment:
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: mars-photo-api
+
+    # Service container image available at `host: localhost`
+
+      - image: cimg/postgres:14.0
+        environment:
+          POSTGRES_USER: mars-photo-api
+          POSTGRES_DB: mars_curiosity_test
+          POSTGRES_PASSWORD: ""
+
+    steps:
+      - checkout
+
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - mars-photo-api-{{ checksum "Gemfile.lock" }}
+            - mars-photo-api-
+
+      # Bundle install dependencies
+      - run:
+          name: Install dependencies
+          command: bundle config set --local path 'vendor/bundle' && bundle check || bundle install --jobs 4 --retry 3
+
+      - run: sudo apt install -y postgresql-client || true
+
+      # Store bundle cache
+      - save_cache:
+          key: mars-photo-api-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Database Setup
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:schema:load
+
+      - run:
+          name: Parallel RSpec
+          command: bundle exec rspec
+
+      # Save artifacts
+      - store_test_results:
+          path: /tmp/test-results
