@@ -53,6 +53,7 @@ Along with querying by date, results can also be filtered by the camera with whi
    NAVCAM|Navigation Camera|✔|✔|✔|
    PANCAM|Panoramic Camera| |✔|✔|
    MINITES|Miniature Thermal Emission Spectrometer (Mini-TES)| |✔|✔|
+   ENTRY|Entry, Descent, and Landing Camera| |✔|✔|
 
 ## Querying the API
 
