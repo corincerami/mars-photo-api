@@ -39,6 +39,8 @@ Along with querying by date, results can also be filtered by the camera with whi
    REAR_HAZCAM_RIGHT|Rear Hazard Avoidance Camera - Right
    SKYCAM|MEDA Skycam
    SHERLOC_WATSON|SHERLOC WATSON Camera
+   SUPERCAM_RMI|SuperCam Remote Micro Imager
+   LCAM|Lander Vision System Camera
 
 #### Other rovers
 
@@ -53,6 +55,7 @@ Along with querying by date, results can also be filtered by the camera with whi
    NAVCAM|Navigation Camera|✔|✔|✔|
    PANCAM|Panoramic Camera| |✔|✔|
    MINITES|Miniature Thermal Emission Spectrometer (Mini-TES)| |✔|✔|
+   ENTRY|Entry, Descent, and Landing Camera| |✔|✔|
 
 ## Querying the API
 
