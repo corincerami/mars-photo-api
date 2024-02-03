@@ -40,6 +40,7 @@ Along with querying by date, results can also be filtered by the camera with whi
    SKYCAM|MEDA Skycam
    SHERLOC_WATSON|SHERLOC WATSON Camera
    SUPERCAM_RMI|SuperCam Remote Micro Imager
+   LCAM|Lander Vision System Camera
 
 #### Other rovers
 
