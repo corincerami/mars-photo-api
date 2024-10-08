@@ -17,7 +17,7 @@ class CuriosityScraper
     response = JSON.parse(URI.open(BASE_URL + "?order=sol%20desc,instrument_sort%20asc,sample_type_sort%20asc,%20date_taken%20desc&per_page=1&page=0&condition_1=msl:mission").read)
     latest_sol_available = response["items"].first["sol"].to_i
     latest_sol_scraped = rover.photos.maximum(:sol).to_i
-    sols_to_scrape = (latest_sol_scraped..latest_sol_available).to_a.last(10) # Only fetch the last 10 sols
+    sols_to_scrape = (latest_sol_scraped..latest_sol_available) #.to_a.last(10) # Only fetch the last 10 sols
 
     sols_to_scrape.map { |sol|
       "#{BASE_URL}?order=sol%20desc,instrument_sort%20asc,sample_type_sort%20asc,%20date_taken%20desc&per_page=200&page=0&condition_1=msl:mission&condition_2=#{sol}:sol:in"
