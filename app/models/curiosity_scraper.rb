@@ -60,6 +60,22 @@ class CuriosityScraper
 
   def camera_from_json(image)
     camera_name = image['instrument']
-    rover.cameras.find_by(name: camera_name) || camera_name
+    camera = rover.cameras.find_by(name: camera_name) || rover.cameras.find_by(full_name: camera_name)
+
+    if camera.nil?
+      # Log a warning
+      puts "WARNING: Camera not found. Name: #{camera_name}. Adding to database."
+
+      # Add the new camera to the database
+      camera = rover.cameras.create(name: camera_name, full_name: camera_name)
+
+      if camera.persisted?
+        puts "New camera added to database: #{camera_name}"
+      else
+        puts "Failed to add camera to the database: #{camera_name}"
+      end
+    end
+
+    camera
   end
 end
