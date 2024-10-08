@@ -17,6 +17,3 @@
 /tmp
 /public/assets
 /coverage
-
-Dockerfile
-docker-compose.yml
