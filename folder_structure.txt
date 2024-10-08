@@ -1,0 +1,164 @@
+Folder PATH listing
+Volume serial number is EEAD-45D2
+C:.
+³   .codeclimate.yml
+³   .gitattributes
+³   .gitignore
+³   .rspec
+³   .ruby-version
+³   config.ru
+³   docker-compose.yml
+³   Dockerfile
+³   folder_structure.txt
+³   Gemfile
+³   Gemfile.lock
+³   License.md
+³   Procfile
+³   Rakefile
+³   README.md
+³   
+ÃÄÄÄ.circleci
+³       config.yml
+³       
+ÃÄÄÄapp
+³   ÃÄÄÄassets
+³   ³   ÀÄÄÄconfig
+³   ³           manifest.js
+³   ³           
+³   ÃÄÄÄcontrollers
+³   ³   ³   application_controller.rb
+³   ³   ³   static_controller.rb
+³   ³   ³   
+³   ³   ÀÄÄÄapi
+³   ³       ÀÄÄÄv1
+³   ³               latest_photos_controller.rb
+³   ³               manifests_controller.rb
+³   ³               photos_controller.rb
+³   ³               rovers_controller.rb
+³   ³               
+³   ÃÄÄÄhelpers
+³   ³       application_helper.rb
+³   ³       
+³   ÃÄÄÄmodels
+³   ³       camera.rb
+³   ³       curiosity_scraper.rb
+³   ³       opportunity_spirit_scraper.rb
+³   ³       perseverance_scraper.rb
+³   ³       photo.rb
+³   ³       photo_manifest.rb
+³   ³       rover.rb
+³   ³       
+³   ÀÄÄÄserializers
+³           camera_serializer.rb
+³           photo_manifest_serializer.rb
+³           photo_serializer.rb
+³           rover_serializer.rb
+³           
+ÃÄÄÄbin
+³       bundle
+³       rails
+³       rake
+³       setup
+³       spring
+³       
+ÃÄÄÄconfig
+³   ³   application.rb
+³   ³   boot.rb
+³   ³   database.yml
+³   ³   environment.rb
+³   ³   newrelic.yml
+³   ³   puma.rb
+³   ³   routes.rb
+³   ³   secrets.yml
+³   ³   storage.yml
+³   ³   
+³   ÃÄÄÄenvironments
+³   ³       development.rb
+³   ³       production.rb
+³   ³       test.rb
+³   ³       
+³   ÃÄÄÄinitializers
+³   ³       backtrace_silencers.rb
+³   ³       cookies_serializer.rb
+³   ³       filter_parameter_logging.rb
+³   ³       inflections.rb
+³   ³       mime_types.rb
+³   ³       redis.rb
+³   ³       session_store.rb
+³   ³       wrap_parameters.rb
+³   ³       
+³   ÀÄÄÄlocales
+³           en.yml
+³           
+ÃÄÄÄdb
+³   ³   schema.rb
+³   ³   seeds.rb
+³   ³   
+³   ÀÄÄÄmigrate
+³           20150111223524_create_photos.rb
+³           20150326195232_add_index_to_photos.rb
+³           20150610043755_add_earth_date_to_photos.rb
+³           20150611024520_change_earth_date_to_date.rb
+³           20150613144825_create_rovers.rb
+³           20150613145324_add_rover_id_to_photos.rb
+³           20150613161623_create_cameras.rb
+³           20150613162330_add_camera_id_to_photos.rb
+³           20150613162909_remove_null_false_from_photos.rb
+³           20150613172554_rename_camera_on_photos.rb
+³           20150613230252_add_indexes.rb
+³           20150621054555_add_full_name_to_cameras.rb
+³           20150624004521_add_index_on_earth_date.rb
+³           20151024040622_fix_navcam_null_camera_ids_for_curiosity_photos.rb
+³           20160929175428_add_launch_date_and_status_to_rover.rb
+³           20160929212810_add_index_on_sol_to_photos.rb
+³           
+ÃÄÄÄlog
+³       development.log
+³       newrelic_agent.log
+³       
+ÃÄÄÄpublic
+³   ³   crossdomain.xml
+³   ³   favicon.ico
+³   ³   index.html
+³   ³   robots.txt
+³   ³   
+³   ÀÄÄÄexplore
+³       ³   mars-photos-ember-b5f0177a34d407192d3d78d2ec77b6f4.js
+³       ³   mars-photos-ember-fc9f28ea6e98f5cf721a0009248bfe25.css
+³       ³   vendor-a5d6b9b8755084f4802ef87949fbbc4d.js
+³       ³   vendor-d41d8cd98f00b204e9800998ecf8427e.css
+³       ³   
+³       ÀÄÄÄimages
+³               Curiosity_rover.jpg
+³               Opportunity_rover.jpg
+³               Perseverance_rover.jpg
+³               Spirit_rover.jpg
+³               
+ÃÄÄÄspec
+³   ³   factories.rb
+³   ³   rails_helper.rb
+³   ³   spec_helper.rb
+³   ³   
+³   ÃÄÄÄcontrollers
+³   ³   ÀÄÄÄapi
+³   ³       ÀÄÄÄv1
+³   ³               manifests_controller_spec.rb
+³   ³               photos_controller_spec.rb
+³   ³               rovers_controller_spec.rb
+³   ³               
+³   ÃÄÄÄmodels
+³   ³       curiosity_scraper_spec.rb
+³   ³       perseverance_scraper_spec.rb
+³   ³       photo_manifest_spec.rb
+³   ³       photo_spec.rb
+³   ³       rover_spec.rb
+³   ³       
+³   ÀÄÄÄsupport
+³           request_helpers.rb
+³           
+ÀÄÄÄtmp
+    ÃÄÄÄcache
+    ÃÄÄÄpids
+    ³       server.pid
+    ³       
+    ÀÄÄÄsockets
