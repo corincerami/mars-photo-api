@@ -90,8 +90,9 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos?api_key=D
 
 ### Mission Manifest Endpoint
 
-A mission manifest is available for each Rover at the `/manifests/<rover_name>`. This manifest will list details of the Rover's mission to help narrow down photo queries to the API. The information in the manifest includes:
+A mission manifest is available for each Rover at the `/rovers/<rover_name>`. This manifest will list details of the Rover's mission to help narrow down photo queries to the API. The information in the manifest includes:
 
+- id
 - name
 - landing_date
 - launch_date
@@ -99,6 +100,7 @@ A mission manifest is available for each Rover at the `/manifests/<rover_name>`.
 - max_sol
 - max_date
 - total_photos
+- cameras
 
 It also includes a list of objects under the `photos` key which are grouped by `sol`, and each of which contains:
 
@@ -106,7 +108,7 @@ It also includes a list of objects under the `photos` key which are grouped by `
 - total_photos
 - cameras
 
-An example entry from `/manifests/Curiosity` might look like:
+An example entry from `/rovers/curiosity` might look like:
 
 ```
 {
@@ -125,6 +127,10 @@ An example entry from `/manifests/Curiosity` might look like:
 This would tell you that this rover, on sol 0, took 3702 photos, and those are from among the CHEMCAM, FHAZ, MARDI, and RHAZ cameras.
 
 The database will be updated regularly with the latest photos from the red planet.
+
+> **Important Notice:**
+>
+> NASA has removed the raw images from the Spirit and Opportunity rovers from their servers. While the mission manifest data for these rovers is still accessible via the API, the image sources for any photo queries will not load correctly. You will still be able to retrieve details such as the total number of photos and the number of photos on each sol, but the actual image files *these two rovers* are no longer available from NASA.
 
 ## Contributing
 
