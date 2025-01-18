@@ -104,7 +104,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    loofah (2.21.3)
+    loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -115,7 +115,7 @@ GEM
     marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.5)
+    mini_portile2 (2.8.8)
     minitest (5.18.1)
     net-imap (0.3.6)
       date
@@ -128,7 +128,7 @@ GEM
       net-protocol
     newrelic_rpm (9.3.0)
     nio4r (2.7.4)
-    nokogiri (1.15.6)
+    nokogiri (1.18.1)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     pg (1.5.3)
@@ -137,7 +137,7 @@ GEM
       method_source (~> 1.0)
     puma (6.4.3)
       nio4r (~> 2.0)
-    racc (1.7.3)
+    racc (1.8.1)
     rack (2.2.8.1)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
@@ -161,9 +161,9 @@ GEM
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.6.0)
+    rails-html-sanitizer (1.6.1)
       loofah (~> 2.21)
-      nokogiri (~> 1.14)
+      nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
