@@ -88,6 +88,21 @@ If you just want to receive photo data for the most recent Sol for which photos 
 
 https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos?api_key=DEMO_KEY
 
+#### Size parameter:
+
+Specify the size of the photo you would like to receive. Default value is `large`.
+
+https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=DEMO_KEY&size=small
+
+| Size Parameter Value | Format | Curiosity   | Opportunity | Spirit | Perseverance |
+|----------------------|--------|:-----------:|:-----------:|:------:|:------------:|
+| `small`              | JPEG   | ✔           | ✔           | ✔      | ✔            |
+| `medium`             | JPEG   | ✔           | ✔           | ✔      | ✔            |
+| `large`              | JPEG   | ✔           | ✔           | ✔      | ✔            |
+| `full`               | PNG    | N/A         | N/A         | N/A    | ✔            |
+
+*Note: Only **Perseverance** `small`, `medium`, and `large` size images have guaranteed widths of `300px`, `800px`, and `1200px` respectively. All other dimensions are variable.*
+
 ### Mission Manifest Endpoint
 
 A mission manifest is available for each Rover at the `/manifests/<rover_name>`. This manifest will list details of the Rover's mission to help narrow down photo queries to the API. The information in the manifest includes:
