@@ -1,13 +1,29 @@
 class Api::V1::PhotosController < ApplicationController
+  before_action :photo_params
+
   def show
-    photo = Photo.find params[:id]
-    render json: photo, serializer: PhotoSerializer, root: :photo
+    photo = Photo.find @params[:id]
+
+    begin
+      resized_photo = helpers.resize_photo photo, @params
+      render json: resized_photo, serializer: PhotoSerializer, root: :photo
+    rescue StandardError => e
+      render json: { errors: e.message }, status: :bad_request
+    end
   end
 
   def index
-    rover = Rover.find_by name: params[:rover_id].titleize
+    rover = Rover.find_by name: @params[:rover_id].titleize
+
     if rover
-      render json: photos(rover), each_serializer: PhotoSerializer, root: :photos
+      photos = helpers.search_photos rover, @params
+      
+      begin
+        photos = helpers.resize_photos photos, @params
+        render json: photos, each_serializer: PhotoSerializer, root: :photos
+      rescue PhotoHelper::InvalidSizeParameter => e
+        render json: { errors: e.message }, status: :bad_request
+      end
     else
       render json: { errors: "Invalid Rover Name" }, status: :bad_request
     end
@@ -16,14 +32,6 @@ class Api::V1::PhotosController < ApplicationController
   private
 
   def photo_params
-    params.permit :sol, :camera, :earth_date, :rover_id
-  end
-
-  def photos(rover)
-    photos = rover.photos.order(:camera_id, :id).search photo_params, rover
-    if params[:page]
-      photos = photos.page(params[:page]).per params[:per_page]
-    end
-    photos
+    @params = params.permit :id, :rover_id, :sol, :camera, :earth_date, :size, :page, :per_page
   end
 end
